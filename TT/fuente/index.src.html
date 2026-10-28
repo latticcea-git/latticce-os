@@ -1,0 +1,1795 @@
+<meta name="dash-one-writer">
+<style>
+  #dash-root { --dash-gutter: clamp(8px, 2vw, 24px); }
+  .tt { --bg: #07080B; --fg: #ECEDEF; --mut: #A0A4AD; --dim: #6D717A; --line: rgba(255,255,255,.08); --line2: rgba(255,255,255,.16);
+    --glass: linear-gradient(160deg, rgba(255,255,255,.065), rgba(255,255,255,.018)); --glass2: rgba(255,255,255,.045); --ink: #0E1015;
+    --bad: #FF7A6B; --ok: #7EE0A1; --warn: #F2C46B; --r-lg: 22px; --r-md: 14px; --r-sm: 10px;
+    font-family: var(--font-anthropic-sans); color: var(--fg); background: radial-gradient(1100px 520px at 90% -8%, rgba(220,234,242,.08), transparent 60%), radial-gradient(800px 480px at -5% 105%, rgba(254,92,20,.05), transparent 60%), var(--bg);
+    border-radius: 28px; border: 1px solid rgba(255,255,255,.06); padding: clamp(10px, 2vw, 18px); max-width: 1440px; margin-inline: auto; }
+  .tt *, .tt *::before, .tt *::after { box-sizing: border-box; }
+  .tt .tt-b, .tt b, .tt strong { font-weight: 600; }
+  .tt a { color: inherit; }
+  .tt button { font: inherit; cursor: pointer; color: inherit; }
+  .tt button:focus-visible, .tt a:focus-visible, .tt select:focus-visible, .tt input:focus-visible { outline: 2px solid #72E7FF; outline-offset: 2px; }
+  .tt svg.ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .tt svg.ic.sm { width: 14px; height: 14px; }
+  .tt svg.ic.lg { width: 22px; height: 22px; }
+  .tt-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+  /* App shell */
+  .tt-app { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: clamp(10px, 1.6vw, 18px); }
+  .tt-rail { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: var(--r-lg); background: var(--glass); border: 1px solid var(--line); align-self: start; }
+  .tt-rail .mono { width: 40px; height: 32px; color: #fff; margin-bottom: 8px; }
+  .tt-rail button, .tt-rail a { display: grid; justify-items: center; gap: 3px; width: 60px; padding: 8px 2px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--mut); text-decoration: none; font-size: 10.5px; line-height: 1.15; text-align: center; }
+  .tt-rail button:hover, .tt-rail a:hover { color: var(--fg); background: rgba(255,255,255,.06); border-color: var(--line); }
+  .tt-rail .sep { width: 32px; height: 1px; background: var(--line); margin: 6px 0; }
+  .tt-rail { position: sticky; top: 14px; z-index: 20; }
+  .tt-rail .on { color: var(--fg); background: rgba(255,255,255,.09); border-color: var(--line2); }
+  .tt-ri { position: relative; }
+  .tt-fly { position: absolute; left: calc(100% + 10px); top: -6px; display: none; gap: 2px; min-width: 210px; padding: 10px; border-radius: 16px; background: #12151C; border: 1px solid var(--line2); box-shadow: 0 18px 50px rgba(0,0,0,.55); z-index: 30; }
+  .tt-fly::before { content: ""; position: absolute; left: -14px; top: 0; bottom: 0; width: 14px; }
+  .tt-ri:hover .tt-fly, .tt-ri:focus-within .tt-fly { display: grid; }
+  .tt-fly b { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); padding: 2px 8px 6px; }
+  .tt-rail .tt-fly button { display: flex; align-items: center; gap: 9px; width: auto; padding: 7px 9px; font-size: 12.5px; text-align: left; color: var(--fg); border-radius: 10px; }
+  .tt-fly button i { width: 6px; height: 6px; border-radius: 50%; background: var(--mut); flex: none; }
+  .tt-fly button.on i, .tt-fly button:hover i { background: var(--fg); }
+  @media (max-width: 860px) {
+    .tt-app { grid-template-columns: minmax(0, 1fr); }
+    .tt-rail { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 8px; }
+    .tt-rail .mono, .tt-rail .sep { display: none; }
+    .tt-rail { position: static; }
+    .tt-fly { display: none !important; }
+  }
+  .tt-main { display: grid; gap: clamp(12px, 1.6vw, 18px); min-width: 0; }
+
+  /* Header */
+  .tt-head { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: end; justify-content: space-between; padding: 6px 4px 0; }
+  .tt-brand { display: grid; gap: 10px; min-width: 0; }
+  .tt-brand .logo { width: clamp(150px, 18vw, 210px); height: auto; color: #fff; display: block; }
+  .tt-brand h1 { margin: 0; font-weight: 300; font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.05; letter-spacing: -.01em; }
+  .tt-brand h1 span { color: var(--mut); }
+  .tt-brand p { margin: 0; color: var(--mut); max-width: 70ch; line-height: 1.55; font-size: var(--cds-font-size-body); }
+  .tt-brand p b { color: var(--fg); }
+  .tt-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tt-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--glass2); color: var(--mut); text-decoration: none; }
+  .tt-tag:hover { color: var(--fg); border-color: var(--line2); }
+
+  /* Cards */
+  .tt-card { background: var(--glass); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(14px, 1.8vw, 20px); display: grid; gap: 12px; min-width: 0; align-content: start; position: relative; }
+  .tt-ch { display: flex; align-items: center; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+  .tt-ch h2, .tt-ch h3 { margin: 0; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+  .tt-ch h2 .ic, .tt-ch h3 .ic { color: var(--mut); }
+  .tt-note { margin: 0; font-size: 12.5px; color: var(--mut); line-height: 1.5; }
+  .tt-note b { color: var(--fg); }
+  .tt-grid { display: grid; gap: clamp(12px, 1.6vw, 18px); }
+  .tt-g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+  .tt-g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+  .tt-hero { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); }
+  @media (max-width: 1080px) { .tt-hero { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Section headers */
+  .tt-sec { display: grid; gap: clamp(12px, 1.6vw, 16px); scroll-margin-top: 12px; }
+  .tt-sh { display: flex; align-items: end; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap; padding: 18px 4px 0; border-top: 1px solid var(--line); }
+  .tt-sh > div { display: grid; gap: 4px; }
+  .tt-sh h2 { margin: 0; font-weight: 300; font-size: clamp(1.35rem, 2.4vw, 1.75rem); display: inline-flex; align-items: center; gap: 10px; }
+  .tt-sh h2 .ic { width: 22px; height: 22px; color: var(--mut); }
+  .tt-sh p { margin: 0; color: var(--mut); max-width: 78ch; line-height: 1.5; font-size: 13.5px; }
+
+  /* Trayectoria (etapas) */
+  .tt-track { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+  .tt-track::before { content: ""; position: absolute; left: 4%; right: 4%; top: 17px; height: 2px; background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.5) 78%, rgba(255,255,255,.12)); }
+  .tt-stage { position: relative; display: grid; justify-items: center; gap: 6px; text-align: center; padding: 0 2px 8px; border: 0; background: none; border-radius: 12px; }
+  .tt-stage .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); border: 1px solid var(--line2); font-size: 11px; color: var(--mut); position: relative; z-index: 1; }
+  .tt-stage.done .dot { background: #1B1E25; color: var(--fg); }
+  .tt-stage.now .dot { background: #F2F1EC; color: #07080B; border-color: #F2F1EC; box-shadow: 0 0 0 6px rgba(242,241,236,.12), 0 0 24px rgba(242,241,236,.35); font-weight: 600; }
+  .tt-stage.next .dot { border-style: dashed; }
+  .tt-stage .p { font-size: 11px; color: var(--dim); }
+  .tt-stage .n { font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+  .tt-stage .q { font-size: 11.5px; color: var(--mut); line-height: 1.3; }
+  .tt-stage.on { background: rgba(255,255,255,.06); }
+  .tt-stage:hover { background: rgba(255,255,255,.04); }
+  @media (max-width: 720px) { .tt-track { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 14px; } .tt-track::before { display: none; } }
+
+  /* KPI tiles */
+  .tt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.6rem), 1fr)); gap: 10px; }
+  .tt-kpi { text-align: left; display: grid; gap: 6px; align-content: start; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--line); background: rgba(255,255,255,.035); }
+  .tt-kpi:hover { border-color: var(--line2); background: rgba(255,255,255,.06); }
+  .tt-kpi .k { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--mut); }
+  .tt-kpi .v { font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums; }
+  .tt-kpi .s { font-size: 11.5px; color: var(--dim); line-height: 1.35; }
+  .tt-kpi.bad .v, .tt-kpi.bad .k .ic { color: var(--bad); }
+
+  /* Matrix */
+  .tt-ln { display: grid; gap: 6px; }
+  .tt-ln-hd, .tt-lane { display: grid; grid-template-columns: minmax(10.5rem, 1.25fr) repeat(var(--cols), minmax(0, 1fr)); gap: 4px; align-items: stretch; }
+  .tt-ln-hd .c { font-size: 11px; color: var(--dim); align-self: end; padding: 0 4px 4px; }
+  .tt-ln-hd .st { display: grid; gap: 1px; text-align: center; padding: 6px 4px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .tt-ln-hd .st .p { font-size: 10px; color: var(--dim); }
+  .tt-ln-hd .st .n { font-size: 11.5px; font-weight: 600; line-height: 1.2; }
+  .tt-ln-hd .st.now { border-color: rgba(242,241,236,.6); box-shadow: inset 0 2px 0 #F2F1EC; }
+  .tt-ln-hd .st.next { border-style: dashed; }
+  .tt-ln-hd .st:hover { background: rgba(255,255,255,.08); }
+  .tt-lane { position: relative; border-radius: 16px; padding: 4px; background: linear-gradient(90deg, color-mix(in srgb, var(--acc) 22%, transparent), color-mix(in srgb, var(--acc) 7%, transparent)); border: 1px solid color-mix(in srgb, var(--acc) 35%, transparent); }
+  .tt-lane::before { content: ""; position: absolute; left: calc((100% - 8px) * 1.25 / (1.25 + var(--cols)) + 8px); right: 18px; top: 50%; height: 2px; background: color-mix(in srgb, var(--acc) 45%, transparent); pointer-events: none; }
+  .tt-lane .who { display: flex; align-items: center; gap: 9px; text-align: left; padding: 6px 8px; border-radius: 12px; background: rgba(8,9,12,.35); }
+  .tt-lane .who .tx { display: grid; gap: 1px; }
+  .tt-lane .who strong { font-size: 13px; color: var(--acc); }
+  .tt-lane .who .tx span { font-size: 11px; color: var(--mut); }
+  .tt-lane .who:hover { background: rgba(8,9,12,.6); }
+  .tt-lane .stn { position: relative; z-index: 1; display: grid; place-items: center; min-height: 52px; border-radius: 12px; }
+  .tt-lane .stn:hover { background: rgba(255,255,255,.07); }
+  .tt-lane .stn i { display: grid; place-items: center; border-radius: 50%; font-style: normal; font-size: 11px; font-weight: 700; color: #0B0C10; background: color-mix(in srgb, var(--acc) 70%, #0B0C10); border: 1.5px solid var(--acc); }
+  .tt-lane .stn.done i { background: var(--acc); }
+  .tt-lane .stn.empty i { background: #0B0C10; border-color: color-mix(in srgb, var(--acc) 40%, transparent); }
+  .tt-lane .stn.fut i { background: #0B0C10; color: var(--acc); border-style: dashed; }
+  @media (max-width: 860px) { .tt-ln-hd .st .n { display: none; } .tt-ln-hd, .tt-lane { grid-template-columns: minmax(7.5rem, 1.4fr) repeat(var(--cols), minmax(0, 1fr)); } .tt-lane .who .tx span { display: none; } }
+  .tt-nd { display: grid; gap: 12px; }
+  .tt-nd-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .tt-nd-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tt-nd-tabs .tab { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px 4px 4px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--acc) 35%, transparent); font-size: 12px; color: var(--mut); }
+  .tt-nd-tabs .tab .tt-emb { width: 24px; height: 24px; }
+  .tt-nd-tabs .tab .tt-emb.mono { padding: 5px 4px; }
+  .tt-ln-hd .st, .tt-lane .who, .tt-lane .stn, .tt-nd-tabs .tab, .tt-nd-cols .ch, .tt-nd-cols .card { font: inherit; color: var(--fg); }
+  .tt-lane .who, .tt-lane .stn, .tt-nd-cols .ch { background: transparent; border: 0; }
+  .tt-ln-hd .st, .tt-nd-tabs .tab { background: rgba(255,255,255,.03); }
+  .tt-nd-tabs .tab.on, .tt-nd-tabs .tab:hover { color: var(--fg); background: color-mix(in srgb, var(--acc) 20%, transparent); border-color: var(--acc); }
+  .tt-nd-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: linear-gradient(110deg, color-mix(in srgb, var(--acc) 26%, transparent), color-mix(in srgb, var(--acc) 6%, transparent) 70%); border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); }
+  .tt-nd-hero .tx { flex: 1 1 16rem; }
+  .tt-nd-hero h3 { margin: 0; font-size: 20px; color: var(--acc); }
+  .tt-nd-hero p { margin: 4px 0 0; font-size: 13px; color: var(--mut); }
+  .tt-nd-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 10px; align-items: start; }
+  .tt-nd-cols .col { display: grid; gap: 8px; padding: 10px; border-radius: 16px; background: color-mix(in srgb, var(--acc) 7%, rgba(255,255,255,.02)); border: 1px solid color-mix(in srgb, var(--acc) 22%, transparent); }
+  .tt-nd-cols .col.now { box-shadow: inset 0 2px 0 var(--acc); }
+  .tt-nd-cols .col.fut { border-style: dashed; background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--acc) 6%, transparent) 0 6px, transparent 6px 12px); }
+  .tt-nd-cols .ch { display: grid; gap: 1px; text-align: left; padding: 2px 4px 4px; }
+  .tt-nd-cols .ch .p { font-size: 10.5px; color: var(--dim); }
+  .tt-nd-cols .ch .n { font-size: 13.5px; font-weight: 600; }
+  .tt-nd-cols .ch:hover .n { text-decoration: underline; }
+  .tt-nd-cols .card { display: grid; gap: 6px; text-align: left; padding: 10px 11px; border-radius: 12px; background: rgba(8,9,12,.55); border: 1px solid color-mix(in srgb, var(--acc) 28%, transparent); }
+  .tt-nd-cols .card:hover { border-color: var(--acc); background: rgba(8,9,12,.8); }
+  .tt-nd-cols .card.sec { opacity: .78; }
+  .tt-nd-cols .card.lost { opacity: .6; }
+  .tt-nd-cols .card strong { font-size: 13px; line-height: 1.3; }
+  .tt-nd-cols .card .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tt-nd-cols .card .also { font-size: 11px; color: var(--mut); }
+  .tt-nd-cols .card .bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .tt-nd-cols .card .bar i { display: block; height: 100%; background: var(--acc); }
+  .tt-nd-cols .card .pc { font-size: 11px; color: var(--mut); }
+  .tt-nd-cols .fut { font-size: 12.5px; line-height: 1.4; padding: 8px 10px; border-radius: 10px; border: 1px dashed color-mix(in srgb, var(--acc) 50%, transparent); }
+  .tt-hc { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--dim); padding: 2px 4px; border: 0; background: none; border-radius: 6px; }
+  .tt-hc:hover { color: var(--fg); background: rgba(255,255,255,.06); }
+  .tt-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; color: var(--mut); align-items: center; }
+  .tt-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .tt-legend .sw { --acc: #C9CDD0; }
+
+  /* Emblems and marks */
+  .tt-emb { width: 34px; height: 34px; flex: none; object-fit: contain; border-radius: 50%; }
+  .tt-emb.mono { padding: 8px 6px; background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.08), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .tt-emb.big { width: 64px; height: 64px; }
+  .tt-emb.big.mono { padding: 16px 13px; }
+  .tt-marca { height: 30px; width: auto; display: block; max-width: 100%; }
+  svg.tt-marca { width: 150px; height: auto; color: #fff; }
+
+  /* Explore tiles */
+  .tt-explore { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr)); gap: 10px; }
+  .tt-xt { text-align: left; display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--line); background: rgba(255,255,255,.03); min-height: 150px; }
+  .tt-xt:hover { border-color: var(--line2); background: rgba(255,255,255,.06); }
+  .tt-xt .t { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--mut); }
+  .tt-xt .t > span { display: inline-flex; align-items: center; gap: 8px; }
+  .tt-xt .v { font-size: 1.7rem; font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums; }
+  .tt-xt .viz { display: flex; align-items: end; gap: 4px; min-height: 36px; }
+  .tt-xt .s { font-size: 11.5px; color: var(--dim); line-height: 1.35; }
+  .tt-xt.bad .v { color: var(--bad); }
+  .tt-sb { display: flex; width: 100%; height: 8px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,.06); align-self: center; }
+  .tt-sb i { display: block; height: 100%; }
+  .tt-mb { display: flex; align-items: end; gap: 3px; width: 100%; height: 36px; }
+  .tt-mb i { flex: 1; min-height: 2px; border-radius: 2px 2px 0 0; background: rgba(255,255,255,.35); }
+
+  /* Conclusions */
+  .tt-concl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 10px; }
+  .tt-concl article { display: grid; gap: 8px; align-content: start; padding: 14px; border-radius: var(--r-md); background: rgba(255,255,255,.03); border: 1px solid var(--line); }
+  .tt-concl h3 { margin: 0; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .tt-concl p { margin: 0; color: var(--mut); font-size: 12.5px; line-height: 1.55; }
+  .tt-concl p b { color: var(--fg); }
+  .tt-concl .bad { color: var(--bad); }
+
+  /* Maturity */
+  .tt-mad { position: relative; min-height: 360px; }
+
+  /* Node cards */
+  .tt-nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(12px, 1.6vw, 18px); }
+  .tt-node { --acc: #C9CDD0; background: radial-gradient(420px 220px at 100% 0%, color-mix(in srgb, var(--acc) 16%, transparent), transparent 70%), var(--glass); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+  .tt-nb { display: grid; gap: 12px; }
+  .tt-nh { display: flex; align-items: center; gap: 12px; }
+  .tt-nh > div { display: grid; gap: 6px; min-width: 0; }
+  .tt-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line2); color: var(--mut); white-space: nowrap; width: max-content; }
+  .tt-pill.ok { color: var(--ok); border-color: rgba(126,224,161,.35); }
+  .tt-pill.warn { color: var(--warn); border-color: rgba(242,196,107,.35); }
+  .tt-pill.bad { color: var(--bad); border-color: rgba(255,122,107,.35); }
+  .tt-pill.acc { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 45%, transparent); }
+  .tt-rol { margin: 0; font-size: 13px; line-height: 1.5; color: #D5D7DC; }
+  .tt-mets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .tt-met { display: grid; gap: 4px; padding: 9px 10px; border-radius: 12px; background: rgba(0,0,0,.25); border: 1px solid var(--line); min-width: 0; }
+  .tt-met .k { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tt-met .v { font-size: 1.15rem; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .tt-open { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font-size: 12.5px; padding: 8px 14px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--acc, #fff) 50%, transparent); background: color-mix(in srgb, var(--acc, #fff) 12%, transparent); }
+  .tt-open:hover { background: color-mix(in srgb, var(--acc, #fff) 22%, transparent); }
+  .tt-lnks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tt-lnk { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); text-decoration: none; color: var(--fg); }
+  .tt-lnk:hover { border-color: var(--line2); }
+
+  /* Redes */
+  .tt-acc { --acc: #C9CDD0; display: grid; gap: 10px; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--line); background: radial-gradient(260px 140px at 100% 0%, color-mix(in srgb, var(--acc) 13%, transparent), transparent 70%), rgba(255,255,255,.03); min-width: 0; }
+  .tt-acc header { display: flex; align-items: center; gap: 10px; }
+  .tt-acc header strong { font-size: 13.5px; }
+  .tt-hand { display: grid; gap: 4px; font-size: 12px; }
+  .tt-hand a, .tt-hand span { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; color: #D5D7DC; }
+  .tt-hand a:hover { color: #fff; }
+  .tt-seg { display: inline-flex; gap: 4px; padding: 3px; border-radius: 999px; border: 1px solid var(--line); background: rgba(0,0,0,.25); }
+  .tt-seg button { font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 0; background: transparent; color: var(--mut); display: inline-flex; align-items: center; gap: 6px; }
+  .tt-seg button.on { background: #ECEDEF; color: #07080B; }
+  .tt-chart { position: relative; min-height: 260px; }
+
+  /* Filters */
+  .tt-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .tt-filters select, .tt-filters input { font: inherit; font-size: 12.5px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--fg); min-width: 0; }
+  .tt-filters select option { background: #14161B; color: #ECEDEF; }
+  .tt-filters input { flex: 1 1 14rem; }
+  .tt-filters input::placeholder { color: var(--dim); }
+  .tt-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.04); }
+  .tt-btn:hover { border-color: var(--line2); }
+  .tt-btn.on { background: #ECEDEF; color: #07080B; border-color: #ECEDEF; }
+  .tt-active { font-size: 12px; color: var(--mut); margin: 0; }
+
+  /* Project cards */
+  .tt-pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr)); gap: 10px; min-height: 120px; }
+  .tt-pcard { --acc: #C9CDD0; text-align: left; display: grid; gap: 9px; align-content: start; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--line); background: radial-gradient(220px 120px at 100% 0%, color-mix(in srgb, var(--acc) 12%, transparent), transparent 70%), rgba(255,255,255,.03); }
+  .tt-pcard:hover { border-color: var(--line2); }
+  .tt-pcard.on { border-color: #fff; }
+  .tt-pcard strong { font-size: 14px; font-weight: 600; }
+  .tt-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tt-dots { display: inline-flex; gap: 4px; }
+  .tt-dots i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .tt-meter { display: grid; grid-template-columns: 7.6rem 1fr auto; gap: 8px; align-items: center; font-size: 11.5px; }
+  .tt-meter > span:first-child { color: var(--mut); }
+  .tt-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .tt-bar > i { display: block; height: 100%; border-radius: 3px; background: var(--acc, #ECEDEF); }
+  .tt-bar.aprox > i { background: repeating-linear-gradient(90deg, var(--acc, #ECEDEF) 0 6px, transparent 6px 9px); }
+  .tt-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tt-aprox { font-size: .78em; color: var(--warn); margin-left: 4px; font-weight: 400; }
+  .tt-falta { color: var(--bad); font-weight: 600; white-space: nowrap; font-size: .92em; }
+  .tt-src { font-size: 11.5px; color: var(--dim); margin: 0; line-height: 1.45; }
+
+  /* Ficha (inline report) */
+  .tt-ficha { --acc: #ECEDEF; border-radius: var(--r-lg); border: 1px solid color-mix(in srgb, var(--acc) 40%, rgba(255,255,255,.2)); background: radial-gradient(600px 260px at 100% 0%, color-mix(in srgb, var(--acc) 12%, transparent), transparent 70%), #0D0F14; padding: clamp(14px, 2vw, 22px); display: grid; gap: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.45); scroll-margin-top: 16px; }
+  .tt-ficha[data-empty] { display: none; }
+  .tt.tt-host { display: contents; }
+  .tt-modal { position: absolute; left: 0; right: 0; top: 0; height: 100vh; z-index: 1000; display: flex; align-items: flex-start; justify-content: center; padding: 16px; box-sizing: border-box; }
+  .tt-modal:not(.open) { visibility: hidden; pointer-events: none; }
+  .tt-modal:not(.open) .tt-mbg { display: none; }
+  .tt-modal.open .tt-ficha[data-empty] { display: grid; min-height: 160px; }
+  .tt-mbg { position: absolute; inset: 0; background: rgba(5,6,9,.74); backdrop-filter: blur(6px); }
+  .tt-mbox { position: relative; width: min(980px, calc(100vw - 32px)); max-width: calc(100vw - 32px); min-width: min(320px, calc(100vw - 32px)); max-height: min(calc(100vh - 32px), 880px); min-height: 220px; overflow: auto; overscroll-behavior: contain; resize: both; border-radius: var(--r-lg); display: grid; align-content: start; gap: 8px; }
+  .tt-msz { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: flex-end; gap: 6px; padding: 8px 10px; border-radius: 14px; background: rgba(13,15,20,.92); border: 1px solid var(--line); font-size: 11.5px; color: var(--mut); }
+  .tt-msz button { min-width: 30px; padding: 4px 10px; border-radius: 9px; border: 1px solid var(--line2); background: rgba(255,255,255,.04); color: var(--fg); font-size: 12.5px; }
+  .tt-msz button:hover { background: rgba(255,255,255,.1); }
+  .tt-msz button:disabled { opacity: .35; cursor: default; }
+  .tt-msz .tt-mback { order: -2; }
+  .tt-fx { display: flex; gap: 6px; align-items: flex-start; flex: none; }
+  .tt-seal { padding: 0; border: 0; background: transparent; border-radius: 50%; cursor: pointer; }
+  .tt-seal:hover { box-shadow: 0 0 0 2px rgba(255,255,255,.35); }
+  .tt-msz span { margin-right: auto; order: -1; }
+  @media (max-width: 600px) { .tt-msz span { display: none; } }
+  .tt-fh { display: flex; gap: 12px; align-items: start; justify-content: space-between; }
+  .tt-fh > div { display: flex; gap: 14px; align-items: center; min-width: 0; }
+  .tt-fh .tx { display: grid; gap: 8px; min-width: 0; }
+  .tt-fh h3 { margin: 0; font-weight: 300; font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.15; }
+  .tt-x { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line2); background: rgba(255,255,255,.04); border-radius: 999px; padding: 6px 12px; font-size: 12px; flex: none; }
+  .tt-fk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.6rem), 1fr)); gap: 8px; }
+  .tt-fk div { padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--line); display: grid; gap: 4px; }
+  .tt-fk span { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--mut); }
+  .tt-fk strong { font-weight: 300; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+  .tt-fcols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 16px 20px; }
+  .tt-fcols section { display: grid; gap: 7px; align-content: start; }
+  .tt-fcols h4 { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .09em; color: var(--mut); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .tt-fcols ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; line-height: 1.45; font-size: 13px; }
+  .tt-fcols ul.plain { list-style: none; padding: 0; }
+  .tt-fcols p { margin: 0; line-height: 1.5; font-size: 13px; }
+  .tt-check li { display: flex; gap: 8px; align-items: baseline; }
+  .tt-check b { width: 1.2em; text-align: center; }
+  .tt-q { color: #FFB4AA; }
+  .tt-lb { display: inline-flex; align-items: center; gap: 6px; text-align: left; font-size: 12.5px; padding: 5px 10px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .tt-lb:hover { border-color: var(--line2); }
+
+  /* Tables */
+  .tt-scroll { overflow: auto; max-height: 480px; border-radius: 12px; }
+  .tt table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .tt th { text-align: left; font-weight: 500; color: var(--mut); padding: 8px 10px; border-bottom: 1px solid var(--line2); position: sticky; top: 0; background: #111319; z-index: 1; }
+  .tt td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .tt tbody tr.click { cursor: pointer; }
+  .tt tbody tr.click:hover td { background: rgba(255,255,255,.04); }
+  .tt td a { text-decoration: none; }
+  .tt td a:hover { text-decoration: underline; }
+
+  /* Sites */
+  .tt-sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .tt-sites a { display: flex; align-items: center; gap: 8px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; font-size: 12.5px; background: rgba(255,255,255,.03); }
+  .tt-sites a:hover { border-color: var(--line2); }
+  .tt-sites a .ic { color: var(--mut); }
+
+  /* Questions */
+  .tt-qs { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: q; }
+  .tt-qs li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,122,107,.22); background: rgba(255,122,107,.05); font-size: 13px; line-height: 1.45; }
+  .tt-qs li .ic { color: var(--bad); margin-top: 1px; }
+
+  .tt-tip { position: absolute; pointer-events: none; background: #14161B; color: #ECEDEF; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.45); padding: 7px 10px; font-size: 12px; max-width: 290px; z-index: 5; line-height: 1.4; }
+  .tt-tip .d { color: #A0A4AD; }
+  .tt-map { position: relative; min-height: 340px; touch-action: pan-y; }
+  .tt-map svg { display: block; cursor: grab; }
+  .tt-map svg:active { cursor: grabbing; }
+  .tt-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tt-ctrl .lab { font-size: 11.5px; color: var(--dim); margin: 0 2px 0 4px; }
+  .tt-fchip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); }
+  .tt-fchip:hover { background: rgba(255,255,255,.06); }
+  .tt-fchip.on { background: #ECEDEF; color: #07080B; border-color: #ECEDEF; }
+  .tt-fchip i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .tt-fail { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--mut); font-size: 12px; min-height: inherit; }
+  .tt-fail i { width: .375rem; height: .375rem; border-radius: 50%; background: var(--bad); display: inline-block; }
+  @media (prefers-reduced-motion: no-preference) {
+    .tt-ficha { animation: tt-in var(--cds-dur-slow) var(--cds-ease-out); }
+    .tt-pcard, .tt-xt, .tt-kpi, .tt-chip { transition: border-color var(--cds-dur-slow), background var(--cds-dur-slow); }
+    @keyframes tt-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<svg class="tt-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="tt-blanco-umbral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F1EC"/><stop offset="0.42" stop-color="#FFFFFF"/><stop offset="0.58" stop-color="#DCEAF2"/><stop offset="0.70" stop-color="#F0E1C8"/><stop offset="0.82" stop-color="#E2DCEA"/><stop offset="1" stop-color="#F2F1EC"/></linearGradient>
+    <linearGradient id="tt-borde-prismatico" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCEAF2" stop-opacity="0.15"/><stop offset="0.30" stop-color="#D9F0EF" stop-opacity="0.85"/><stop offset="0.53" stop-color="#F0E1C8" stop-opacity="0.80"/><stop offset="0.73" stop-color="#E2DCEA" stop-opacity="0.72"/><stop offset="1" stop-color="#C9CDD0" stop-opacity="0.16"/></linearGradient>
+  </defs>
+  <symbol id="logo-ltt" viewBox="0 0 21092 3992"><g fill="currentColor">%%WORDMARK%%</g></symbol>
+  <symbol id="m-tt" viewBox="5500 0 5200 4000"><path fill="currentColor" d="M10625.826,256.005l0,710.562l-839.921,0l0,2834.275l-815.921,0l0,-2834.275l-1775.825,11.979l0,2822.296l-807.921,0l0,-2822.296l-12,-11.979l-835.921,0l0,-698.587l12,-11.975l5075.508,0Z"/></symbol>
+  <symbol id="m-tt-fx" viewBox="5500 0 5200 4000"><path d="M10625.826,256.005l0,710.562l-839.921,0l0,2834.275l-815.921,0l0,-2834.275l-1775.825,11.979l0,2822.296l-807.921,0l0,-2822.296l-12,-11.979l-835.921,0l0,-698.587l12,-11.975l5075.508,0Z" fill="none" stroke="url(#tt-borde-prismatico)" stroke-width="40" opacity="0.88"/><path d="M10625.826,256.005l0,710.562l-839.921,0l0,2834.275l-815.921,0l0,-2834.275l-1775.825,11.979l0,2822.296l-807.921,0l0,-2822.296l-12,-11.979l-835.921,0l0,-698.587l12,-11.975l5075.508,0Z" fill="url(#tt-blanco-umbral)"/></symbol>
+  <symbol id="i-trace" viewBox="0 0 24 24"><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="6" r="2.2"/><path d="M7.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7.8"/></symbol>
+  <symbol id="i-nodes" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 17 9 5 9-5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M5 20v-4"/><path d="M10 20v-8"/><path d="M15 20V8"/><path d="M20 20V4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4.6a3.2 3.2 0 0 1 0 6.3"/><path d="M18 14a6 6 0 0 1 3 5.5"/></symbol>
+  <symbol id="i-filecheck" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8Z"/><path d="M14 3v5h5"/><path d="m9 14.5 2 2 4-4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19Z"/><path d="M12 10v4.5"/><path d="M12 17.5v.01"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8v.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14.5 21v-7.5H17l.5-3h-3V8.6c0-.9.4-1.6 1.7-1.6h1.4V4.3A17 17 0 0 0 15.4 4C13 4 11.5 5.5 11.5 8v2.5H9v3h2.5V21"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10C19.5 15.4 12 20 12 20Z"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4Z"/></symbol>
+  <symbol id="i-userplus" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6"/><path d="M16 11h6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16Z"/><path d="m13.5 6.5 4 4"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/><path d="m6 6 2.5 2.5"/><path d="m15.5 15.5 2.5 2.5"/><path d="m18 6-2.5 2.5"/><path d="M8.5 15.5 6 18"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5 5-5"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7"/><path d="M12 17v.01"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="m8 15 3.5-4 3 2.5L20 8"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12h.01"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="m12 17 4-5"/></symbol>
+  <symbol id="i-report" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></symbol>
+</svg>
+<script src="logos.js"></script>
+
+<div class="tt">
+  <div class="tt-app">
+    <nav class="tt-rail" aria-label="Secciones">
+      <svg class="mono" viewBox="0 0 5200 4000" role="img" aria-label="LATTICCE TT"><use href="#m-tt"/></svg>
+      <div class="tt-ri"><button type="button" data-go="trazabilidad"><svg class="ic lg"><use href="#i-trace"/></svg>Resumen</button><div class="tt-fly" role="group" aria-label="Resumen"><b>Resumen</b><button type="button" data-go="trayectoria"><i></i>Trayectoria 2025 → 2027</button><button type="button" data-go="cifras"><i></i>Cifras clave</button><button type="button" data-go="mapa-hitos"><i></i>Punto por punto</button><button type="button" data-go="mapa"><i></i>Mapa de trazabilidad</button><button type="button" data-go="hitos"><i></i>Tabla de hitos</button><button type="button" data-go="explora"><i></i>Explora</button><button type="button" data-go="conclusiones"><i></i>Conclusiones</button><button type="button" data-go="madurez"><i></i>Fotografía de madurez</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="nodos"><svg class="ic lg"><use href="#i-nodes"/></svg>Nodos</button><div class="tt-fly" role="group" aria-label="Nodos"><b>Nodos</b><button type="button" data-go="nodo-studio"><i></i>Studio</button><button type="button" data-go="nodo-sound"><i></i>Sound</button><button type="button" data-go="nodo-design"><i></i>Design</button><button type="button" data-go="nodo-agency"><i></i>Agency</button><button type="button" data-go="nodo-time"><i></i>Time</button><button type="button" data-go="nodo-films"><i></i>Films</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="redes"><svg class="ic lg"><use href="#i-signal"/></svg>Redes</button><div class="tt-fly" role="group" aria-label="Redes"><b>Redes</b><button type="button" data-go="redes-kpis"><i></i>KPIs de redes</button><button type="button" data-go="redes-avance"><i></i>Avance por nodo</button><button type="button" data-go="redes-design"><i></i>Instagram Design en vivo</button><button type="button" data-go="cuentas"><i></i>Cuentas por nodo</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="frentes"><svg class="ic lg"><use href="#i-layers"/></svg>Frentes</button><div class="tt-fly" role="group" aria-label="Frentes"><b>Frentes</b><button type="button" data-go="frentes"><i></i>Filtros</button><button type="button" data-go="avance-aprov"><i></i>Avance y aprovechamiento</button><button type="button" data-go="por-estado"><i></i>Por estado</button><button type="button" data-go="tarjetas"><i></i>Todas las fichas</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="mapa-hitos" data-spy="mapa-hitos hitos"><svg class="ic lg"><use href="#i-flag"/></svg>Hitos</button><div class="tt-fly" role="group" aria-label="Hitos"><b>Hitos</b><button type="button" data-go="mapa-hitos"><i></i>Punto por punto</button><button type="button" data-go="hitos"><i></i>Tabla de hitos</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="presencia"><svg class="ic lg"><use href="#i-globe"/></svg>Web</button><div class="tt-fly" role="group" aria-label="Web"><b>Web</b><button type="button" data-go="book"><i></i>Casos en el Book</button><button type="button" data-go="blog"><i></i>Artículos del blog</button></div></div>
+      <div class="tt-ri"><button type="button" data-go="capacidad"><svg class="ic lg"><use href="#i-users"/></svg>Capacidad</button></div>
+      <div class="tt-ri"><button type="button" data-go="expedientes"><svg class="ic lg"><use href="#i-filecheck"/></svg>Expedientes</button><div class="tt-fly" role="group" aria-label="Expedientes"><b>Expedientes</b><button type="button" data-go="cobertura"><i></i>Cobertura documental</button><button type="button" data-go="preguntas"><i></i>Preguntas abiertas</button><button type="button" data-go="faltantes"><i></i>Lo que falta por frente</button></div></div>
+      <span class="sep"></span>
+      <a href="https://claude.ai/artifact/Hv9TAceueAQmfZfckUuuJK" target="_blank" rel="noopener"><svg class="ic lg"><use href="#i-report"/></svg>Reporte 2026</a>
+    </nav>
+
+    <main class="tt-main">
+      <header class="tt-head" id="inicio">
+        <div class="tt-brand">
+          <svg class="logo" viewBox="0 0 21092 3992" role="img" aria-label="LATTICCE"><use href="#logo-ltt"/></svg>
+          <h1>TT <span>· Trayectoria Trazada</span></h1>
+          <p>Todo lo que LATTICCE ha creado desde 2025 y lo que sigue en 2027, conectado por nodo, etapa y evidencia. Hay <b data-draw="l-frentes" data-source="resumen" data-field="frentes">—</b> frentes trazados y <b data-draw="l-hitos" data-source="resumen" data-field="hitos">—</b> hitos registrados: la capacidad está probada; falta acreditar la venta repetible.</p>
+        </div>
+        <div class="tt-tags">
+          <span class="tt-tag"><svg class="ic sm"><use href="#i-calendar"/></svg>Corte: 28 oct 2026</span>
+          <span class="tt-tag"><svg class="ic sm"><use href="#i-help"/></svg>Sin facturación</span>
+          <span class="tt-tag"><span class="tt-aprox">aprox.</span>dato estimado</span>
+          <span class="tt-tag"><span class="tt-falta">falta dato</span>sin fuente</span>
+        </div>
+      </header>
+
+      <section class="tt-sec" id="trazabilidad" aria-label="Resumen de trazabilidad">
+        <div class="tt-grid tt-hero">
+          <article class="tt-card" id="trayectoria">
+            <div class="tt-ch"><h2><svg class="ic"><use href="#i-trace"/></svg>Trayectoria 2025 → 2027</h2><span class="tt-note">Haz clic en una etapa para ver su cadena, hitos y frentes.</span></div>
+            <div class="tt-track" data-draw="stages" data-source="etapas por_etapa"></div>
+          </article>
+          <article class="tt-card" id="cifras">
+            <div class="tt-ch"><h2><svg class="ic"><use href="#i-gauge"/></svg>Cifras clave</h2></div>
+            <div class="tt-kpis">
+              <button class="tt-kpi" type="button" data-act="frentes"><span class="k"><svg class="ic sm"><use href="#i-layers"/></svg>Frentes trazados</span><span class="v" data-draw="k-frentes" data-source="resumen" data-field="frentes">—</span><span class="s">clientes, productos, pilotos e internos</span></button>
+              <button class="tt-kpi" type="button" data-act="ejec"><span class="k"><svg class="ic sm"><use href="#i-check"/></svg>Ejecutados o activos</span><span class="v" data-draw="k-ejec" data-source="resumen" data-field="ejecutados">—</span><span class="s">trabajo que ocurrió</span></button>
+              <button class="tt-kpi" type="button" data-act="book"><span class="k"><svg class="ic sm"><use href="#i-book"/></svg>Casos reales públicos</span><span class="v" data-draw="k-book" data-source="resumen" data-field="casos_reales">—</span><span class="s">en latticce.com/book</span></button>
+              <button class="tt-kpi" type="button" data-act="hitos"><span class="k"><svg class="ic sm"><use href="#i-flag"/></svg>Hitos registrados</span><span class="v" data-draw="k-hitos" data-source="resumen" data-field="hitos">—</span><span class="s">de 2025 al 28 oct</span></button>
+              <button class="tt-kpi" type="button" data-act="redes"><span class="k"><svg class="ic sm"><use href="#i-eye"/></svg>Vistas en redes</span><span class="v" data-draw="k-vis" data-source="redes_total" data-field="vis">—</span><span class="s">últimos 28 días, 5 cuentas</span></button>
+              <button class="tt-kpi bad" type="button" data-act="expedientes"><span class="k"><svg class="ic sm"><use href="#i-filecheck"/></svg>Sin ficha en KOBOS</span><span class="v" data-draw="k-sinficha" data-source="resumen" data-field="sin_ficha">—</span><span class="s">frentes sin expediente propio</span></button>
+            </div>
+          </article>
+        </div>
+
+        <article class="tt-card" id="mapa-hitos">
+          <div class="tt-ch"><h2><svg class="ic"><use href="#i-flag"/></svg>Lo que se hizo, punto por punto</h2><span class="tt-note">Vista general: cada punto es un hito de 2025 a hoy.</span></div>
+          <p class="tt-note">Haz clic en un punto para abrirlo. Arrastra para moverte en el tiempo; con Ctrl o ⌘ y la rueda haces zoom. Borde punteado: fecha aproximada. Punto hueco: resultado sin registrar.</p>
+          <div class="tt-ctrl" role="group" aria-label="Vista del mapa de hitos">
+            <span class="lab">Periodo</span>
+            <button class="tt-fchip" type="button" data-vista="todo">2025–2026</button>
+            <button class="tt-fchip" type="button" data-vista="2026">2026</button>
+            <button class="tt-fchip" type="button" data-vista="q4">Ago–dic 2026</button>
+            <span class="lab">Agrupar por</span>
+            <button class="tt-fchip" type="button" data-agr="nodo">Nodo</button>
+            <button class="tt-fchip" type="button" data-agr="area">Área</button>
+          </div>
+          <div class="tt-ctrl" role="group" aria-label="Filtrar por nodo">
+            <span class="lab">Nodo</span>
+            <button class="tt-fchip" type="button" data-nodo=""><i style="background: conic-gradient(#EAB43F 0 20%, #A78BFA 0 40%, #FE5C14 0 60%, #72E7FF 0 80%, #EAE4D8 0)"></i>Todos</button>
+            <button class="tt-fchip" type="button" data-nodo="LATTICCE"><i style="background:#C9CDD0"></i>LATTICCE</button>
+            <button class="tt-fchip" type="button" data-nodo="Studio"><i style="background:#EAB43F"></i>Studio</button>
+            <button class="tt-fchip" type="button" data-nodo="Sound"><i style="background:#A78BFA"></i>Sound</button>
+            <button class="tt-fchip" type="button" data-nodo="Design"><i style="background:#FE5C14"></i>Design</button>
+            <button class="tt-fchip" type="button" data-nodo="Agency"><i style="background:#72E7FF"></i>Agency</button>
+            <button class="tt-fchip" type="button" data-nodo="Time"><i style="background:#EAE4D8"></i>Time</button>
+            <button class="tt-fchip" type="button" data-nodo="Films"><i style="background:linear-gradient(135deg,#F2F1EC,#DCEAF2,#F0E1C8,#E2DCEA)"></i>Films</button>
+          </div>
+          <div class="tt-map" data-draw="mapa" data-source="hitos etapas"></div>
+        </article>
+
+        <article class="tt-card" id="mapa">
+          <div class="tt-ch">
+            <h2><svg class="ic"><use href="#i-nodes"/></svg>Mapa de trazabilidad: qué se creó, en qué nodo y en qué etapa</h2>
+<span class="tt-note">Círculo lleno: hay frentes ejecutados, cerrados o activos. Punteado: lo que se creará en 2027 (propuesto).</span>
+          </div>
+          <p class="tt-note">Cada carril es un nodo con su color y su sello; cada estación, una etapa, y el tamaño del círculo dice cuántos frentes tiene. Haz clic en un carril para ver el recorrido de ese nodo con sus frentes legibles; desde ahí abres cada ficha o el informe completo.</p>
+          <div data-draw="matriz" data-source="frentes pkpi etapas hitos rumbo"></div>
+        </article>
+
+        <article class="tt-card" id="hitos">
+          <div class="tt-ch"><h3><svg class="ic"><use href="#i-report"/></svg>Todos los hitos</h3><span class="tt-note">Responde a los filtros de la vista de puntos y a la etapa elegida en el mapa.</span></div>
+          <div class="tt-filters"><input class="h-q" type="search" placeholder="Buscar hito o evidencia" aria-label="Buscar hito"></div>
+          <div class="tt-scroll">
+            <table data-source="hitos" data-row-key="fecha,hito">
+              <thead><tr><th data-field="fecha">Fecha</th><th data-field="nodo">Nodo</th><th data-field="area">Área</th><th data-field="hito">Hito</th><th data-field="estado">Estado</th></tr></thead>
+              <tbody data-draw="t-hitos"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="tt-card" id="explora">
+          <div class="tt-ch"><h2><svg class="ic"><use href="#i-compass"/></svg>Explora todo lo que hay abajo</h2><span class="tt-note">Cada caja te lleva a su sección.</span></div>
+          <div class="tt-explore">
+            <button class="tt-xt" type="button" data-go="nodos"><span class="t"><span><svg class="ic"><use href="#i-nodes"/></svg>Nodos</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v">6</span><span class="viz" data-draw="xv-nodos"></span><span class="s">Sellos, rol 2027 e informe completo por nodo</span></button>
+            <button class="tt-xt" type="button" data-go="redes"><span class="t"><span><svg class="ic"><use href="#i-signal"/></svg>Redes</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-redes" data-source="redes_total" data-field="vis">—</span><span class="viz" data-draw="xv-redes" data-source="redes"></span><span class="s">Vistas en 28 días por cuenta; la barra más alta es Studio</span></button>
+            <button class="tt-xt" type="button" data-go="frentes"><span class="t"><span><svg class="ic"><use href="#i-layers"/></svg>Frentes</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-frentes" data-source="resumen" data-field="frentes">—</span><span class="viz" data-draw="xv-frentes" data-source="frentes"></span><span class="s">Por estado: ejecutado, construido, piloto, prospecto</span></button>
+            <button class="tt-xt" type="button" data-go="hitos"><span class="t"><span><svg class="ic"><use href="#i-flag"/></svg>Hitos</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-hitos" data-source="resumen" data-field="hitos">—</span><span class="viz" data-draw="xv-hitos" data-source="hitos"></span><span class="s">Hitos por trimestre, de 2025 a hoy</span></button>
+            <button class="tt-xt" type="button" data-go="presencia"><span class="t"><span><svg class="ic"><use href="#i-globe"/></svg>Presencia web</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-book" data-source="resumen" data-field="casos_reales">—</span><span class="viz" data-draw="xv-book" data-source="resumen"></span><span class="s">Casos reales en el Book, contra muestras y conceptos</span></button>
+            <button class="tt-xt" type="button" data-go="capacidad"><span class="t"><span><svg class="ic"><use href="#i-users"/></svg>Capacidad</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-cap" data-source="resumen" data-field="capacidades">—</span><span class="viz" data-draw="xv-cap" data-source="capacidad"></span><span class="s">Áreas de capacidad y relaciones disponibles</span></button>
+            <button class="tt-xt" type="button" data-go="expedientes"><span class="t"><span><svg class="ic"><use href="#i-filecheck"/></svg>Expedientes</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-exp" data-source="resumen" data-field="con_ficha">—</span><span class="viz" data-draw="xv-exp" data-source="cobertura"></span><span class="s">Frentes con ficha propia en KOBOS (verde), parcial o sin ficha</span></button>
+            <button class="tt-xt bad" type="button" data-go="expedientes"><span class="t"><span><svg class="ic"><use href="#i-alert"/></svg>Datos que faltan</span><svg class="ic sm"><use href="#i-out"/></svg></span><span class="v" data-draw="xk-faltan" data-source="resumen" data-field="faltan">—</span><span class="viz" data-draw="xv-faltan" data-source="resumen"></span><span class="s">Campos sin dato y preguntas abiertas</span></button>
+          </div>
+        </article>
+
+        <div class="tt-grid tt-hero">
+          <article class="tt-card" id="conclusiones">
+            <div class="tt-ch"><h2><svg class="ic"><use href="#i-spark"/></svg>Conclusiones al corte</h2></div>
+            <div class="tt-concl">
+              <article>
+                <h3><svg class="ic"><use href="#i-check"/></svg>La capacidad está probada</h3>
+                <p><b data-draw="c-ejec" data-source="resumen" data-field="ejecutados">—</b> frentes ejecutados o activos y <b data-draw="c-book" data-source="resumen" data-field="casos_reales">—</b> casos reales en el Book. Producir no es el problema.</p>
+              </article>
+              <article>
+                <h3><svg class="ic"><use href="#i-filecheck"/></svg>La vitrina va antes que el expediente</h3>
+                <p><b class="bad" data-draw="c-sinperm" data-source="resumen" data-field="publicos_sin_permiso">—</b> frentes públicos no tienen permiso confirmado, <b data-draw="c-muestra" data-source="resumen" data-field="muestras">—</b> casos del Book son muestras o conceptos y <b class="bad" data-draw="c-sinficha" data-source="resumen" data-field="sin_ficha">—</b> frentes no tienen ficha propia en KOBOS.</p>
+              </article>
+              <article>
+                <h3><svg class="ic"><use href="#i-target"/></svg>El cuello de botella es comercial</h3>
+                <p>Ventas predecibles en <b class="bad" data-draw="c-ventas" data-source="madurez" data-field="pct" data-where="dimension=Ventas predecibles">—</b> y recurrencia en <b class="bad" data-draw="c-recu" data-source="madurez" data-field="pct" data-where="dimension=Recurrencia medible">—</b>, contra <b data-draw="c-ident" data-source="madurez" data-field="pct" data-where="dimension=Identidad">—</b> de identidad.</p>
+              </article>
+              <article>
+                <h3><svg class="ic"><use href="#i-message"/></svg>Atención sin conversación</h3>
+                <p>Studio reúne <b data-draw="c-share" data-source="redes_total" data-field="studio_share">—</b> de las vistas en redes de 28 días y las cuentas registraron <b class="bad" data-draw="c-conv" data-source="redes_total" data-field="conversaciones">—</b> conversaciones.</p>
+              </article>
+            </div>
+          </article>
+          <article class="tt-card" id="madurez">
+            <div class="tt-ch"><h2><svg class="ic"><use href="#i-chart"/></svg>Fotografía de madurez</h2></div>
+            <p class="tt-note">Estimación cualitativa registrada en KOBOS el 28 de octubre. No es KPI ni pronóstico: muestra dónde está la brecha.</p>
+            <div class="tt-mad" data-draw="madurez-chart" data-source="madurez"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tt-sec" id="nodos">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-nodes"/></svg>Por nodo</h2><p>Qué es cada nodo hoy, su papel en 2027, cómo respondieron sus redes y qué tiene publicado. Abre el informe completo para ver redes, frentes, hitos, expedientes y lo que sigue.</p></div></div>
+        <div class="tt-nodes">
+          <article class="tt-node" id="nodo-studio" style="--acc:#EAB43F"><div class="tt-nb" data-draw="nodo" data-nodo="Studio" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Studio"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Studio</button></article>
+          <article class="tt-node" id="nodo-sound" style="--acc:#A78BFA"><div class="tt-nb" data-draw="nodo" data-nodo="Sound" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Sound"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Sound</button></article>
+          <article class="tt-node" id="nodo-design" style="--acc:#FE5C14"><div class="tt-nb" data-draw="nodo" data-nodo="Design" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Design"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Design</button></article>
+          <article class="tt-node" id="nodo-agency" style="--acc:#72E7FF"><div class="tt-nb" data-draw="nodo" data-nodo="Agency" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Agency"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Agency</button></article>
+          <article class="tt-node" id="nodo-time" style="--acc:#EAE4D8"><div class="tt-nb" data-draw="nodo" data-nodo="Time" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Time"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Time</button></article>
+          <article class="tt-node" id="nodo-films" style="--acc:#DCEAF2"><div class="tt-nb" data-draw="nodo" data-nodo="Films" data-source="nodos redes por_nodo rumbo"></div><button class="tt-open" type="button" data-informe="Films"><svg class="ic sm"><use href="#i-report"/></svg>Abrir informe de Films</button></article>
+        </div>
+      </section>
+
+      <section class="tt-sec" id="redes">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-signal"/></svg>Redes por nodo</h2><p>Últimos 28 días (29 sep – 26 oct), leídos en Meta Business Suite el 28 de octubre, como en el reporte 2026. En Studio, alcance e interacciones vienen redondeados por Meta. Time y Films no aparecen en la cuenta: sin dato.</p></div></div>
+        <div class="tt-kpis" id="redes-kpis">
+          <div class="tt-kpi"><span class="k"><svg class="ic sm"><use href="#i-eye"/></svg>Vistas totales</span><span class="v" data-draw="r-vis" data-source="redes_total" data-field="vis">—</span><span class="s">Instagram y Facebook sumados</span></div>
+          <div class="tt-kpi"><span class="k"><svg class="ic sm"><use href="#i-instagram"/></svg>Vistas en Instagram</span><span class="v" data-draw="r-visig" data-source="redes_total" data-field="vis_ig">—</span><span class="s" data-draw="r-igshare" data-source="redes_total" data-field="ig_share">—</span></div>
+          <div class="tt-kpi"><span class="k"><svg class="ic sm"><use href="#i-radar"/></svg>Alcance en Instagram</span><span class="v" data-draw="r-alc" data-source="redes_total" data-field="alcance_ig">—</span><span class="s">cuentas alcanzadas, suma por cuenta</span></div>
+          <div class="tt-kpi"><span class="k"><svg class="ic sm"><use href="#i-heart"/></svg>Interacciones</span><span class="v" data-draw="r-int" data-source="redes_total" data-field="interacciones">—</span><span class="s">reacciones, comentarios y guardados</span></div>
+          <div class="tt-kpi bad"><span class="k"><svg class="ic sm"><use href="#i-message"/></svg>Conversaciones</span><span class="v" data-draw="r-conv" data-source="redes_total" data-field="conversaciones">—</span><span class="s">mensajes iniciados desde redes</span></div>
+          <div class="tt-kpi bad"><span class="k"><svg class="ic sm"><use href="#i-alert"/></svg>Cuentas sin métricas</span><span class="v" data-draw="r-sin" data-source="redes_total" data-field="sin_dato">—</span><span class="s">Time y Films no son accesibles</span></div>
+        </div>
+        <div class="tt-grid tt-g2">
+          <article class="tt-card" id="redes-avance">
+            <div class="tt-ch">
+              <h3><svg class="ic"><use href="#i-chart"/></svg>Avance por nodo</h3>
+              <div class="tt-seg" role="group" aria-label="Métrica">
+                <button type="button" data-rm="vis"><svg class="ic sm"><use href="#i-eye"/></svg>Vistas</button>
+                <button type="button" data-rm="alcance_ig"><svg class="ic sm"><use href="#i-radar"/></svg>Alcance</button>
+                <button type="button" data-rm="interacciones"><svg class="ic sm"><use href="#i-heart"/></svg>Interacciones</button>
+              </div>
+            </div>
+            <p class="tt-note">En vistas, cada barra separa Instagram (color del nodo) y Facebook (gris). Haz clic en una barra para abrir el informe del nodo.</p>
+            <div class="tt-chart" data-draw="redes-chart" data-source="redes"></div>
+          </article>
+          <article class="tt-card" id="redes-design">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-instagram"/></svg>Instagram de Design en 2026, en vivo</h3><span class="tt-pill ok">Metricool</span></div>
+            <p class="tt-note">La única cuenta conectada a Metricool. Se actualiza al abrir el tablero con tu acceso a Metricool.</p>
+            <div class="tt-mets">
+              <div class="tt-met"><span class="k"><svg class="ic sm"><use href="#i-users"/></svg>Seguidores</span><span class="v" data-draw="ig-seg" data-source="ig_design_total" data-field="seguidores">—</span></div>
+              <div class="tt-met"><span class="k"><svg class="ic sm"><use href="#i-pen"/></svg>Publicaciones</span><span class="v" data-draw="ig-pub" data-source="ig_design_total" data-field="publicaciones">—</span></div>
+              <div class="tt-met"><span class="k"><svg class="ic sm"><use href="#i-heart"/></svg>Interacciones</span><span class="v" data-draw="ig-int" data-source="ig_design_total" data-field="interacciones">—</span></div>
+            </div>
+            <p class="tt-note">Interacciones por mes; pasa el cursor para ver las publicaciones. Metricool guarda seguidores solo desde que se conectó la cuenta.</p>
+            <div class="tt-chart" style="min-height:150px" data-draw="ig-chart" data-source="ig_design"></div>
+          </article>
+        </div>
+        <div class="tt-grid tt-g3" id="cuentas" data-draw="cuentas" data-source="redes"></div>
+      </section>
+
+      <section class="tt-sec" id="frentes">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-layers"/></svg>Frentes y proyectos</h2><p>Cada tarjeta abre una ficha con KPIs, lo que lo respalda, su presencia pública, ligas a vistas reales, expediente en KOBOS y la pregunta abierta si la hay. El avance se aproxima por entregables definidos contra pendientes o, si no hay conteo, por la estimación de Dirección. El aprovechamiento suma cinco comprobaciones: caso público, contenido derivado, permiso o testimonio, uso en material comercial y venta cruzada abierta.</p></div></div>
+        <div class="tt-filters" role="group" aria-label="Filtros de frentes">
+          <select class="f-nodo" aria-label="Nodo">
+            <option value="">Todos los nodos</option>
+            <option value="LATTICCE">LATTICCE (núcleo)</option>
+            <option value="Studio">Studio</option>
+            <option value="Sound">Sound</option>
+            <option value="Design">Design</option>
+            <option value="Agency">Agency</option>
+            <option value="Time">Time</option>
+            <option value="Films">Films</option>
+          </select>
+          <select class="f-tipo" aria-label="Tipo">
+            <option value="">Todos los tipos</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Producto">Producto</option>
+            <option value="Experiencia">Experiencia</option>
+            <option value="Producción propia">Producción propia</option>
+            <option value="Piloto">Piloto</option>
+            <option value="Prospecto">Prospecto</option>
+            <option value="Proyecto interno">Proyecto interno</option>
+            <option value="Herramienta">Herramienta</option>
+            <option value="Autoral">Autoral</option>
+          </select>
+          <select class="f-estado" aria-label="Estado">
+            <option value="">Todos los estados</option>
+            <option value="ejec">Ejecutados, cerrados o activos</option>
+            <option value="Cerrado">Cerrado</option>
+            <option value="Ejecutado">Ejecutado</option>
+            <option value="Cliente activo">Cliente activo</option>
+            <option value="Producto construido">Producto construido</option>
+            <option value="Piloto">Piloto</option>
+            <option value="Prospecto / oportunidad">Prospecto u oportunidad</option>
+            <option value="En desarrollo">En desarrollo</option>
+            <option value="Activo">Activo</option>
+            <option value="En pausa">En pausa</option>
+            <option value="Perdido">Perdido</option>
+          </select>
+          <select class="f-orden" aria-label="Ordenar">
+            <option value="aprov">Ordenar por aprovechamiento</option>
+            <option value="avance">Ordenar por avance</option>
+            <option value="inicio">Ordenar por fecha de inicio</option>
+            <option value="faltan">Ordenar por datos que faltan</option>
+            <option value="nombre">Ordenar por nombre</option>
+          </select>
+          <input class="f-q" type="search" placeholder="Buscar frente, prueba o pendiente" aria-label="Buscar">
+          <button class="tt-btn f-reset" type="button"><svg class="ic sm"><use href="#i-close"/></svg>Quitar filtros</button>
+        </div>
+        <p class="tt-active" data-draw="activos" data-source="pkpi">—</p>
+        <div class="tt-grid tt-g2">
+          <article class="tt-card" id="avance-aprov">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-chart"/></svg>Avance contra aprovechamiento</h3></div>
+            <p class="tt-note">Avance por entregables o, si no hay conteo, estimado por Dirección. Arriba a la derecha: avanzado y bien aprovechado. Haz clic en un punto para abrir su ficha.</p>
+            <div class="tt-chart" data-draw="scatter" data-source="pkpi"></div>
+          </article>
+          <article class="tt-card" id="por-estado">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-layers"/></svg>Frentes por estado</h3></div>
+            <p class="tt-note">Clasificación de KOBOS: ejecutado no implica facturación, caso público ni testimonio. Haz clic en una barra para filtrar.</p>
+            <div class="tt-chart" data-draw="estados" data-source="pkpi"></div>
+          </article>
+        </div>
+        <div class="tt-pgrid" id="tarjetas" data-draw="pgrid" data-source="frentes pkpi"></div>
+      </section>
+
+
+      <section class="tt-sec" id="presencia">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-globe"/></svg>Presencia web y vistas reales</h2><p>Lo que hoy puede ver cualquiera en latticce.com según su sitemap. Cada caso abre su página real.</p></div></div>
+        <div class="tt-grid tt-g2">
+          <article class="tt-card" id="book">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-book"/></svg>Casos en el Book</h3>
+              <div class="tt-seg" role="group" aria-label="Tipo de caso">
+                <button type="button" data-bk="">Todos</button>
+                <button type="button" data-bk="Proyecto real">Reales</button>
+                <button type="button" data-bk="Muestra o concepto">Muestras</button>
+              </div>
+            </div>
+            <div class="tt-scroll">
+              <table data-source="book" data-row-key="slug">
+                <thead><tr><th data-field="titulo">Caso</th><th data-field="nodo">Nodo</th><th data-field="categoria">Categoría</th><th data-field="tipo">Tipo</th></tr></thead>
+                <tbody data-draw="t-book"></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="tt-card" id="blog">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-pen"/></svg>Artículos del blog por nodo</h3></div>
+            <p class="tt-note">Publicados al 28 de octubre (color) y programados después (gris), según la fecha de cada artículo.</p>
+            <div class="tt-chart" style="min-height:220px" data-draw="blog-chart" data-source="por_nodo"></div>
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-link"/></svg>Páginas públicas</h3></div>
+            <ul class="tt-sites">
+              <li><a href="https://latticce.com/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>latticce.com</a></li>
+              <li><a href="https://latticce.com/studio/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Studio</a></li>
+              <li><a href="https://latticce.com/sound/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Sound</a></li>
+              <li><a href="https://latticce.com/design/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Design</a></li>
+              <li><a href="https://latticce.com/agency/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Agency</a></li>
+              <li><a href="https://latticce.com/time/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Time</a></li>
+              <li><a href="https://latticce.com/films/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Films</a></li>
+              <li><a href="https://latticce.com/films/cinema/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Films · cinema</a></li>
+              <li><a href="https://latticce.com/agency/contenido-rrss/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Agency · Contenido RRSS</a></li>
+              <li><a href="https://latticce.com/agency/ecosistemas-ui-ux/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Agency · Ecosistemas UI–UX</a></li>
+              <li><a href="https://latticce.com/agency/distribucion-ads/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-globe"/></svg>Agency · Distribución Ads</a></li>
+              <li><a href="https://latticce.com/book/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-book"/></svg>Book</a></li>
+              <li><a href="https://latticce.com/blog/" target="_blank" rel="noopener"><svg class="ic sm"><use href="#i-pen"/></svg>Blog</a></li>
+            </ul>
+            <p class="tt-src">La investigación de cobertura del 28 de octubre reporta que latticce.com abrió en la página de Agency durante su revisión.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="tt-sec" id="capacidad">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-users"/></svg>Red de capacidad</h2><p>Activos, personas y proveedores accesibles. Ninguna relación equivale a proyecto contratado ni a disponibilidad garantizada.</p></div></div>
+        <article class="tt-card">
+          <div class="tt-scroll">
+            <table data-source="capacidad" data-row-key="area">
+              <thead><tr><th data-field="area">Área</th><th data-field="relacion">Capacidad o relación</th><th data-field="estado">Estado</th><th data-field="ficha">Expediente en KOBOS</th></tr></thead>
+              <tbody data-draw="t-cap"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="tt-sec" id="expedientes">
+        <div class="tt-sh"><div><h2><svg class="ic"><use href="#i-filecheck"/></svg>Expedientes y datos que faltan</h2><p>Estado de expediente de cada frente según la matriz del Registro histórico y la investigación de cobertura del 28 de octubre. La mayor carencia no es texto: son expedientes con fecha, responsable, entregables, archivos finales, permiso y resultado.</p></div></div>
+        <div class="tt-grid tt-g2">
+          <article class="tt-card" id="cobertura">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-filecheck"/></svg>Cobertura documental</h3></div>
+            <div class="tt-chart" style="min-height:120px" data-draw="cob-chart" data-source="cobertura"></div>
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-help"/></svg>Preguntas abiertas</h3></div>
+            <p class="tt-note">Datos concretos que bloquean las fichas completas y el uso comercial de los casos. Haz clic para abrir el frente.</p>
+            <ul class="tt-qs" id="preguntas" data-draw="preguntas" data-source="frentes"></ul>
+          </article>
+          <article class="tt-card" id="faltantes">
+            <div class="tt-ch"><h3><svg class="ic"><use href="#i-alert"/></svg>Lo que falta por frente</h3></div>
+            <div class="tt-scroll">
+              <table data-source="pkpi" data-row-key="id">
+                <thead><tr><th data-field="nombre">Frente</th><th data-field="ficha">Expediente</th><th data-field="faltan">Faltan</th><th data-field="faltan_txt">Qué falta</th></tr></thead>
+                <tbody data-draw="t-faltan"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="tt-modal">
+    <div class="tt-mbg" data-mclose></div>
+    <div class="tt-mbox" role="dialog" aria-modal="true" aria-label="Detalle">
+      <div class="tt-msz" role="group" aria-label="Tamaño de la ventana">
+        <button type="button" class="tt-mback" data-mback disabled>← Atrás</button>
+        <button type="button" data-msz="-1" aria-label="Hacer más pequeña">−</button>
+        <button type="button" data-msz="0">Tamaño normal</button>
+        <button type="button" data-msz="1" aria-label="Hacer más grande">+</button>
+        <span>o arrastra la esquina inferior derecha</span>
+      </div>
+      <div class="tt-ficha" data-draw="ficha" data-slot="modal" data-source="frentes pkpi hitos etapas nodos redes por_nodo rumbo" data-empty></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ---------- live source ---------- */
+  dash.loader('ig_design', {
+    description: 'Las filas de Metricool vienen como listas; se nombran con las métricas pedidas y la fecha.',
+    fn: ({answer, args}) => {
+      const a = typeof answer === 'string' ? JSON.parse(answer) : answer;
+      if (!a || !Array.isArray(a.rows)) throw new Error(a && a.error ? String(a.error) : 'Metricool no devolvió filas');
+      const names = {IGEV01: 'seguidores', IGEV37: 'publicaciones', IGEV38: 'interacciones'};
+      const cols = args.metrics.map((m) => names[m] || m).concat('fecha');
+      const rows = a.rows.map((r) => Object.fromEntries(cols.map((c, i) => [c, c === 'fecha' ? `${String(r[i]).slice(0, 4)}-${String(r[i]).slice(4, 6)}-${String(r[i]).slice(6, 8)}` : (r[i] == null ? null : Number(r[i]))])));
+      rows.sort((x, y) => x.fecha.localeCompare(y.fecha));
+      return {columns: cols, rows};
+    },
+  });
+
+  /* ---------- calculations ---------- */
+  dash.calc('frentes', {
+    title: 'Frentes con tipos leídos',
+    description: 'Los frentes tal como vienen del archivo, con sus listas (pruebas, ligas), casillas (sí, no o sin dato) y conteos convertidos a su tipo.',
+    inputs: ['proyectos'],
+    fn: (proyectos) => {
+      const arr = (v) => Array.isArray(v) ? v : (typeof v === 'string' && v.trim().startsWith('[') ? JSON.parse(v) : []);
+      const bool = (v) => v === true || v === 'true' ? true : v === false || v === 'false' ? false : null;
+      const num = (v) => v == null || v === '' ? null : Number(v);
+      const txt = (v) => v == null ? '' : String(v);
+      return proyectos.map((p) => ({
+        ...p,
+        pruebas: arr(p.pruebas).map(String), links: arr(p.links).map((l) => ({label: txt(l.label), url: txt(l.url), publico: bool(l.publico) === true})),
+        def_n: num(p.def_n), pend_n: num(p.pend_n), avance_est: num(p.avance_est), inicio: p.inicio ? String(p.inicio) : null, ficha: p.ficha ? String(p.ficha) : null,
+        nodos: txt(p.nodos), definido: txt(p.definido), pendiente: txt(p.pendiente), presencia: txt(p.presencia), limite: txt(p.limite), siguiente: txt(p.siguiente),
+        clasif: txt(p.clasif), pregunta: txt(p.pregunta), accion_doc: txt(p.accion_doc), falta_doc: txt(p.falta_doc), fuente: txt(p.fuente),
+        c_publico: bool(p.c_publico), c_contenido: bool(p.c_contenido), c_permiso: bool(p.c_permiso), c_comercial: bool(p.c_comercial), c_cruce: bool(p.c_cruce),
+      }));
+    },
+  });
+
+  dash.calc('pkpi', {
+    title: 'Indicadores por frente',
+    description: 'Avance = entregables definidos ÷ (definidos + pendientes); aprovechamiento = comprobaciones cumplidas ÷ 5; y la lista de datos sin precisar.',
+    inputs: ['frentes'],
+    fn: (frentes) => {
+      const CHECK = {c_publico: 'Caso o página pública', c_contenido: 'Contenido derivado', c_permiso: 'Permiso o testimonio', c_comercial: 'Uso en material comercial', c_cruce: 'Venta cruzada abierta'};
+      return frentes.map((p) => {
+        const keys = Object.keys(CHECK);
+        const known = keys.filter((k) => p[k] === true || p[k] === false);
+        const si = keys.filter((k) => p[k] === true).length;
+        const tot = (p.def_n == null || p.pend_n == null) ? 0 : p.def_n + p.pend_n;
+        const avance = tot > 0 ? p.def_n / tot : p.avance_est;
+        const avance_q = tot > 0 ? 'entregables' : p.avance_est != null ? 'estimado' : 'falta';
+        const faltan = [p.ficha === 'Sí' || p.ficha === 'Parcial' ? null : 'Expediente en KOBOS', p.inicio == null ? 'Fecha de inicio' : null, avance == null ? 'Avance' : null]
+          .concat(keys.filter((k) => !(p[k] === true || p[k] === false)).map((k) => CHECK[k])).filter(Boolean);
+        return {id: p.id, nombre: p.nombre, nodo: p.nodo, nodos: p.nodos, tipo: p.tipo, estado: p.estado, etapa: p.etapa, inicio: p.inicio,
+          avance, avance_q, aprov: known.length ? si / 5 : null, aprov_q: known.length === 5 ? 'dato' : known.length ? 'aprox' : 'falta',
+          faltan: faltan.length, faltan_txt: faltan.join('; '), ficha: p.ficha == null ? 'Sin confirmar' : p.ficha};
+      });
+    },
+  });
+
+  dash.calc('redes_total', {
+    title: 'Redes, totales de 28 días',
+    description: 'Suma por cuenta de vistas (Instagram y Facebook), alcance e interacciones de Instagram, seguidores nuevos y conversaciones; cuentas sin dato; peso de Studio en las vistas.',
+    inputs: ['redes'],
+    fn: (redes) => {
+      const n = (v) => v == null || v === '' ? null : Number(v);
+      const con = redes.filter((r) => n(r.vis) != null);
+      const s = (k) => con.reduce((a, r) => a + (n(r[k]) || 0), 0);
+      const vis = s('vis'); const st = con.find((r) => r.nodo === 'Studio');
+      return [{vis, vis_ig: s('vis_ig'), vis_fb: s('vis_fb'), ig_share: vis ? s('vis_ig') / vis : null, alcance_ig: s('alcance_ig'), interacciones: s('interacciones'),
+        conversaciones: s('conversaciones'), seg_nuevos: s('seg_nuevos'), con_dato: con.length, sin_dato: redes.length - con.length,
+        studio_share: vis && st ? n(st.vis) / vis : null}];
+    },
+  });
+
+  dash.calc('resumen', {
+    title: 'Resumen de la trayectoria',
+    description: 'Conteos de frentes, hitos, casos del Book, artículos y capacidades; aprovechamiento promedio; datos que faltan y expedientes.',
+    inputs: ['frentes', 'pkpi', 'book', 'blog', 'hitos', 'capacidad'],
+    fn: (frentes, pkpi, book, blog, hitos, capacidad) => {
+      const CORTE = '2026-10-28';
+      const conAprov = pkpi.filter((r) => r.aprov != null);
+      return [{
+        frentes: frentes.length,
+        ejecutados: frentes.filter((p) => p.estado === 'Ejecutado' || p.estado === 'Cliente activo' || p.estado === 'Cerrado').length,
+        casos_reales: book.filter((b) => b.tipo === 'Proyecto real').length,
+        muestras: book.filter((b) => b.tipo !== 'Proyecto real').length,
+        blog_pub: blog.filter((b) => b.fecha <= CORTE).length,
+        blog_prog: blog.filter((b) => b.fecha > CORTE).length,
+        hitos: hitos.length,
+        capacidades: capacidad.length,
+        aprov_prom: conAprov.length ? conAprov.reduce((a, r) => a + r.aprov, 0) / conAprov.length : null,
+        faltan: pkpi.reduce((a, r) => a + r.faltan, 0),
+        preguntas: new Set(frentes.filter((p) => p.pregunta).map((p) => p.pregunta)).size,
+        publicos_sin_permiso: frentes.filter((p) => p.c_publico === true && p.c_permiso !== true).length,
+        con_ficha: frentes.filter((p) => p.ficha === 'Sí').length,
+        sin_ficha: frentes.filter((p) => p.ficha !== 'Sí' && p.ficha !== 'Parcial').length,
+      }];
+    },
+  });
+
+  dash.calc('cobertura', {
+    title: 'Cobertura documental',
+    description: 'Frentes por estado de expediente en KOBOS: ficha propia, parcial, sin ficha o sin confirmar.',
+    inputs: ['frentes'],
+    fn: (frentes) => ['Sí', 'Parcial', 'No', 'Sin confirmar'].map((f) => ({ficha: f, n: frentes.filter((p) => (p.ficha || 'Sin confirmar') === f).length})),
+  });
+
+  dash.calc('por_nodo', {
+    title: 'Presencia por nodo',
+    description: 'Por nodo: casos del Book (reales y muestras), artículos publicados y programados al 28 de octubre, frentes donde participa, hitos y frentes sin ficha.',
+    inputs: ['book', 'blog', 'frentes', 'hitos'],
+    fn: (book, blog, frentes, hitos) => {
+      const CORTE = '2026-10-28';
+      const de = (p, n) => p.nodo === n || (n !== 'LATTICCE' && String(p.nodos).split(', ').includes(n));
+      return ['LATTICCE', 'Studio', 'Sound', 'Design', 'Agency', 'Time', 'Films'].map((n) => ({
+        nodo: n,
+        book_real: book.filter((b) => b.nodo === n && b.tipo === 'Proyecto real').length,
+        book_muestra: book.filter((b) => b.nodo === n && b.tipo !== 'Proyecto real').length,
+        blog_pub: blog.filter((b) => b.nodo === n && b.fecha <= CORTE).length,
+        blog_prog: blog.filter((b) => b.nodo === n && b.fecha > CORTE).length,
+        frentes: frentes.filter((p) => de(p, n)).length,
+        hitos: hitos.filter((h) => h.nodo === n).length,
+        sin_ficha: frentes.filter((p) => de(p, n) && p.ficha !== 'Sí' && p.ficha !== 'Parcial').length,
+      }));
+    },
+  });
+
+  dash.calc('por_etapa', {
+    title: 'Hitos y frentes por etapa',
+    description: 'Hitos cuya fecha cae dentro de cada etapa y frentes que iniciaron en ella.',
+    inputs: ['etapas', 'hitos', 'frentes'],
+    fn: (etapas, hitos, frentes) => etapas.map((e) => ({
+      id: e.id,
+      hitos: hitos.filter((h) => h.fecha >= e.inicio && h.fecha <= e.fin).length,
+      frentes: frentes.filter((p) => p.etapa === e.id).length,
+    })),
+  });
+
+  dash.calc('ig_design_total', {
+    title: 'Instagram Design, total 2026',
+    description: 'Último dato de seguidores y suma de publicaciones e interacciones del año.',
+    inputs: ['ig_design'],
+    fn: (ig_design) => {
+      const seg = ig_design.filter((r) => r.seguidores != null);
+      return [{
+        seguidores: seg.length ? seg[seg.length - 1].seguidores : null,
+        publicaciones: ig_design.reduce((a, r) => a + (r.publicaciones || 0), 0),
+        interacciones: ig_design.reduce((a, r) => a + (r.interacciones || 0), 0),
+      }];
+    },
+  });
+
+  /* ---------- shared helpers ---------- */
+  const T = window.TT = window.TT || {};
+  T.fmt = d3.format(',');
+  T.pct = (v) => d3.format('.0%')(v).replace('%', ' %');
+  T.big = (v) => v >= 10000 ? (Math.round(v / 100) / 10).toLocaleString('es-MX') + ' mil' : T.fmt(v);
+  T.NODOS = ['LATTICCE', 'Studio', 'Sound', 'Design', 'Agency', 'Time', 'Films'];
+  T.NCOL = {LATTICCE: '#C9CDD0', Studio: '#EAB43F', Sound: '#A78BFA', Design: '#FE5C14', Agency: '#72E7FF', Time: '#EAE4D8', Films: '#DCEAF2', Food: '#EAB43F'};
+  T.n = (v) => v == null || v === '' ? null : Number(v);
+  T.rows = (id) => { const d = dash.data(id); if (d.status !== 'ok') return null; return Array.isArray(d.data) ? d.data : (d.data.rows || []); };
+  T.one = (id, field, where) => { const r = T.rows(id); if (!r) return undefined; const row = where ? r.find((x) => String(x[where[0]]) === where[1]) : r[0]; return row ? row[field] : undefined; };
+  T.el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  T.NS = 'http://www.w3.org/2000/svg';
+  T.icon = (name, cls) => { const s = document.createElementNS(T.NS, 'svg'); s.setAttribute('class', 'ic' + (cls ? ' ' + cls : '')); s.setAttribute('aria-hidden', 'true'); const u = document.createElementNS(T.NS, 'use'); u.setAttribute('href', '#' + name); s.appendChild(u); return s; };
+  T.falta = () => T.el('span', 'tt-falta', 'falta dato');
+  T.aprox = () => T.el('span', 'tt-aprox', 'aprox.');
+  T.failed = (el, ids) => {
+    const bad = ids.find((id) => ['error', 'connect', 'declined'].includes(dash.data(id).status));
+    if (!bad) return false;
+    const box = T.el('div', 'tt-fail'); box.append(T.el('i'), T.el('span', null, dash.data(bad).status === 'error' ? 'No se pudo cargar' : 'Requiere conectar la fuente')); el.replaceChildren(box); return true;
+  };
+  T.p = () => dash.params();
+  T.modal = (op) => {
+    const md = document.querySelector('.tt-modal'); if (!md || md.classList.contains('open') === op) return;
+    md.classList.toggle('open', op);
+    if (op) { T.openedAt = Date.now(); T.place(); requestAnimationFrame(T.place); setTimeout(T.place, 120); }
+    else { T.hist = []; T.cur = null; }
+    T.backState();
+  };
+  /* place it over what the reader is looking at, whatever element scrolls the page */
+  T.place = () => {
+    const md = document.querySelector('.tt-modal.open'); if (!md) return;
+    const vh = Math.min(window.innerHeight || 900, document.documentElement.clientHeight || 900);
+    const cur = parseFloat(md.style.top) || 0; const r = md.getBoundingClientRect();
+    md.style.top = (cur - r.top) + 'px'; md.style.height = vh + 'px';
+  };
+  T.hist = [];
+  T.backState = () => document.querySelectorAll('[data-mback]').forEach((b) => { b.disabled = !T.hist.length; });
+  T.toNode = (n) => { const b = T.el('button', 'tt-seal'); b.type = 'button'; b.title = 'Ir al informe de ' + n; b.setAttribute('aria-label', 'Ir al informe de ' + n); b.appendChild(T.emblem(n)); b.addEventListener('click', () => T.open('n:' + n)); return b; };
+  T.cur = null;
+  T.show = (sel) => { T.cur = sel; T.scrollTo = 'modal'; T.modal(true); dash.setParams({sel, fs: 'modal'}); requestAnimationFrame(() => { dash.draw('ficha'); T.place(); }); T.backState(); };
+  T.open = (sel) => {
+    const cur = T.cur;
+    if (document.querySelector('.tt-modal.open') && cur && cur !== sel) T.hist.push(cur);
+    T.show(sel);
+  };
+  T.back = () => { const prev = T.hist.pop(); if (prev) T.show(prev); };
+  T.go = (id) => { document.querySelectorAll('#' + id).forEach((s) => s.scrollIntoView({behavior: 'smooth', block: 'start'})); dash.setLink(id); };
+  T.mes = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  T.fecha = (s, q) => { if (!s) return 'falta dato'; const d = new Date(s + 'T12:00:00Z'); return q === 'aprox' ? '≈ ' + T.mes[d.getUTCMonth()] + ' ' + d.getUTCFullYear() : d.getUTCDate() + ' ' + T.mes[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); };
+  T.corto = (s) => String(s).split(' — ')[0].split(' (')[0].split(' · ')[0];
+  T.grupo = (e) => ({'Ejecutado': 'done', 'Cliente activo': 'done', 'Cerrado': 'done', 'Activo': 'done', 'Prospecto / oportunidad': 'pros', 'En pausa': 'pros', 'Perdido': 'lost'}[e] || '');
+  T.estadoTxt = (e) => e === 'Prospecto / oportunidad' ? 'Prospecto u oportunidad' : e;
+  T.de = (p, n) => p.nodo === n || (n !== 'LATTICCE' && String(p.nodos).split(', ').includes(n));
+  T.emblem = (nodo, big) => {
+    const L = window.TT_LOGOS || {};
+    const src = L['sello_' + String(nodo).toLowerCase()];
+    if (src) { const img = new Image(); img.src = src; img.alt = 'Sello oficial LATTICCE ' + nodo; img.className = 'tt-emb' + (big ? ' big' : ''); img.decoding = 'async'; return img; }
+    const s = document.createElementNS(T.NS, 'svg'); s.setAttribute('viewBox', '0 0 5200 4000'); s.setAttribute('class', 'tt-emb mono' + (big ? ' big' : '')); s.setAttribute('role', 'img'); s.setAttribute('aria-label', 'Monograma TT ' + nodo);
+    s.style.color = {LATTICCE: '#FFFFFF', Time: '#EAE4D8'}[nodo] || T.NCOL[nodo] || '#FFFFFF';
+    const u = document.createElementNS(T.NS, 'use'); u.setAttribute('href', nodo === 'Films' ? '#m-tt-fx' : '#m-tt'); s.appendChild(u); return s;
+  };
+  T.marca = (nodo) => {
+    const L = window.TT_LOGOS || {};
+    const src = L['marca_' + String(nodo).toLowerCase()];
+    if (src) { const img = new Image(); img.src = src; img.alt = 'LATTICCE ' + nodo; img.className = 'tt-marca'; img.decoding = 'async'; return img; }
+    const s = document.createElementNS(T.NS, 'svg'); s.setAttribute('viewBox', '0 0 21092 3992'); s.setAttribute('class', 'tt-marca'); s.setAttribute('role', 'img'); s.setAttribute('aria-label', 'LATTICCE');
+    const u = document.createElementNS(T.NS, 'use'); u.setAttribute('href', '#logo-ltt'); s.appendChild(u); return s;
+  };
+  T.tip = (box) => {
+    let tip = box.querySelector(':scope > .tt-tip');
+    if (!tip) { tip = T.el('div', 'tt-tip'); tip.hidden = true; box.appendChild(tip); }
+    return (event, lines) => {
+      if (!lines) { tip.hidden = true; return; }
+      tip.replaceChildren(...lines.filter((l) => l !== '').map((l, i) => T.el('div', i === 0 ? 'd' : null, l)));
+      tip.hidden = false;
+      const [x, y] = d3.pointer(event, box);
+      const w = tip.offsetWidth, h = tip.offsetHeight;
+      tip.style.left = Math.max(0, Math.min(x + 14, box.clientWidth - w)) + 'px';
+      tip.style.top = (y - h - 10 < 0 ? y + 16 : y - h - 10) + 'px';
+    };
+  };
+  T.axis = (g) => g.attr('font-size', null).attr('font-family', null).call((s) => s.selectAll('text').style('fill', '#8C9099').style('font-size', '11px')).call((s) => s.select('.domain').remove()).call((s) => s.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,.07)'));
+  T.matchProj = (r, pr) => {
+    const p = T.p();
+    if (p.nodo && !T.de(r, p.nodo)) return false;
+    if (p.etapa && r.etapa !== p.etapa) return false;
+    if (p.tipo && r.tipo !== p.tipo) return false;
+    if (p.estado === 'ejec' && !(r.estado === 'Ejecutado' || r.estado === 'Cliente activo' || r.estado === 'Cerrado')) return false;
+    if (p.estado && p.estado !== 'ejec' && r.estado !== p.estado) return false;
+    if (p.q) {
+      const hay = [r.nombre, r.tipo, r.estado, r.nodos, pr && pr.definido, pr && pr.pendiente, pr && (pr.pruebas || []).join(' '), pr && pr.presencia, pr && pr.clasif].join(' ').toLowerCase();
+      if (!hay.includes(String(p.q).toLowerCase())) return false;
+    }
+    return true;
+  };
+
+  /* ---------- controls in the HTML: listen and set params ---------- */
+  document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => { T.go(b.dataset.go); if (b.closest('.tt-fly')) b.blur(); }));
+  /* modal: close, Escape and size */
+  const closeModal = () => { T.modal(false); dash.setParams({sel: null, fs: null}); };
+  document.querySelectorAll('[data-mclose]').forEach((b) => b.addEventListener('click', closeModal));
+  document.querySelectorAll('[data-mback]').forEach((b) => b.addEventListener('click', () => T.back()));
+  /* scrolling the page (not the window's own content) closes it */
+  const outsideScroll = (e) => {
+    if (!document.querySelector('.tt-modal.open') || Date.now() - (T.openedAt || 0) < 400) return;
+    if (e.target.closest && e.target.closest('.tt-mbox')) return;
+    closeModal();
+  };
+  document.addEventListener('wheel', outsideScroll, {passive: true});
+  document.addEventListener('touchmove', outsideScroll, {passive: true});
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.querySelector('.tt-modal.open')) closeModal(); });
+  const SIZES = [560, 760, 980, 1240, 1520]; let sz = 2;
+  document.querySelectorAll('[data-msz]').forEach((b) => b.addEventListener('click', () => {
+    const d = Number(b.dataset.msz); sz = d === 0 ? 2 : Math.max(0, Math.min(SIZES.length - 1, sz + d));
+    const box = document.querySelector('.tt-mbox'); box.style.width = `min(${SIZES[sz]}px, calc(100vw - 32px))`; box.style.height = d === 0 ? '' : box.style.height;
+  }));
+  /* rail: highlight the section in view */
+  const railBtns = [...document.querySelectorAll('.tt-rail > .tt-ri > button')];
+  const flyBtns = [...document.querySelectorAll('.tt-fly button')];
+  const spy = () => {
+    const at = (id) => { const t = document.getElementById(id); if (!t) return false; const r = t.getBoundingClientRect(); return r.top <= 140 && r.bottom > 140; };
+    let cur = null; railBtns.forEach((b) => { if ((b.dataset.spy || b.dataset.go).split(' ').some(at)) cur = b; });
+    railBtns.forEach((b) => b.classList.toggle('on', b === cur));
+    flyBtns.forEach((b) => b.classList.toggle('on', at(b.dataset.go)));
+  };
+  let spyQ = 0; window.addEventListener('scroll', () => { if (!spyQ) spyQ = requestAnimationFrame(() => { spyQ = 0; spy(); }); }, {passive: true}); spy();
+  document.querySelectorAll('[data-vista]').forEach((b) => b.addEventListener('click', () => dash.setParams({vista: b.dataset.vista})));
+  document.querySelectorAll('[data-agr]').forEach((b) => b.addEventListener('click', () => dash.setParams({agr: b.dataset.agr})));
+  document.querySelectorAll('button[data-nodo]').forEach((b) => b.addEventListener('click', () => dash.setParams({nodo: b.dataset.nodo || null})));
+  document.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('[data-informe]'); if (b) T.open('n:' + b.dataset.informe); });
+  document.querySelectorAll('[data-rm]').forEach((b) => b.addEventListener('click', () => dash.setParams({rm: b.dataset.rm})));
+  document.querySelectorAll('[data-bk]').forEach((b) => b.addEventListener('click', () => dash.setParams({bk: b.dataset.bk || null})));
+  document.querySelectorAll('.tt-kpi[data-act]').forEach((b) => b.addEventListener('click', () => {
+    const a = b.dataset.act;
+    if (a === 'frentes') { dash.setParams({nodo: null, tipo: null, estado: null, q: null, etapa: null}); T.go('frentes'); }
+    if (a === 'ejec') { dash.setParams({estado: 'ejec'}); T.go('frentes'); }
+    if (a === 'book') { dash.setParams({bk: 'Proyecto real'}); T.go('book'); }
+    if (a === 'hitos') T.go('hitos');
+    if (a === 'redes') T.go('redes');
+    if (a === 'expedientes') T.go('expedientes');
+  }));
+  const bindSel = (cls, name) => document.querySelectorAll('.' + cls).forEach((s) => s.addEventListener('change', () => dash.setParams({[name]: s.value || null})));
+  bindSel('f-nodo', 'nodo'); bindSel('f-tipo', 'tipo'); bindSel('f-estado', 'estado'); bindSel('f-orden', 'orden');
+  document.querySelectorAll('.f-q').forEach((s) => s.addEventListener('input', () => dash.setParams({q: s.value.trim() || null})));
+  document.querySelectorAll('.h-q').forEach((s) => s.addEventListener('input', () => dash.setParams({hq: s.value.trim() || null})));
+  document.querySelectorAll('.f-reset').forEach((b) => b.addEventListener('click', () => dash.setParams({nodo: null, tipo: null, estado: null, q: null, etapa: null, orden: null})));
+
+  dash.onData(() => {
+    const p = dash.params();
+    document.querySelectorAll('[data-vista]').forEach((b) => b.classList.toggle('on', (p.vista || 'todo') === b.dataset.vista));
+    document.querySelectorAll('[data-agr]').forEach((b) => b.classList.toggle('on', (p.agr || 'nodo') === b.dataset.agr));
+    document.querySelectorAll('button[data-nodo]').forEach((b) => b.classList.toggle('on', (p.nodo || '') === b.dataset.nodo));
+    document.querySelectorAll('[data-bk]').forEach((b) => b.classList.toggle('on', (p.bk || '') === b.dataset.bk));
+    document.querySelectorAll('[data-rm]').forEach((b) => b.classList.toggle('on', (p.rm || 'vis') === b.dataset.rm));
+    const setv = (cls, v) => document.querySelectorAll('.' + cls).forEach((s) => { if (s !== document.activeElement) s.value = v; });
+    T.modal(!!(p.sel && p.fs === 'modal')); T.place();
+    setv('f-nodo', p.nodo || ''); setv('f-tipo', p.tipo || ''); setv('f-estado', p.estado || ''); setv('f-orden', p.orden || 'aprov'); setv('f-q', p.q || ''); setv('h-q', p.hq || '');
+  });
+
+  /* ---------- numbers ---------- */
+  const num = (name, id, field, where, f) => dash.draw(name, (el) => {
+    const v = T.one(id, field, where);
+    el.textContent = v == null || v === '' ? '—' : (f || T.fmt)(Number(v));
+  });
+  num('l-frentes', 'resumen', 'frentes'); num('l-hitos', 'resumen', 'hitos');
+  num('k-frentes', 'resumen', 'frentes'); num('k-ejec', 'resumen', 'ejecutados'); num('k-book', 'resumen', 'casos_reales'); num('k-hitos', 'resumen', 'hitos');
+  num('k-vis', 'redes_total', 'vis', null, T.big); num('k-sinficha', 'resumen', 'sin_ficha');
+  num('xk-redes', 'redes_total', 'vis', null, T.big); num('xk-frentes', 'resumen', 'frentes'); num('xk-hitos', 'resumen', 'hitos'); num('xk-book', 'resumen', 'casos_reales');
+  num('xk-cap', 'resumen', 'capacidades'); num('xk-exp', 'resumen', 'con_ficha'); num('xk-faltan', 'resumen', 'faltan');
+  num('c-ejec', 'resumen', 'ejecutados'); num('c-book', 'resumen', 'casos_reales'); num('c-sinperm', 'resumen', 'publicos_sin_permiso'); num('c-muestra', 'resumen', 'muestras'); num('c-sinficha', 'resumen', 'sin_ficha');
+  const pct100 = (v) => v + ' %';
+  num('c-ventas', 'madurez', 'pct', ['dimension', 'Ventas predecibles'], pct100);
+  num('c-recu', 'madurez', 'pct', ['dimension', 'Recurrencia medible'], pct100);
+  num('c-ident', 'madurez', 'pct', ['dimension', 'Identidad'], pct100);
+  num('c-share', 'redes_total', 'studio_share', null, T.pct); num('c-conv', 'redes_total', 'conversaciones');
+  num('r-vis', 'redes_total', 'vis', null, T.big); num('r-visig', 'redes_total', 'vis_ig', null, T.big); num('r-alc', 'redes_total', 'alcance_ig'); num('r-int', 'redes_total', 'interacciones');
+  num('r-conv', 'redes_total', 'conversaciones'); num('r-sin', 'redes_total', 'sin_dato');
+  num('r-igshare', 'redes_total', 'ig_share', null, (v) => T.pct(v) + ' de las vistas');
+  num('ig-seg', 'ig_design_total', 'seguidores'); num('ig-pub', 'ig_design_total', 'publicaciones'); num('ig-int', 'ig_design_total', 'interacciones');
+
+  /* ---------- explore mini visuals ---------- */
+  dash.draw('xv-nodos', (el) => { el.replaceChildren(...['Studio', 'Sound', 'Design', 'Agency', 'Time', 'Films'].map((n) => { const e = T.emblem(n); e.style.width = '30px'; e.style.height = '30px'; return e; })); });
+  dash.draw('xv-redes', (el) => {
+    const r = T.rows('redes'); if (!r) { el.replaceChildren(); return; }
+    const mx = d3.max(r, (x) => T.n(x.vis) || 0) || 1;
+    const box = T.el('span', 'tt-mb');
+    r.forEach((x) => { const i = T.el('i'); const v = T.n(x.vis); i.style.height = v == null ? '2px' : Math.max(2, 36 * v / mx) + 'px'; i.style.background = v == null ? 'rgba(255,122,107,.6)' : T.NCOL[x.nodo]; i.title = x.nodo + ': ' + (v == null ? 'falta dato' : T.fmt(v)); box.appendChild(i); });
+    el.replaceChildren(box);
+  });
+  const stack = (el, parts) => { const tot = d3.sum(parts, (p) => p[1]) || 1; const b = T.el('span', 'tt-sb'); parts.forEach(([c, v, t]) => { if (!v) return; const i = T.el('i'); i.style.width = (100 * v / tot) + '%'; i.style.background = c; i.title = t + ': ' + v; b.appendChild(i); }); el.replaceChildren(b); };
+  dash.draw('xv-frentes', (el) => {
+    const f = T.rows('frentes'); if (!f) { el.replaceChildren(); return; }
+    const c = (g) => f.filter((p) => T.grupo(p.estado) === g).length;
+    stack(el, [['#7EE0A1', c('done'), 'Ejecutado o activo'], ['#C9CDD0', c(''), 'Construido, piloto o en desarrollo'], ['#F2C46B', c('pros'), 'Prospecto']]);
+  });
+  dash.draw('xv-hitos', (el) => {
+    const h = T.rows('hitos'); if (!h) { el.replaceChildren(); return; }
+    const qs = []; for (let y = 2025; y <= 2026; y++) for (let q = 0; q < 4; q++) qs.push([y, q]);
+    const cnt = qs.map(([y, q]) => h.filter((x) => +x.fecha.slice(0, 4) === y && Math.floor((+x.fecha.slice(5, 7) - 1) / 3) === q).length);
+    const mx = d3.max(cnt) || 1; const box = T.el('span', 'tt-mb');
+    cnt.forEach((v, i) => { const b = T.el('i'); b.style.height = Math.max(2, 36 * v / mx) + 'px'; b.title = `T${qs[i][1] + 1} ${qs[i][0]}: ${v} hitos`; box.appendChild(b); });
+    el.replaceChildren(box);
+  });
+  dash.draw('xv-book', (el) => { const r = T.rows('resumen'); if (!r) { el.replaceChildren(); return; } stack(el, [['#ECEDEF', r[0].casos_reales, 'Reales'], ['#F2C46B', r[0].muestras, 'Muestras o conceptos']]); });
+  dash.draw('xv-cap', (el) => { const r = T.rows('capacidad'); if (!r) { el.replaceChildren(); return; } const c = (f) => r.filter((x) => (x.ficha || '') === f).length; stack(el, [['#7EE0A1', c('Sí'), 'Con ficha'], ['#C9CDD0', c('Parcial'), 'Ficha parcial'], ['#FF7A6B', c('No'), 'Sin ficha']]); });
+  dash.draw('xv-exp', (el) => { const r = T.rows('cobertura'); if (!r) { el.replaceChildren(); return; } const g = (f) => (r.find((x) => x.ficha === f) || {}).n || 0; stack(el, [['#7EE0A1', g('Sí'), 'Ficha propia'], ['#C9CDD0', g('Parcial'), 'Parcial'], ['#FF7A6B', g('No'), 'Sin ficha'], ['#6D717A', g('Sin confirmar'), 'Sin confirmar']]); });
+  dash.draw('xv-faltan', (el) => { const r = T.rows('resumen'); if (!r) { el.replaceChildren(); return; } const s = T.el('span', 'tt-pill bad'); s.append(T.icon('i-help', 'sm'), `${r[0].preguntas} preguntas abiertas`); el.replaceChildren(s); });
+
+  /* ---------- stages ---------- */
+  dash.draw('stages', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['etapas'])) return;
+    const et = T.rows('etapas'); const pe = T.rows('por_etapa') || [];
+    if (!et) return;
+    const sel = String(T.p().sel || '');
+    et.slice().sort((a, b) => Number(a.orden) - Number(b.orden)).forEach((e, i) => {
+      const c = pe.find((x) => x.id === e.id);
+      const cls = e.estado === 'En curso' ? ' now' : e.estado === 'Siguiente' ? ' next' : ' done';
+      const b = T.el('button', 'tt-stage' + cls + (sel === 'e:' + e.id || T.p().etapa === e.id ? ' on' : '')); b.type = 'button';
+      b.append(T.el('span', 'dot', String(i + 1)), T.el('span', 'p', e.periodo), T.el('span', 'n', e.nombre), T.el('span', 'q', e.pregunta));
+      if (c) b.appendChild(T.el('span', 'p', `${T.fmt(c.hitos)} hitos · ${T.fmt(c.frentes)} frentes`));
+      b.title = e.cadena;
+      b.addEventListener('click', () => { T.open('e:' + e.id, 'mapa'); });
+      el.appendChild(b);
+    });
+  });
+
+  /* ---------- traceability matrix ---------- */
+  dash.draw('matriz', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['proyectos', 'etapas', 'hitos'])) return;
+    const fr = T.rows('frentes'), et = T.rows('etapas'), hi = T.rows('hitos'), ru = T.rows('rumbo') || [], kp = T.rows('pkpi') || [];
+    if (!fr || !et || !hi) return;
+    const E = et.slice().sort((a, b) => Number(a.orden) - Number(b.orden));
+    const p = T.p(); const mn = p.mn && T.NODOS.includes(p.mn) ? p.mn : null;
+    const futuros = (n) => { const r = ru.find((x) => x.nodo === n); return String(r ? r.proximo : '').split('; ').filter(Boolean); };
+    const hitosDe = (n, e) => hi.filter((h) => h.nodo === n && h.fecha >= e.inicio && h.fecha <= e.fin);
+    const frDe = (n, e) => fr.filter((f) => f.etapa === e.id && T.de(f, n));
+    const lab = (n) => n === 'LATTICCE' ? 'LATTICCE · núcleo' : n;
+
+    if (!mn) {
+      /* overview: one coloured lane per node, one station per stage */
+      const g = T.el('div', 'tt-ln'); g.style.setProperty('--cols', E.length);
+      const hd = T.el('div', 'tt-ln-hd'); hd.appendChild(T.el('span', 'c', 'Elige un nodo para ver su recorrido'));
+      E.forEach((e) => { const b = T.el('button', 'st' + (e.estado === 'En curso' ? ' now' : '') + (e.estado === 'Siguiente' ? ' next' : '')); b.type = 'button'; b.title = e.pregunta; b.append(T.el('span', 'p', e.periodo), T.el('span', 'n', e.nombre)); b.addEventListener('click', () => T.open('e:' + e.id)); hd.appendChild(b); });
+      g.appendChild(hd);
+      const max = Math.max(1, ...T.NODOS.flatMap((n) => E.map((e) => e.estado === 'Siguiente' ? futuros(n).length : frDe(n, e).length)));
+      T.NODOS.forEach((n) => {
+        const lane = T.el('div', 'tt-lane'); lane.style.setProperty('--acc', T.NCOL[n]);
+        const h = T.el('button', 'who'); h.type = 'button'; h.title = 'Ver el recorrido de ' + n;
+        const nf = fr.filter((f) => T.de(f, n)).length, nh = hi.filter((x) => x.nodo === n).length;
+        const tx = T.el('span', 'tx'); tx.append(T.el('strong', null, lab(n)), T.el('span', null, `${nf} frentes · ${nh} hitos`));
+        h.append(T.emblem(n), tx); h.addEventListener('click', () => dash.setParams({mn: n})); lane.appendChild(h);
+        E.forEach((e) => {
+          const fut = e.estado === 'Siguiente'; const items = fut ? futuros(n) : frDe(n, e);
+          const done = !fut && items.some((f) => T.grupo(f.estado) === 'done');
+          const b = T.el('button', 'stn' + (fut ? ' fut' : '') + (items.length ? '' : ' empty') + (done ? ' done' : '')); b.type = 'button';
+          const d = T.el('i'); const sz = items.length ? 14 + 22 * Math.sqrt(items.length / max) : 8; d.style.width = d.style.height = sz + 'px';
+          if (items.length) d.textContent = items.length;
+          b.appendChild(d);
+          b.title = items.length ? `${n} · ${e.nombre}: ${fut ? items.join(' · ') : items.map((f) => f.nombre).join(' · ')}` : `${n} · ${e.nombre}: sin frentes`;
+          b.addEventListener('click', () => dash.setParams({mn: n}));
+          lane.appendChild(b);
+        });
+        g.appendChild(lane);
+      });
+      el.appendChild(g);
+      return;
+    }
+
+    /* detail: the selected node, stage by stage, readable cards */
+    const acc = T.NCOL[mn];
+    const box = T.el('div', 'tt-nd'); box.style.setProperty('--acc', acc);
+    const top = T.el('div', 'tt-nd-top');
+    const back = T.el('button', 'tt-lb'); back.type = 'button'; back.append('← Todos los nodos'); back.addEventListener('click', () => dash.setParams({mn: null}));
+    const tabs = T.el('div', 'tt-nd-tabs');
+    T.NODOS.forEach((n) => { const t = T.el('button', 'tab' + (n === mn ? ' on' : '')); t.type = 'button'; t.style.setProperty('--acc', T.NCOL[n]); t.append(T.emblem(n), n === 'LATTICCE' ? 'Núcleo' : n); t.addEventListener('click', () => dash.setParams({mn: n})); tabs.appendChild(t); });
+    top.append(back, tabs); box.appendChild(top);
+    const hero = T.el('div', 'tt-nd-hero');
+    const ht = T.el('div', 'tx'); ht.append(T.el('h3', null, lab(mn)), T.el('p', null, `${fr.filter((f) => T.de(f, mn)).length} frentes y ${hi.filter((x) => x.nodo === mn).length} hitos en su recorrido. Haz clic en un frente para abrir su ficha.`));
+    const inf = T.el('button', 'tt-open'); inf.type = 'button'; inf.append(T.icon('i-report', 'sm'), 'Abrir informe completo'); inf.addEventListener('click', () => T.open('n:' + mn));
+    hero.append(T.emblem(mn, true), ht, inf); box.appendChild(hero);
+    const cols = T.el('div', 'tt-nd-cols');
+    E.forEach((e) => {
+      const fut = e.estado === 'Siguiente';
+      const items = fut ? futuros(mn) : frDe(mn, e); const hs = fut ? [] : hitosDe(mn, e);
+      if (!items.length && !hs.length) return;
+      const c = T.el('section', 'col' + (fut ? ' fut' : '') + (e.estado === 'En curso' ? ' now' : ''));
+      const ch = T.el('button', 'ch'); ch.type = 'button'; ch.title = 'Resumen de la etapa'; ch.append(T.el('span', 'p', e.periodo + (e.estado === 'En curso' ? ' · ahora' : '')), T.el('span', 'n', e.nombre)); ch.addEventListener('click', () => T.open('e:' + e.id));
+      c.appendChild(ch);
+      if (fut) {
+        c.appendChild(T.el('span', 'tt-pill', 'Se creará · propuesto'));
+        items.forEach((t) => c.appendChild(T.el('div', 'fut', t)));
+      } else {
+        items.forEach((f) => {
+          const k = kp.find((x) => x.id === f.id) || {};
+          const b = T.el('button', 'card ' + T.grupo(f.estado) + (f.nodo === mn ? '' : ' sec')); b.type = 'button';
+          const nm = T.el('strong', null, f.nombre);
+          const meta = T.el('span', 'meta'); meta.append(T.pillEstado(f.estado)); if (f.nodo !== mn) meta.append(T.el('span', 'also', 'nodo principal: ' + f.nodo));
+          const bar = T.el('span', 'bar'); const fill = T.el('i'); fill.style.width = k.avance == null ? '0' : Math.round(k.avance * 100) + '%'; bar.appendChild(fill);
+          const pc = T.el('span', 'pc'); if (k.avance == null) pc.appendChild(T.falta()); else pc.textContent = 'Avance ' + T.pct(k.avance) + (k.avance_q === 'dato' ? '' : ' aprox.');
+          b.append(nm, meta, bar, pc); b.addEventListener('click', () => T.open('p:' + f.id)); c.appendChild(b);
+        });
+        if (hs.length) { const hb = T.el('button', 'tt-hc'); hb.type = 'button'; hb.append(T.icon('i-flag', 'sm'), `${hs.length} ${hs.length === 1 ? 'hito' : 'hitos'} en esta etapa`); hb.addEventListener('click', () => { dash.setParams({nodo: mn, vista: e.id === '2025' ? 'todo' : '2026'}); T.go('hitos'); }); c.appendChild(hb); }
+      }
+      cols.appendChild(c);
+    });
+    box.appendChild(cols); el.appendChild(box);
+  });
+
+  /* ---------- maturity ---------- */
+  dash.draw('madurez-chart', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['madurez'])) return;
+    const rows = (T.rows('madurez') || []).map((r) => ({dimension: r.dimension, pct: Number(r.pct)})).sort((a, b) => a.pct - b.pct);
+    if (!rows.length) return;
+    const W = Math.max(260, el.clientWidth || 320), rowH = 26, M = {t: 4, r: 44, b: 8, l: 0};
+    const H = M.t + rows.length * rowH + M.b;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Fotografía de madurez por dimensión');
+    const probe = svg.append('text').style('font-size', '12px');
+    let lw = 0; rows.forEach((r) => { probe.text(r.dimension); lw = Math.max(lw, probe.node().getComputedTextLength()); }); probe.remove();
+    M.l = Math.min(lw + 12, W * 0.6);
+    const x = d3.scaleLinear([0, 100], [M.l, W - M.r]);
+    const y = d3.scaleBand(rows.map((r) => r.dimension), [M.t, M.t + rows.length * rowH]).padding(0.34);
+    const show = T.tip(el);
+    const g = svg.append('g').selectAll('g').data(rows).join('g');
+    g.append('text').attr('x', M.l - 10).attr('y', (r) => y(r.dimension) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', (r) => r.pct <= 40 ? '#FF9A8E' : '#C9CBD1').style('font-size', '12px').text((r) => r.dimension);
+    g.append('rect').attr('x', M.l).attr('y', (r) => y(r.dimension)).attr('height', y.bandwidth()).attr('width', x(100) - M.l).attr('rx', 4).attr('fill', 'rgba(255,255,255,.06)');
+    g.append('rect').attr('x', M.l).attr('y', (r) => y(r.dimension)).attr('height', y.bandwidth()).attr('width', (r) => x(r.pct) - M.l).attr('rx', 4).attr('fill', (r) => r.pct <= 40 ? '#FF7A6B' : '#D9DCE2');
+    g.append('text').attr('x', (r) => x(r.pct) + 6).attr('y', (r) => y(r.dimension) + y.bandwidth() / 2).attr('dy', '0.35em').style('fill', '#ECEDEF').style('font-size', '11.5px').style('font-variant-numeric', 'tabular-nums').text((r) => r.pct + ' %');
+    g.append('rect').attr('x', 0).attr('width', W).attr('y', (r) => y(r.dimension) - 3).attr('height', y.bandwidth() + 6).attr('fill', 'transparent')
+      .on('mousemove', (event, r) => show(event, ['Estimación cualitativa', `${r.dimension}: ${r.pct} %`, r.pct <= 40 ? 'Brecha: aquí está el trabajo de la ventana de validación' : '']))
+      .on('mouseleave', (event) => show(event, null));
+  });
+
+  /* ---------- node cards ---------- */
+  T.met = (box, icon, label, v, f) => { const d = T.el('div', 'tt-met'); const k = T.el('span', 'k'); k.append(T.icon(icon, 'sm'), label); const s = T.el('span', 'v'); if (v == null) s.appendChild(T.falta()); else s.textContent = (f || T.fmt)(v); d.append(k, s); box.appendChild(d); };
+  dash.draw('nodo', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['nodos'])) return;
+    const ns = T.rows('nodos'); if (!ns) return;
+    const n = ns.find((r) => r.nodo === el.dataset.nodo); if (!n) return;
+    const rd = (T.rows('redes') || []).find((r) => r.nodo === n.nodo) || {};
+    const c = (T.rows('por_nodo') || []).find((r) => r.nodo === n.nodo) || {};
+    const ru = (T.rows('rumbo') || []).find((r) => r.nodo === n.nodo) || {};
+    const h = T.el('div', 'tt-nh'); const tx = T.el('div');
+    tx.appendChild(T.marca(n.nodo));
+    if (ru.rol) { const pl = T.el('span', 'tt-pill acc'); pl.append(T.icon('i-compass', 'sm'), '2027: ' + ru.rol); tx.appendChild(pl); }
+    h.append(T.emblem(n.nodo, true), tx); el.appendChild(h);
+    el.appendChild(T.el('p', 'tt-rol', n.rol));
+    const m = T.el('div', 'tt-mets');
+    T.met(m, 'i-eye', 'Vistas 28 d', T.n(rd.vis), T.big); T.met(m, 'i-heart', 'Interacciones', T.n(rd.interacciones)); T.met(m, 'i-message', 'Conversaciones', T.n(rd.conversaciones));
+    T.met(m, 'i-book', 'Casos reales', c.book_real); T.met(m, 'i-pen', 'Artículos', c.blog_pub); T.met(m, 'i-layers', 'Frentes', c.frentes);
+    el.appendChild(m);
+    const links = T.el('div', 'tt-lnks');
+    const lk = (icon, label, url) => { if (url) { const a = T.el('a', 'tt-lnk'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon(icon, 'sm'), label); links.appendChild(a); } else { const s = T.el('span', 'tt-lnk'); s.append(T.icon(icon, 'sm'), T.falta()); links.appendChild(s); } };
+    lk('i-instagram', 'Instagram', n.instagram); lk('i-facebook', 'Facebook', n.facebook); lk('i-globe', 'Web', n.web);
+    el.appendChild(links);
+  });
+
+  /* ---------- social ---------- */
+  dash.draw('redes-chart', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['redes'])) return;
+    const rows = T.rows('redes'); if (!rows) return;
+    const m = T.p().rm || 'vis';
+    const LBL = {vis: 'Vistas', alcance_ig: 'Alcance en Instagram', interacciones: 'Interacciones'};
+    const data = rows.map((r) => ({nodo: r.nodo, v: T.n(r[m]), ig: T.n(r.vis_ig), fb: T.n(r.vis_fb), red: r.redondeo === true || r.redondeo === 'true'}));
+    const W = Math.max(280, el.clientWidth || 360), rowH = 34, M = {t: 4, r: 70, b: 4, l: 0};
+    const H = M.t + data.length * rowH + M.b;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', LBL[m] + ' por nodo');
+    const probe = svg.append('text').style('font-size', '12px');
+    let lw = 0; data.forEach((r) => { probe.text(r.nodo); lw = Math.max(lw, probe.node().getComputedTextLength()); }); probe.remove();
+    M.l = lw + 14;
+    const x = d3.scaleLinear([0, d3.max(data, (r) => r.v || 0) || 1], [M.l, W - M.r]);
+    const y = d3.scaleBand(data.map((r) => r.nodo), [M.t, M.t + data.length * rowH]).padding(0.28);
+    const show = T.tip(el);
+    const g = svg.append('g').selectAll('g').data(data).join('g').style('cursor', 'pointer').on('click', (event, r) => T.open('n:' + (r.nodo === 'Food' ? 'Studio' : r.nodo), 'redes'));
+    g.append('rect').attr('x', 0).attr('width', W).attr('y', (r) => y(r.nodo) - 4).attr('height', y.bandwidth() + 8).attr('fill', 'transparent');
+    g.append('text').attr('x', M.l - 10).attr('y', (r) => y(r.nodo) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', (r) => T.NCOL[r.nodo]).style('font-size', '12px').text((r) => r.nodo);
+    g.append('rect').attr('x', M.l).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('width', x.range()[1] - M.l).attr('rx', 4).attr('fill', 'rgba(255,255,255,.04)');
+    if (m === 'vis') {
+      g.append('rect').attr('x', M.l).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('rx', 4).attr('width', (r) => r.v == null ? 0 : Math.max(2, x(r.ig || 0) - M.l)).attr('fill', (r) => T.NCOL[r.nodo]);
+      g.append('rect').attr('x', (r) => x(r.ig || 0)).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('width', (r) => r.v == null ? 0 : Math.max(0, x(r.v) - x(r.ig || 0))).attr('fill', '#8C9099');
+    } else {
+      g.append('rect').attr('x', M.l).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('rx', 4).attr('width', (r) => r.v == null ? 0 : Math.max(2, x(r.v) - M.l)).attr('fill', (r) => T.NCOL[r.nodo]);
+    }
+    g.append('text').attr('x', (r) => r.v == null ? M.l + 8 : Math.min(x(r.v) + 8, W - M.r + 8)).attr('y', (r) => y(r.nodo) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .style('fill', (r) => r.v == null ? '#FF7A6B' : '#ECEDEF').style('font-size', '12px').style('font-weight', (r) => r.v == null ? 600 : 400).style('font-variant-numeric', 'tabular-nums')
+      .text((r) => r.v == null ? 'falta dato' : T.big(r.v) + (r.red && m !== 'vis' ? ' aprox.' : ''));
+    g.on('mousemove', (event, r) => show(event, [r.nodo, r.v == null ? 'Sin métricas accesibles' : `${LBL[m]}: ${T.fmt(r.v)}${r.red && m !== 'vis' ? ' (redondeado por Meta)' : ''}`, m === 'vis' && r.v != null ? `Instagram ${T.fmt(r.ig || 0)} · Facebook ${T.fmt(r.fb || 0)}` : '', 'Clic para abrir el informe del nodo']))
+      .on('mouseleave', (event) => show(event, null));
+  });
+
+  dash.draw('ig-chart', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['ig_design'])) return;
+    const rows = (T.rows('ig_design') || []).filter((r) => r.interacciones != null || r.publicaciones != null);
+    if (!rows.length) { el.appendChild(T.falta('Metricool aún no registra publicaciones de Design en 2026')); return; }
+    const by = d3.group(rows, (r) => r.fecha.slice(0, 7));
+    const meses = d3.range(0, 12).map((m) => `2026-${String(m + 1).padStart(2, '0')}`).filter((k) => k <= d3.max(rows, (r) => r.fecha.slice(0, 7)));
+    const data = meses.map((k) => { const g = by.get(k) || []; return {k, m: T.mes[Number(k.slice(5)) - 1], int: d3.sum(g, (r) => r.interacciones || 0), pub: d3.sum(g, (r) => r.publicaciones || 0)}; });
+    const W = Math.max(260, el.clientWidth || 320), H = 160, M = {t: 18, r: 6, b: 22, l: 6};
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Interacciones y publicaciones de Instagram Design por mes en 2026');
+    const x = d3.scaleBand(data.map((d) => d.k), [M.l, W - M.r]).padding(0.28);
+    const y = d3.scaleLinear([0, (d3.max(data, (d) => d.int) || 1) * 1.1], [H - M.b, M.t]);
+    svg.append('g').attr('transform', `translate(0,${H - M.b})`).call(d3.axisBottom(x).tickFormat((k) => T.mes[Number(k.slice(5)) - 1]).tickSizeOuter(0)).call(T.axis);
+    const show = T.tip(el);
+    const g = svg.append('g').selectAll('g').data(data).join('g');
+    g.append('rect').attr('x', (d) => x(d.k)).attr('width', x.bandwidth()).attr('y', (d) => y(d.int)).attr('height', (d) => Math.max(0, y(0) - y(d.int))).attr('rx', 3).attr('fill', '#FE5C14').attr('opacity', (d) => d.int ? 1 : 0);
+    g.filter((d) => d.int > 0).append('text').attr('x', (d) => x(d.k) + x.bandwidth() / 2).attr('y', (d) => y(d.int) - 5).attr('text-anchor', 'middle').style('fill', '#ECEDEF').style('font-size', '11px').text((d) => T.fmt(d.int));
+    g.append('rect').attr('x', (d) => x(d.k) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', M.t).attr('height', H - M.t - M.b).attr('fill', 'transparent')
+      .on('mousemove', (event, d) => show(event, [d.m + ' 2026', 'Interacciones: ' + T.fmt(d.int), 'Publicaciones: ' + T.fmt(d.pub)]))
+      .on('mouseleave', (event) => show(event, null));
+  });
+
+  dash.draw('cuentas', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['redes'])) return;
+    const rows = T.rows('redes'); if (!rows) return;
+    rows.forEach((r) => {
+      const node = r.nodo === 'Food' ? 'Studio' : r.nodo;
+      const a = T.el('article', 'tt-acc'); a.style.setProperty('--acc', T.NCOL[r.nodo]);
+      const h = T.el('header'); const em = T.emblem(node); h.append(em, T.el('strong', null, r.cuenta)); a.appendChild(h);
+      const hd = T.el('div', 'tt-hand');
+      const line = (icon, label, url) => { if (label && url) { const l = T.el('a'); l.href = url; l.target = '_blank'; l.rel = 'noopener'; l.append(T.icon(icon, 'sm'), label, T.icon('i-out', 'sm')); hd.appendChild(l); } else { const s = T.el('span'); s.append(T.icon(icon, 'sm'), T.falta()); hd.appendChild(s); } };
+      line('i-instagram', r.ig, r.url_ig); line('i-facebook', r.fb, r.url_fb);
+      a.appendChild(hd);
+      const red = r.redondeo === true || r.redondeo === 'true';
+      const m = T.el('div', 'tt-mets');
+      T.met(m, 'i-eye', 'Vistas', T.n(r.vis), T.big); T.met(m, 'i-radar', 'Alcance IG', T.n(r.alcance_ig), (v) => T.big(v) + (red ? ' ≈' : '')); T.met(m, 'i-heart', 'Interacciones', T.n(r.interacciones), (v) => T.big(v) + (red ? ' ≈' : ''));
+      a.appendChild(m);
+      const st = T.el('div', 'tt-row');
+      st.append(T.el('span', 'tt-pill ' + (/^Conectado/.test(r.metricool) ? 'ok' : ''), 'Metricool: ' + r.metricool), T.el('span', 'tt-pill ' + (r.meta === 'Página visible' ? 'ok' : 'bad'), 'Meta: ' + r.meta));
+      const cv = T.n(r.conversaciones); st.appendChild(T.el('span', 'tt-pill ' + (cv ? 'ok' : 'bad'), cv == null ? 'Conversaciones: falta dato' : `Conversaciones: ${cv}`));
+      a.appendChild(st);
+      const b = T.el('button', 'tt-open'); b.type = 'button'; b.append(T.icon('i-report', 'sm'), 'Ver informe de ' + node); b.addEventListener('click', () => T.open('n:' + node, 'redes')); a.appendChild(b);
+      el.appendChild(a);
+    });
+  });
+
+  /* ---------- project explorer ---------- */
+  T.sorted = () => {
+    const k = T.rows('pkpi') || []; const pr = T.rows('frentes') || [];
+    const byId = Object.fromEntries(pr.map((r) => [r.id, r]));
+    const o = T.p().orden || 'aprov';
+    const v = (r) => o === 'aprov' ? (r.aprov == null ? -1 : r.aprov) : o === 'avance' ? (r.avance == null ? -1 : r.avance) : o === 'faltan' ? r.faltan : 0;
+    const list = k.filter((r) => T.matchProj(r, byId[r.id]));
+    if (o === 'nombre') list.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+    else if (o === 'inicio') list.sort((a, b) => String(a.inicio || '9999').localeCompare(String(b.inicio || '9999')));
+    else list.sort((a, b) => v(b) - v(a) || a.nombre.localeCompare(b.nombre, 'es'));
+    return {list, byId};
+  };
+  T.meter = (label, v, q) => {
+    const row = T.el('div', 'tt-meter');
+    row.appendChild(T.el('span', null, label));
+    const bar = T.el('span', 'tt-bar' + (q === 'aprox' ? ' aprox' : '')); const i = T.el('i'); i.style.width = (v == null ? 0 : v * 100) + '%'; bar.appendChild(i); row.appendChild(bar);
+    const val = T.el('span', 'tt-val');
+    if (v == null) val.appendChild(T.falta()); else { val.textContent = T.pct(v); if (q === 'aprox') val.appendChild(T.aprox()); }
+    row.appendChild(val);
+    return row;
+  };
+  T.dots = (nodos) => { const s = T.el('span', 'tt-dots'); String(nodos || '').split(', ').forEach((n) => { if (T.NCOL[n]) { const i = T.el('i'); i.style.background = T.NCOL[n]; i.title = n; s.appendChild(i); } }); return s; };
+  T.pillEstado = (e) => T.el('span', 'tt-pill ' + ({'Cliente activo': 'ok', 'Ejecutado': 'ok', 'Cerrado': 'ok', 'Activo': 'ok', 'Prospecto / oportunidad': 'warn', 'Piloto': 'warn', 'En pausa': 'warn', 'Perdido': 'bad'}[e] || ''), T.estadoTxt(e));
+
+  dash.draw('activos', (el) => {
+    const p = T.p(); const parts = [];
+    if (p.nodo) parts.push('nodo ' + p.nodo); if (p.tipo) parts.push('tipo ' + p.tipo); if (p.estado) parts.push(p.estado === 'ejec' ? 'ejecutados o cliente activo' : 'estado ' + T.estadoTxt(p.estado));
+    if (p.etapa) { const e = (T.rows('etapas') || []).find((x) => x.id === p.etapa); parts.push('etapa ' + (e ? e.nombre : p.etapa)); }
+    if (p.q) parts.push('«' + p.q + '»');
+    const n = T.rows('pkpi') ? T.sorted().list.length : null;
+    el.textContent = n == null ? '—' : `${T.fmt(n)} ${n === 1 ? 'frente' : 'frentes'}${parts.length ? ' · filtro: ' + parts.join(', ') : ' · sin filtros'}`;
+  });
+
+  dash.draw('pgrid', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['proyectos'])) return;
+    if (!T.rows('frentes') || !T.rows('pkpi')) return;
+    const {list, byId} = T.sorted();
+    const sel = String(T.p().sel || '');
+    if (!list.length) { el.appendChild(T.el('p', 'tt-active', 'Ningún frente coincide con los filtros.')); return; }
+    list.forEach((r) => {
+      const pr = byId[r.id] || {};
+      const b = T.el('button', 'tt-pcard' + (sel === 'p:' + r.id ? ' on' : '')); b.type = 'button';
+      b.style.setProperty('--acc', T.NCOL[r.nodo] || '#C9CDD0');
+      const top = T.el('div', 'tt-row'); top.append(T.el('span', 'tt-pill', r.tipo), T.pillEstado(r.estado)); b.appendChild(top);
+      const h = T.el('div', 'tt-row'); h.append(T.el('strong', null, r.nombre), T.dots(r.nodos)); b.appendChild(h);
+      b.appendChild(T.meter('Avance', r.avance, 'aprox'));
+      b.appendChild(T.meter('Aprovechamiento', r.aprov, r.aprov_q));
+      const pres = T.el('div', 'tt-src'); if (pr.presencia) pres.textContent = pr.presencia; else pres.appendChild(T.falta()); b.appendChild(pres);
+      const f = T.el('div', 'tt-row');
+      f.appendChild(T.el('span', 'tt-pill ' + (r.ficha === 'Sí' ? 'ok' : r.ficha === 'Parcial' ? '' : 'bad'), r.ficha === 'Sí' ? 'Con ficha en KOBOS' : r.ficha === 'Parcial' ? 'Ficha parcial' : r.ficha === 'No' ? 'Sin ficha en KOBOS' : 'Ficha sin confirmar'));
+      if (r.faltan) f.appendChild(T.el('span', 'tt-falta', `${r.faltan} datos faltan`));
+      b.appendChild(f);
+      b.addEventListener('click', () => T.open('p:' + r.id, 'frentes'));
+      el.appendChild(b);
+    });
+  });
+
+  dash.draw('scatter', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['proyectos'])) return;
+    if (!T.rows('pkpi')) return;
+    const {list} = T.sorted();
+    const pts = list.filter((r) => r.avance != null && r.aprov != null);
+    const W = Math.max(280, el.clientWidth || 360), H = 290, M = {t: 14, r: 16, b: 34, l: 44};
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Avance contra aprovechamiento por frente');
+    const x = d3.scaleLinear([0, 1], [M.l, W - M.r]), y = d3.scaleLinear([0, 1], [H - M.b, M.t]);
+    svg.append('g').attr('transform', `translate(0,${H - M.b})`).call(d3.axisBottom(x).ticks(4).tickFormat(T.pct).tickSize(-(H - M.t - M.b))).call(T.axis);
+    svg.append('g').attr('transform', `translate(${M.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(T.pct).tickSize(-(W - M.l - M.r))).call(T.axis);
+    svg.append('text').attr('x', W - M.r).attr('y', H - 4).attr('text-anchor', 'end').style('fill', '#8C9099').style('font-size', '11px').text('Avance (aprox.) →');
+    svg.append('text').attr('x', M.l + 6).attr('y', M.t + 10).style('fill', '#8C9099').style('font-size', '11px').text('↑ Aprovechamiento');
+    const show = T.tip(el);
+    const sel = String(T.p().sel || '');
+    const jit = d3.group(pts, (r) => Math.round(r.avance * 20) + '|' + Math.round(r.aprov * 20));
+    svg.append('g').selectAll('circle').data(pts).join('circle')
+      .attr('cx', (r) => { const g = jit.get(Math.round(r.avance * 20) + '|' + Math.round(r.aprov * 20)); return x(r.avance) + (g.indexOf(r) - (g.length - 1) / 2) * 12; })
+      .attr('cy', (r) => y(r.aprov)).attr('r', (r) => sel === 'p:' + r.id ? 9 : 7)
+      .attr('fill', (r) => T.NCOL[r.nodo] || '#C9CDD0').attr('fill-opacity', .9).attr('stroke', (r) => sel === 'p:' + r.id ? '#FFFFFF' : '#0E1015').attr('stroke-width', 2).style('cursor', 'pointer')
+      .on('mousemove', (event, r) => show(event, [r.tipo + ' · ' + r.nodo, r.nombre, `Avance ≈ ${T.pct(r.avance)} · aprovechamiento ${r.aprov_q === 'dato' ? '' : '≥ '}${T.pct(r.aprov)}`]))
+      .on('mouseleave', (event) => show(event, null))
+      .on('click', (event, r) => { show(event, null); T.open('p:' + r.id, 'frentes'); });
+    const sin = list.length - pts.length;
+    if (sin > 0) svg.append('text').attr('x', W - M.r).attr('y', M.t + 10).attr('text-anchor', 'end').style('fill', '#FF7A6B').style('font-size', '11px').text(`${sin} sin avance medible`);
+  });
+
+  dash.draw('estados', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['proyectos'])) return;
+    const k = T.rows('pkpi'); if (!k) return;
+    const ORDER = ['Cliente activo', 'Cerrado', 'Ejecutado', 'Activo', 'Producto construido', 'En desarrollo', 'Piloto', 'Prospecto / oportunidad', 'En pausa', 'Perdido'];
+    const rows = ORDER.map((e) => ({e, n: k.filter((r) => r.estado === e).length}));
+    const W = Math.max(280, el.clientWidth || 360), rowH = 34, M = {t: 6, r: 36, b: 6, l: 0};
+    const H = M.t + rows.length * rowH + M.b;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Frentes por estado');
+    const probe = svg.append('text').style('font-size', '12px');
+    let lw = 0; rows.forEach((r) => { probe.text(T.estadoTxt(r.e)); lw = Math.max(lw, probe.node().getComputedTextLength()); }); probe.remove();
+    M.l = lw + 14;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.n) || 1], [M.l, W - M.r]);
+    const y = d3.scaleBand(rows.map((r) => r.e), [M.t, M.t + rows.length * rowH]).padding(0.3);
+    const cur = T.p().estado;
+    const col = (e) => ({done: '#7EE0A1', pros: '#F2C46B'}[T.grupo(e)] || '#C9CDD0');
+    const g = svg.append('g').selectAll('g').data(rows).join('g').style('cursor', 'pointer').on('click', (event, r) => dash.setParams({estado: cur === r.e ? null : r.e}));
+    g.append('rect').attr('x', 0).attr('width', W).attr('y', (r) => y(r.e) - 4).attr('height', y.bandwidth() + 8).attr('fill', 'transparent');
+    g.append('text').attr('x', M.l - 10).attr('y', (r) => y(r.e) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', '#ECEDEF').style('font-size', '12px').text((r) => T.estadoTxt(r.e));
+    g.append('rect').attr('x', M.l).attr('y', (r) => y(r.e)).attr('height', y.bandwidth()).attr('width', (r) => Math.max(2, x(r.n) - M.l)).attr('rx', 4)
+      .attr('fill', (r) => !cur || cur === r.e || (cur === 'ejec' && (r.e === 'Ejecutado' || r.e === 'Cliente activo' || r.e === 'Cerrado')) ? col(r.e) : 'rgba(255,255,255,.12)');
+    g.append('text').attr('x', (r) => x(r.n) + 6).attr('y', (r) => y(r.e) + y.bandwidth() / 2).attr('dy', '0.35em').style('fill', '#ECEDEF').style('font-size', '12px').style('font-variant-numeric', 'tabular-nums').text((r) => T.fmt(r.n));
+  });
+
+  /* ---------- hitos map ---------- */
+  T.zoom = T.zoom || {k: null};
+  dash.draw('mapa', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['hitos', 'etapas'])) return;
+    const hit = T.rows('hitos'), et = T.rows('etapas');
+    if (!hit || !et) return;
+    const p = T.p();
+    const agr = p.agr || 'nodo';
+    const LANES = agr === 'nodo' ? T.NODOS : ['Producción', 'Clientes', 'Comercial', 'Redes', 'Sitio', 'Marca', 'Sistema'];
+    const ACOL = ['#ECEDEF', '#EAB43F', '#72E7FF', '#FE5C14', '#A78BFA', '#7EE0A1', '#C9CDD0'];
+    const colOf = (h) => agr === 'nodo' ? (T.NCOL[h.nodo] || '#C9CDD0') : ACOL[LANES.indexOf(h.area)] || '#C9CDD0';
+    const W = Math.max(320, el.clientWidth || 640), laneH = 40, M = {t: 30, r: 14, b: 26, l: 0};
+    const H = M.t + LANES.length * laneH + M.b;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Mapa de hitos en el tiempo');
+    const probe = svg.append('text').style('font-size', '12px');
+    let lw = 0; LANES.forEach((a) => { probe.text(a); lw = Math.max(lw, probe.node().getComputedTextLength()); }); probe.remove();
+    M.l = lw + 16;
+    const D0 = new Date('2025-01-01T00:00:00Z'), D1 = new Date('2027-01-01T00:00:00Z');
+    const x = d3.scaleUtc([D0, D1], [M.l, W - M.r]);
+    const y = d3.scaleBand(LANES, [M.t, M.t + LANES.length * laneH]).padding(0.12);
+    const id = 'ttclip' + Math.round(Math.random() * 1e6);
+    svg.append('clipPath').attr('id', id).append('rect').attr('x', M.l).attr('y', 0).attr('width', W - M.l - M.r).attr('height', H);
+    svg.append('g').selectAll('text').data(LANES).join('text').attr('x', M.l - 10).attr('y', (a) => y(a) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', (a) => agr === 'nodo' ? T.NCOL[a] : '#C9CBD1').style('font-size', '12px').style('opacity', (a) => p.nodo && agr === 'nodo' && a !== p.nodo ? 0.35 : 1).text((a) => a);
+    svg.append('g').selectAll('line').data(LANES).join('line').attr('x1', M.l).attr('x2', W - M.r).attr('y1', (a) => y(a) + y.bandwidth() / 2).attr('y2', (a) => y(a) + y.bandwidth() / 2).attr('stroke', 'rgba(255,255,255,.07)');
+    const plot = svg.append('g').attr('clip-path', `url(#${id})`);
+    const gBands = plot.append('g'), gAxis = svg.append('g').attr('transform', `translate(0,${H - M.b})`), gNow = plot.append('g'), gDots = plot.append('g');
+    const byLane = d3.group(hit, (h) => (agr === 'nodo' ? h.nodo : h.area) + '|' + h.fecha);
+    const pts = hit.map((h, i) => { const k = agr === 'nodo' ? h.nodo : h.area; const same = byLane.get(k + '|' + h.fecha); const j = same.indexOf(h); return {...h, i, lane: k, t: new Date(h.fecha + 'T12:00:00Z'), dy: (j - (same.length - 1) / 2) * 10}; });
+    const show = T.tip(el);
+    const NOW = new Date('2026-10-28T12:00:00Z');
+    const sel = String(p.sel || '');
+    const render = (zx) => {
+      const vis = et.filter((e) => zx(new Date(e.fin + 'T23:59:59Z')) > M.l && zx(new Date(e.inicio + 'T00:00:00Z')) < W - M.r);
+      gBands.selectAll('g').data(vis, (e) => e.id).join((en) => { const g = en.append('g'); g.append('rect'); g.append('text').attr('class', 'a'); g.append('text').attr('class', 'b'); return g; })
+        .each(function (e) {
+          const g = d3.select(this);
+          const xa = zx(new Date(e.inicio + 'T00:00:00Z')), xb = zx(new Date(e.fin + 'T23:59:59Z'));
+          g.select('rect').attr('x', xa).attr('y', 4).attr('width', Math.max(0, xb - xa)).attr('height', H - M.b - 4)
+            .attr('fill', Number(e.orden) % 2 ? 'rgba(255,255,255,.022)' : 'rgba(255,255,255,.045)')
+            .attr('stroke', e.estado === 'Siguiente' ? 'rgba(255,255,255,.25)' : 'none').attr('stroke-dasharray', '3 4');
+          const wide = xb - xa > 74;
+          const cx = Math.max(xa, M.l) + 6;
+          g.select('text.a').attr('x', cx).attr('y', 15).style('fill', '#8C9099').style('font-size', '11px').text(wide ? e.periodo : '');
+          g.select('text.b').attr('x', cx).attr('y', 27).style('fill', '#ECEDEF').style('font-size', '11px').style('font-weight', 600).text(wide && xb - xa > 110 ? e.nombre : '');
+        });
+      const span = (zx.domain()[1] - zx.domain()[0]) / 864e5;
+      const every = span > 500 ? d3.utcMonth.every(3) : span > 200 ? d3.utcMonth.every(1) : d3.utcWeek.every(2);
+      gAxis.call(d3.axisBottom(zx).ticks(every).tickFormat((t) => span > 200 ? T.mes[t.getUTCMonth()] + (t.getUTCMonth() === 0 ? ' ' + t.getUTCFullYear() : '') : t.getUTCDate() + ' ' + T.mes[t.getUTCMonth()]).tickSizeOuter(0))
+        .attr('font-size', null).attr('font-family', null)
+        .call((g) => g.selectAll('text').style('fill', '#8C9099').style('font-size', '11px'))
+        .call((g) => g.select('.domain').attr('stroke', 'rgba(255,255,255,.2)')).call((g) => g.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,.2)'));
+      gAxis.selectAll('.tick').style('display', function () { const t = this.getAttribute('transform') || ''; const m = /translate\(([-\d.]+)/.exec(t); const v = m ? +m[1] : 0; return v < M.l || v > W - M.r ? 'none' : null; });
+      gNow.selectAll('*').remove();
+      const xn = zx(NOW);
+      if (xn > M.l && xn < W - M.r) {
+        gNow.append('line').attr('x1', xn).attr('x2', xn).attr('y1', M.t - 4).attr('y2', H - M.b).attr('stroke', '#ECEDEF').attr('stroke-dasharray', '2 3').attr('opacity', .7);
+        gNow.append('text').attr('x', xn + 4).attr('y', H - M.b - 4).style('fill', '#ECEDEF').style('font-size', '11px').text('hoy');
+      }
+      gDots.selectAll('circle').data(pts, (d) => d.i).join('circle')
+        .attr('cx', (d) => zx(d.t)).attr('cy', (d) => y(d.lane) + y.bandwidth() / 2 + d.dy)
+        .attr('r', (d) => sel === 'h:' + d.i ? 8 : 5.5)
+        .attr('fill', (d) => d.estado === 'acreditado' ? colOf(d) : '#07080B')
+        .attr('stroke', (d) => sel === 'h:' + d.i ? '#FFFFFF' : colOf(d)).attr('stroke-width', (d) => sel === 'h:' + d.i ? 3 : 2)
+        .attr('stroke-dasharray', (d) => d.fecha_q === 'aprox' ? '2 2' : null)
+        .attr('opacity', (d) => p.nodo && d.nodo !== p.nodo ? 0.18 : 1)
+        .style('cursor', 'pointer')
+        .on('mousemove', (event, d) => show(event, [`${T.fecha(d.fecha, d.fecha_q)} · ${d.nodo} · ${d.area}`, d.hito, d.estado === 'acreditado' ? 'Clic para ver qué contiene' : 'Resultado sin registrar · clic para ver']))
+        .on('mouseleave', (event) => show(event, null))
+        .on('click', (event, d) => { show(event, null); T.open('h:' + d.i, 'hitos'); });
+    };
+    const toT = (a, b) => { const k = (W - M.r - M.l) / (x(b) - x(a)); return d3.zoomIdentity.translate(M.l - k * x(a), 0).scale(k); };
+    const zoom = d3.zoom().scaleExtent([1, 24]).extent([[M.l, 0], [W - M.r, H]]).translateExtent([[M.l, 0], [W - M.r, H]])
+      .filter((ev) => ev.type === 'wheel' ? (ev.ctrlKey || ev.metaKey) : (!ev.button && ev.type !== 'dblclick'))
+      .on('zoom', (ev) => { T.zoom.t = ev.transform; render(ev.transform.rescaleX(x)); });
+    svg.call(zoom);
+    const key = (p.vista || 'todo') + '|' + W;
+    let t0 = T.zoom.t;
+    if (T.zoom.k !== key || !t0) {
+      if (p.vista === '2026') t0 = toT(new Date('2026-01-01T00:00:00Z'), new Date('2027-01-01T00:00:00Z'));
+      else if (p.vista === 'q4') t0 = toT(new Date('2026-08-01T00:00:00Z'), new Date('2026-12-31T00:00:00Z'));
+      else t0 = d3.zoomIdentity;
+      T.zoom.k = key;
+    }
+    svg.call(zoom.transform, t0);
+  });
+
+  /* ---------- ficha (inline reports) ---------- */
+  dash.draw('ficha', (el) => {
+    const p = T.p();
+    const sel = String(p.sel || '');
+    const empty = () => { el.replaceChildren(); el.toggleAttribute('data-empty', true); };
+    if (!sel || p.fs !== el.dataset.slot || !T.rows('frentes') || !T.rows('hitos') || !T.rows('etapas') || !T.rows('pkpi')) { empty(); return; }
+    el.replaceChildren(); el.toggleAttribute('data-empty', false);
+    const pr = T.rows('frentes'), k = T.rows('pkpi'), hit = T.rows('hitos'), et = T.rows('etapas');
+    el.style.setProperty('--acc', '#ECEDEF');
+    const head = (title, pills, lead) => {
+      const h = T.el('div', 'tt-fh'); const l = T.el('div');
+      if (lead) l.appendChild(lead);
+      const tx = T.el('div', 'tx'); if (pills) tx.appendChild(pills); if (title instanceof Node) tx.appendChild(title); else tx.appendChild(T.el('h3', null, title)); l.appendChild(tx); h.appendChild(l);
+      const acts = T.el('div', 'tt-fx');
+      if (T.hist.length) { const bk = T.el('button', 'tt-x'); bk.type = 'button'; bk.title = 'Regresar a la ficha anterior'; bk.append('← Atrás'); bk.addEventListener('click', () => T.back()); acts.appendChild(bk); }
+      const x = T.el('button', 'tt-x'); x.type = 'button'; x.append(T.icon('i-close', 'sm'), 'Cerrar'); x.addEventListener('click', () => { T.modal(false); dash.setParams({sel: null, fs: null}); }); acts.appendChild(x); h.appendChild(acts);
+      el.appendChild(h);
+    };
+    const sec = (cols, icon, title, nodes) => { const s = T.el('section'); const h = T.el('h4'); h.append(T.icon(icon, 'sm'), title); s.appendChild(h); nodes.forEach((n) => s.appendChild(n)); cols.appendChild(s); return s; };
+    const list = (items, empty, plain) => { const a = Array.isArray(items) ? items : []; if (!a.length) { const q = T.el('p'); q.appendChild(T.falta()); if (empty) q.append(' · ' + empty); return q; } const u = T.el('ul', plain ? 'plain' : null); a.forEach((t) => { if (t instanceof Node) u.appendChild(t); else u.appendChild(T.el('li', null, String(t))); }); return u; };
+    const linkLi = (l) => { const li = T.el('li'); const a = T.el('a', 'tt-lnk'); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon('i-out', 'sm'), l.label); li.append(a, ' ', T.el('span', 'tt-pill ' + (l.publico ? 'ok' : ''), l.publico ? 'pública' : 'interna')); return li; };
+    const kpi = (box, icon, label, v) => { const d = T.el('div'); const s0 = T.el('span'); s0.append(T.icon(icon, 'sm'), label); d.appendChild(s0); const s = T.el('strong'); if (v == null || v === '') s.appendChild(T.falta()); else if (v instanceof Node) s.appendChild(v); else s.textContent = v; d.appendChild(s); box.appendChild(d); };
+    const btn = (label, fn, icon) => { const li = T.el('li'); const b = T.el('button', 'tt-lb'); b.type = 'button'; if (icon) b.appendChild(T.icon(icon, 'sm')); b.append(label); b.addEventListener('click', fn); li.appendChild(b); return li; };
+    const hitoBtn = (h) => btn(T.fecha(h.fecha, h.fecha_q) + ' · ' + h.hito, () => T.open('h:' + h.i, el.dataset.slot), 'i-flag');
+    const frenteBtn = (r) => { const li = btn(r.nombre, () => T.open('p:' + r.id, el.dataset.slot), 'i-layers'); li.firstChild.appendChild(T.pillEstado(r.estado)); return li; };
+
+    if (sel.startsWith('p:')) {
+      const id = sel.slice(2); const r = pr.find((x) => x.id === id); const c = k.find((x) => x.id === id);
+      if (!r || !c) { empty(); return; }
+      el.style.setProperty('--acc', T.NCOL[r.nodo] || '#ECEDEF');
+      const pills = T.el('div', 'tt-row'); pills.append(T.el('span', 'tt-pill', r.tipo), T.pillEstado(r.estado), T.dots(r.nodos), T.el('span', 'tt-src', r.nodos));
+      head(r.nombre, pills, T.toNode(r.nodo));
+      const ks = T.el('div', 'tt-fk');
+      const av = c.avance == null ? null : (() => { const s = T.el('span'); s.textContent = T.pct(c.avance); s.appendChild(T.aprox()); return s; })();
+      kpi(ks, 'i-gauge', c.avance_q === 'estimado' ? 'Avance estimado por Dirección' : 'Avance por entregables', av);
+      kpi(ks, 'i-check', 'Entregables definidos', r.def_n == null ? null : T.fmt(r.def_n));
+      kpi(ks, 'i-alert', 'Pendientes', r.pend_n == null ? null : T.fmt(r.pend_n));
+      const ap = c.aprov == null ? null : (() => { const s = T.el('span'); s.textContent = (c.aprov_q === 'dato' ? '' : '≥ ') + T.pct(c.aprov); if (c.aprov_q !== 'dato') s.appendChild(T.aprox()); return s; })();
+      kpi(ks, 'i-target', 'Aprovechamiento', ap);
+      const e = et.find((x) => x.id === r.etapa);
+      kpi(ks, 'i-calendar', 'Inicio', r.inicio ? T.fecha(r.inicio, r.inicio_q) : null);
+      kpi(ks, 'i-trace', 'Etapa', e ? e.nombre : null);
+      el.appendChild(ks);
+      const cols = T.el('div', 'tt-fcols');
+      if (r.clasif) sec(cols, 'i-filecheck', 'Clasificación sustentada', [T.el('p', null, r.clasif)]);
+      sec(cols, 'i-check', 'Qué lo respalda', [list(r.pruebas, 'sin pruebas registradas')]);
+      const pres = T.el('p'); if (r.presencia) pres.textContent = r.presencia; else pres.appendChild(T.falta());
+      sec(cols, 'i-globe', 'Presencia pública y vistas reales', [pres, list(r.links.map(linkLi), 'sin ligas disponibles', true)]);
+      const CH = [['c_publico', 'Caso o página pública'], ['c_contenido', 'Contenido derivado publicado'], ['c_permiso', 'Permiso o testimonio confirmado'], ['c_comercial', 'Usado en material comercial'], ['c_cruce', 'Venta cruzada o siguiente oportunidad']];
+      const ul = T.el('ul', 'tt-check plain');
+      CH.forEach(([kk, label]) => { const li = T.el('li'); const v = r[kk]; const m = T.el('b', null, v === true ? '✓' : v === false ? '–' : '?'); m.style.color = v === true ? '#7EE0A1' : v === false ? '#6D717A' : '#FF7A6B'; li.append(m, label + ' '); if (v == null) li.appendChild(T.falta()); else if (v === false) li.append('(no)'); ul.appendChild(li); });
+      sec(cols, 'i-target', 'Qué tanto lo aprovechamos', [ul]);
+      if (r.definido) sec(cols, 'i-check', 'Definido', [list(r.definido.split('; '))]);
+      if (r.pendiente) sec(cols, 'i-alert', 'Pendiente', [list(r.pendiente.split('; '))]);
+      if (r.limite) sec(cols, 'i-help', 'Límite de comunicación', [T.el('p', null, r.limite)]);
+      if (r.siguiente) sec(cols, 'i-compass', 'Siguiente acción', [T.el('p', null, r.siguiente)]);
+      const fx = T.el('p'); const fb = T.el('b', null, r.ficha == null ? 'Sin confirmar' : r.ficha === 'Sí' ? 'Ficha propia' : r.ficha === 'Parcial' ? 'Ficha parcial' : 'Sin ficha propia');
+      fb.style.color = r.ficha === 'Sí' ? '#7EE0A1' : r.ficha === 'Parcial' ? '#C9CDD0' : '#FF7A6B';
+      fx.append(fb, r.accion_doc ? ' · ' + r.accion_doc : '');
+      const fxs = [fx]; if (r.falta_doc) { const ff = T.el('p', 'tt-q', 'Falta: ' + r.falta_doc); fxs.push(ff); }
+      if (r.pregunta) { const q = T.el('p', 'tt-q'); q.append(T.icon('i-help', 'sm'), ' ' + r.pregunta); fxs.push(q); }
+      sec(cols, 'i-filecheck', 'Expediente en KOBOS', fxs);
+      const rel = hit.map((h, i) => ({...h, i})).filter((h) => h.proyecto === r.id);
+      sec(cols, 'i-flag', 'Hitos ligados', [list(rel.map(hitoBtn), 'sin hitos ligados', true)]);
+      el.appendChild(cols);
+      el.appendChild(T.el('p', 'tt-src', 'Fuente: ' + r.fuente));
+    } else if (sel.startsWith('h:')) {
+      const i = +sel.slice(2); const h = hit[i];
+      if (!h) { empty(); return; }
+      el.style.setProperty('--acc', T.NCOL[h.nodo] || '#ECEDEF');
+      const pills = T.el('div', 'tt-row'); pills.append(T.el('span', 'tt-pill', T.fecha(h.fecha, h.fecha_q)), T.el('span', 'tt-pill acc', h.nodo), T.el('span', 'tt-pill', h.area), T.el('span', 'tt-pill ' + (h.estado === 'acreditado' ? 'ok' : 'warn'), h.estado === 'acreditado' ? 'Acreditado' : 'Sin resultado registrado'));
+      head(h.hito, pills, T.toNode(h.nodo));
+      const cols = T.el('div', 'tt-fcols');
+      sec(cols, 'i-report', 'Qué contiene', [T.el('p', null, h.detalle)]);
+      sec(cols, 'i-check', 'Evidencia', [T.el('p', null, h.evidencia)]);
+      if (h.fecha_q === 'aprox') { const f = T.el('p'); f.append('Aproximada: la fuente da el periodo, no el día.'); sec(cols, 'i-calendar', 'Fecha', [f]); }
+      const extra = [];
+      if (h.url) { const li = T.el('li'); const a = T.el('a', 'tt-lnk'); a.href = h.url; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon('i-out', 'sm'), 'Ver la vista real'); li.appendChild(a); extra.push(li); }
+      const r = pr.find((x) => x.id === h.proyecto);
+      if (r) extra.push(frenteBtn(r));
+      if (extra.length) sec(cols, 'i-link', 'Ir a', [list(extra, '', true)]);
+      el.appendChild(cols);
+    } else if (sel.startsWith('e:')) {
+      const e = et.find((x) => x.id === sel.slice(2));
+      if (!e) { empty(); return; }
+      const pills = T.el('div', 'tt-row'); pills.append(T.el('span', 'tt-pill', e.periodo), T.el('span', 'tt-pill ' + (e.estado === 'En curso' ? 'warn' : ''), e.estado));
+      head(e.nombre + ' · ' + e.pregunta, pills);
+      const cols = T.el('div', 'tt-fcols');
+      sec(cols, 'i-trace', 'Cadena', [T.el('p', null, e.cadena)]);
+      const hs = hit.map((h, i) => ({...h, i})).filter((h) => h.fecha >= e.inicio && h.fecha <= e.fin);
+      sec(cols, 'i-flag', `Hitos (${hs.length})`, [list(hs.map(hitoBtn), e.estado === 'Siguiente' ? 'aún sin hitos: es la siguiente etapa' : 'sin hitos registrados', true)]);
+      const fs = pr.filter((r) => r.etapa === e.id);
+      if (e.estado === 'Siguiente') {
+        const ru = T.rows('rumbo') || [];
+        sec(cols, 'i-compass', 'Lo que se creará (propuesto)', [list(ru.map((x) => btn(x.nodo + ': ' + String(x.proximo).split('; ')[0], () => T.open('n:' + x.nodo, el.dataset.slot), 'i-compass')), '', true)]);
+      } else sec(cols, 'i-layers', `Frentes iniciados (${fs.length})`, [list(fs.map(frenteBtn), 'sin frentes iniciados', true)]);
+      el.appendChild(cols);
+    } else if (sel.startsWith('n:')) {
+      const n = sel.slice(2);
+      const nd = (T.rows('nodos') || []).find((x) => x.nodo === n) || {};
+      const rd = (T.rows('redes') || []).filter((x) => x.nodo === n || (n === 'Studio' && x.nodo === 'Food'));
+      const c = (T.rows('por_nodo') || []).find((x) => x.nodo === n) || {};
+      const ru = (T.rows('rumbo') || []).find((x) => x.nodo === n) || {};
+      el.style.setProperty('--acc', T.NCOL[n] || '#ECEDEF');
+      const pills = T.el('div', 'tt-row'); if (ru.rol) { const pl = T.el('span', 'tt-pill acc'); pl.append(T.icon('i-compass', 'sm'), '2027: ' + ru.rol); pills.appendChild(pl); } pills.appendChild(T.el('span', 'tt-pill', 'Informe completo'));
+      const title = T.el('div'); title.style.display = 'grid'; title.style.gap = '6px'; title.appendChild(T.marca(n)); if (nd.rol) title.appendChild(T.el('p', 'tt-rol', nd.rol));
+      head(title, pills, T.emblem(n, true));
+      const ks = T.el('div', 'tt-fk');
+      const main = rd.find((x) => x.nodo === n) || {};
+      if (n !== 'LATTICCE') {
+        kpi(ks, 'i-eye', 'Vistas 28 d', T.n(main.vis) == null ? null : T.big(T.n(main.vis)));
+        kpi(ks, 'i-instagram', 'Vistas Instagram', T.n(main.vis_ig) == null ? null : T.big(T.n(main.vis_ig)));
+        kpi(ks, 'i-facebook', 'Vistas Facebook', T.n(main.vis_fb) == null ? null : T.fmt(T.n(main.vis_fb)));
+        kpi(ks, 'i-radar', 'Alcance Instagram', T.n(main.alcance_ig) == null ? null : T.big(T.n(main.alcance_ig)) + (main.redondeo === true || main.redondeo === 'true' ? ' ≈' : ''));
+        kpi(ks, 'i-heart', 'Interacciones', T.n(main.interacciones) == null ? null : T.big(T.n(main.interacciones)) + (main.redondeo === true || main.redondeo === 'true' ? ' ≈' : ''));
+        kpi(ks, 'i-userplus', 'Seguidores nuevos IG', T.n(main.seg_nuevos) == null ? null : T.fmt(T.n(main.seg_nuevos)));
+        kpi(ks, 'i-message', 'Conversaciones', T.n(main.conversaciones) == null ? null : T.fmt(T.n(main.conversaciones)));
+      }
+      kpi(ks, 'i-book', 'Casos reales en el Book', c.book_real == null ? null : T.fmt(c.book_real));
+      kpi(ks, 'i-book', 'Muestras o conceptos', c.book_muestra == null ? null : T.fmt(c.book_muestra));
+      kpi(ks, 'i-pen', 'Artículos publicados', c.blog_pub == null ? null : `${T.fmt(c.blog_pub)} + ${T.fmt(c.blog_prog)} prog.`);
+      kpi(ks, 'i-layers', 'Frentes', c.frentes == null ? null : T.fmt(c.frentes));
+      kpi(ks, 'i-flag', 'Hitos', c.hitos == null ? null : T.fmt(c.hitos));
+      kpi(ks, 'i-filecheck', 'Frentes sin ficha', c.sin_ficha == null ? null : T.fmt(c.sin_ficha));
+      el.appendChild(ks);
+      const cols = T.el('div', 'tt-fcols');
+      if (nd.oferta || nd.responsable) { const d = T.el('div'); d.style.display = 'grid'; d.style.gap = '6px'; d.append(T.el('p', null, 'Oferta: ' + (nd.oferta || '')), T.el('p', null, 'Quién lo sostiene: ' + (nd.responsable || ''))); sec(cols, 'i-users', 'Oferta y responsables', [d]); }
+      if (rd.length) {
+        const items = [];
+        rd.forEach((x) => {
+          const li = T.el('li'); li.style.display = 'grid'; li.style.gap = '4px';
+          li.appendChild(T.el('b', null, x.cuenta));
+          const row = T.el('div', 'tt-lnks');
+          const add = (icon, label, url) => { if (label && url) { const a = T.el('a', 'tt-lnk'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon(icon, 'sm'), label); row.appendChild(a); } else { const s = T.el('span', 'tt-lnk'); s.append(T.icon(icon, 'sm'), T.falta()); row.appendChild(s); } };
+          add('i-instagram', x.ig, x.url_ig); add('i-facebook', x.fb, x.url_fb);
+          li.appendChild(row);
+          li.appendChild(T.el('span', 'tt-src', `Metricool: ${x.metricool} · Meta: ${x.meta}` + (x.nodo === 'Food' ? ` · línea Food: ${T.fmt(T.n(x.vis) || 0)} vistas, ${T.fmt(T.n(x.interacciones) || 0)} interacciones` : '')));
+          items.push(li);
+        });
+        sec(cols, 'i-signal', 'Cuentas y conexión de métricas', [list(items, '', true)]);
+      }
+      if (n === 'Design') {
+        const ig = (T.rows('ig_design_total') || [])[0];
+        const pp = T.el('p'); if (ig) pp.textContent = `Seguidores: ${ig.seguidores == null ? '—' : T.fmt(ig.seguidores)} · publicaciones: ${T.fmt(ig.publicaciones || 0)} · interacciones: ${T.fmt(ig.interacciones || 0)}`; else pp.appendChild(T.falta());
+        sec(cols, 'i-instagram', 'Instagram 2026 en vivo (Metricool)', [pp]);
+      }
+      if (nd.web) { const a = T.el('a', 'tt-lnk'); a.href = nd.web; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon('i-globe', 'sm'), nd.web.replace('https://', '')); sec(cols, 'i-globe', 'Página pública', [a]); }
+      const fs = pr.filter((r) => T.de(r, n)).sort((a, b) => (a.nodo === n ? 0 : 1) - (b.nodo === n ? 0 : 1));
+      sec(cols, 'i-layers', `Frentes (${fs.length})`, [list(fs.map(frenteBtn), 'sin frentes', true)]);
+      const hs = hit.map((h, i) => ({...h, i})).filter((h) => h.nodo === n).reverse();
+      sec(cols, 'i-flag', `Hitos (${hs.length})`, [list(hs.slice(0, 10).map(hitoBtn), 'sin hitos', true)]);
+      if (ru.proximo) {
+        const d = T.el('div'); d.style.display = 'grid'; d.style.gap = '6px';
+        if (ru.foco) d.appendChild(T.el('p', null, ru.foco));
+        d.appendChild(list(String(ru.proximo).split('; ')));
+        d.appendChild(T.el('p', 'tt-src', 'Propuesto a partir de las siguientes acciones de cada frente y la directriz de cierre; requiere decisión humana.'));
+        sec(cols, 'i-compass', 'Lo que se creará en 2027', [d]);
+      }
+      el.appendChild(cols);
+    } else { empty(); return; }
+    if (T.scrollTo === el.dataset.slot) { T.scrollTo = null; const box = el.closest('.tt-mbox'); if (box) box.scrollTop = 0; }
+  });
+
+  /* ---------- tables ---------- */
+  dash.draw('t-hitos', (tb) => {
+    const rows = T.rows('hitos');
+    if (!rows) { tb.replaceChildren(); return; }
+    const p = T.p(); const q = String(p.hq || '').toLowerCase();
+    tb.replaceChildren(...rows.map((h, i) => ({...h, i})).filter((h) => (!p.nodo || h.nodo === p.nodo) && (!q || (h.hito + ' ' + h.evidencia + ' ' + h.detalle).toLowerCase().includes(q))).reverse().map((h) => {
+      const tr = T.el('tr', 'click');
+      tr.dataset.key = [h.fecha, h.hito].map((v) => String(v).replace(/[%,&=]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase())).join(',');
+      const f = T.el('td', null, h.fecha); if (h.fecha_q === 'aprox') f.appendChild(T.aprox());
+      const st = T.el('td'); st.appendChild(T.el('span', 'tt-pill ' + (h.estado === 'acreditado' ? 'ok' : 'warn'), h.estado === 'acreditado' ? 'Acreditado' : 'Sin resultado'));
+      const nd = T.el('td'); nd.style.color = T.NCOL[h.nodo] || ''; nd.textContent = h.nodo;
+      tr.append(f, nd, T.el('td', null, h.area), T.el('td', null, h.hito), st);
+      tr.addEventListener('click', () => T.open('h:' + h.i, 'hitos'));
+      return tr;
+    }));
+  });
+
+  dash.draw('t-book', (tb) => {
+    const rows = T.rows('book'); if (!rows) { tb.replaceChildren(); return; }
+    const bk = T.p().bk;
+    tb.replaceChildren(...rows.filter((r) => !bk || r.tipo === bk).map((r) => {
+      const tr = T.el('tr'); tr.dataset.key = r.slug;
+      const td = T.el('td'); const a = T.el('a', null, r.titulo + ' ↗'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; td.appendChild(a);
+      const t = T.el('td'); t.appendChild(T.el('span', 'tt-pill ' + (r.tipo === 'Proyecto real' ? 'ok' : 'warn'), r.tipo));
+      const nd = T.el('td'); nd.style.color = T.NCOL[r.nodo] || ''; nd.textContent = r.nodo;
+      tr.append(td, nd, T.el('td', null, r.categoria), t);
+      return tr;
+    }));
+  });
+
+  dash.draw('t-cap', (tb) => {
+    const rows = T.rows('capacidad'); if (!rows) { tb.replaceChildren(); return; }
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = T.el('tr'); tr.dataset.key = r.area;
+      const f = T.el('td'); f.appendChild(T.el('span', 'tt-pill ' + (r.ficha === 'Sí' ? 'ok' : r.ficha === 'Parcial' ? '' : 'bad'), r.ficha || 'Sin confirmar'));
+      tr.append(T.el('td', null, r.area), T.el('td', null, r.relacion), T.el('td', null, r.estado), f); return tr;
+    }));
+  });
+
+  dash.draw('t-faltan', (tb) => {
+    const rows = T.rows('pkpi'); if (!rows) { tb.replaceChildren(); return; }
+    tb.replaceChildren(...rows.filter((r) => r.faltan > 0).sort((a, b) => b.faltan - a.faltan).map((r) => {
+      const tr = T.el('tr', 'click'); tr.dataset.key = r.id;
+      const n = T.el('td'); n.appendChild(T.el('span', 'tt-falta', T.fmt(r.faltan)));
+      const t = T.el('td', null, r.faltan_txt); t.style.color = '#FFB4AA';
+      const f = T.el('td'); f.appendChild(T.el('span', 'tt-pill ' + (r.ficha === 'Sí' ? 'ok' : r.ficha === 'Parcial' ? '' : 'bad'), r.ficha));
+      tr.append(T.el('td', null, r.nombre), f, n, t);
+      tr.addEventListener('click', () => { T.open('p:' + r.id, 'frentes'); });
+      return tr;
+    }));
+  });
+
+  dash.draw('preguntas', (ul) => {
+    const fr = T.rows('frentes'); if (!fr) { ul.replaceChildren(); return; }
+    const g = d3.groups(fr.filter((p) => p.pregunta), (p) => p.pregunta);
+    if (!g.length) { const li = T.el('li'); li.append(T.icon('i-check'), T.el('span', null, 'Sin preguntas abiertas: Dirección respondió las pendientes el 28 de octubre. Lo que aún falta está en la tabla de abajo.')); ul.replaceChildren(li); return; }
+    ul.replaceChildren(...g.map(([q, ps]) => {
+      const li = T.el('li'); li.appendChild(T.icon('i-help'));
+      const d = T.el('div'); d.style.display = 'grid'; d.style.gap = '6px';
+      d.appendChild(T.el('span', null, q));
+      const row = T.el('div', 'tt-row');
+      ps.forEach((p) => { const b = T.el('button', 'tt-lb'); b.type = 'button'; b.append(T.icon('i-layers', 'sm'), p.nombre); b.addEventListener('click', () => T.open('p:' + p.id, 'frentes')); row.appendChild(b); });
+      d.appendChild(row); li.appendChild(d);
+      return li;
+    }));
+  });
+
+  dash.draw('cob-chart', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['proyectos'])) return;
+    const r = T.rows('cobertura'); if (!r) return;
+    const C = {'Sí': '#7EE0A1', 'Parcial': '#C9CDD0', 'No': '#FF7A6B', 'Sin confirmar': '#6D717A'};
+    const L = {'Sí': 'Ficha propia', 'Parcial': 'Ficha parcial', 'No': 'Sin ficha', 'Sin confirmar': 'Sin confirmar'};
+    const tot = d3.sum(r, (x) => x.n) || 1;
+    const bar = T.el('div', 'tt-sb'); bar.style.height = '14px'; bar.style.borderRadius = '7px';
+    r.forEach((x) => { if (!x.n) return; const i = T.el('i'); i.style.width = (100 * x.n / tot) + '%'; i.style.background = C[x.ficha]; i.title = `${L[x.ficha]}: ${x.n}`; bar.appendChild(i); });
+    const lg = T.el('div', 'tt-legend');
+    r.forEach((x) => { const s = T.el('span'); const sw = T.el('i'); sw.style.cssText = `width:10px;height:10px;border-radius:3px;display:inline-block;background:${C[x.ficha]}`; s.append(sw, `${L[x.ficha]}: ${x.n}`); lg.appendChild(s); });
+    el.append(bar, lg);
+    el.style.display = 'grid'; el.style.gap = '10px'; el.style.alignContent = 'center';
+  });
+
+  dash.draw('blog-chart', (el) => {
+    el.replaceChildren();
+    if (T.failed(el, ['blog'])) return;
+    const rows = (T.rows('por_nodo') || []).filter((r) => r.nodo !== 'LATTICCE'); if (!rows.length) return;
+    const W = Math.max(260, el.clientWidth || 320), rowH = 32, M = {t: 4, r: 64, b: 4, l: 0};
+    const H = M.t + rows.length * rowH + M.b;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Artículos del blog por nodo');
+    const probe = svg.append('text').style('font-size', '12px');
+    let lw = 0; rows.forEach((r) => { probe.text(r.nodo); lw = Math.max(lw, probe.node().getComputedTextLength()); }); probe.remove();
+    M.l = lw + 14;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.blog_pub + r.blog_prog) || 1], [M.l, W - M.r]);
+    const y = d3.scaleBand(rows.map((r) => r.nodo), [M.t, M.t + rows.length * rowH]).padding(0.3);
+    const show = T.tip(el);
+    const g = svg.append('g').selectAll('g').data(rows).join('g');
+    g.append('text').attr('x', M.l - 10).attr('y', (r) => y(r.nodo) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', (r) => T.NCOL[r.nodo]).style('font-size', '12px').text((r) => r.nodo);
+    g.append('rect').attr('x', M.l).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('width', (r) => Math.max(0, x(r.blog_pub) - M.l)).attr('rx', 4).attr('fill', (r) => T.NCOL[r.nodo]);
+    g.append('rect').attr('x', (r) => x(r.blog_pub) + 1).attr('y', (r) => y(r.nodo)).attr('height', y.bandwidth()).attr('width', (r) => Math.max(0, x(r.blog_pub + r.blog_prog) - x(r.blog_pub) - 1)).attr('rx', 4).attr('fill', 'rgba(255,255,255,.18)');
+    g.append('text').attr('x', (r) => x(r.blog_pub + r.blog_prog) + 8).attr('y', (r) => y(r.nodo) + y.bandwidth() / 2).attr('dy', '0.35em').style('fill', '#ECEDEF').style('font-size', '12px').style('font-variant-numeric', 'tabular-nums').text((r) => `${r.blog_pub} + ${r.blog_prog}`);
+    g.append('rect').attr('x', 0).attr('width', W).attr('y', (r) => y(r.nodo) - 4).attr('height', y.bandwidth() + 8).attr('fill', 'transparent')
+      .on('mousemove', (event, r) => show(event, [r.nodo, `Publicados: ${r.blog_pub}`, `Programados: ${r.blog_prog}`])).on('mouseleave', (event) => show(event, null));
+  });
+
+  const named = document.getElementById(location.hash.slice(1));
+  if (named) requestAnimationFrame(() => named.scrollIntoView());
+</script>

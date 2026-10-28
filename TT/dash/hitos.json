@@ -1,0 +1,290 @@
+[
+ {
+  "fecha": "2026-03-27",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Manual de marca 2026 completo",
+  "evidencia": "SKILS/LATTICCE- MANUAL DE MARCA 2026.pdf",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-05-04",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Logos por nodo (6 nodos, SVG/PNG)",
+  "evidencia": "Documents/LOGO X NODOS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-05-25",
+  "area": "Redes",
+  "nodo": "Design",
+  "hito": "Primeras publicaciones de @latticce.design",
+  "evidencia": "Metricool",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-06",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Voz LATTICCE grabada (fundacionales, lore, modulares)",
+  "evidencia": "Documents/VOZ LATTICCE",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-07",
+  "area": "Clientes",
+  "nodo": "LATTICCE",
+  "hito": "Cartera registrada: Shakti, Frutisa, DESHii, SOMA",
+  "evidencia": "KOBOS · Clientes actuales",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-10",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Sistema comercial por nodos y embudo único",
+  "evidencia": "KOBOS · 09 Comercial",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-11",
+  "area": "Comercial",
+  "nodo": "Studio",
+  "hito": "SEFERAN referido; 3 paquetes cotizados",
+  "evidencia": "KOBOS · 12 Prospectos",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-11",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Modelo financiero; cámara $10,000 MXN/mes",
+  "evidencia": "KOBOS · 11 Finanzas",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-14",
+  "area": "Clientes",
+  "nodo": "Design",
+  "hito": "Brand kit de Shakti Yoga Estudio",
+  "evidencia": "Codex/DISEÑOS · SYE-Brand-KIT",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-15",
+  "area": "Sistema",
+  "nodo": "Studio",
+  "hito": "Tabulador: cotizador, horas y renta de equipo",
+  "evidencia": "Codex/TABULADOR",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-17",
+  "area": "Sitio",
+  "nodo": "Agency",
+  "hito": "Arranca el sitio UROBOROS",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-29",
+  "area": "Sitio",
+  "nodo": "LATTICCE",
+  "hito": "Publicadas experiencias Studio, Sound y Design",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-30",
+  "area": "Comercial",
+  "nodo": "Studio",
+  "hito": "CRM piloto: 44 prospectos musicales, 0 mensajes",
+  "evidencia": "CRM LATTICCE",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-08-31",
+  "area": "Comercial",
+  "nodo": "Studio",
+  "hito": "75 comunidades CDMX/Edomex mapeadas",
+  "evidencia": "CRM LATTICCE · grupos-comunidades",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-07",
+  "area": "Comercial",
+  "nodo": "Design",
+  "hito": "CRM Design: 50 prospectos en 5 nichos",
+  "evidencia": "CRM LATTICCE · crm-design-50",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-08",
+  "area": "Comercial",
+  "nodo": "Design",
+  "hito": "4 DM confirmados; 0 respuestas registradas",
+  "evidencia": "CRM Design · hoja Mensajes",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-08",
+  "area": "Comercial",
+  "nodo": "Agency",
+  "hito": "Somekicks: diagnóstico y propuestas",
+  "evidencia": "ChatGPT/Envios Tenis",
+  "estado": "sin resultado"
+ },
+ {
+  "fecha": "2026-09-11",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Protocolo de primer contacto",
+  "evidencia": "CRM LATTICCE · PROTOCOLO_PRIMER_CONTACTO.md",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-21",
+  "area": "Sitio",
+  "nodo": "LATTICCE",
+  "hito": "Blog editorial y bases de SEO",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-23",
+  "area": "Sitio",
+  "nodo": "LATTICCE",
+  "hito": "Casos reales publicados en el Book",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-29",
+  "area": "Sitio",
+  "nodo": "Agency",
+  "hito": "Agency publicada: ecosistema y visuales",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-09-30",
+  "area": "Comercial",
+  "nodo": "Agency",
+  "hito": "Discovery GPS: monitoreo vehicular",
+  "evidencia": "ChatGPT/prospecto GPS",
+  "estado": "sin resultado"
+ },
+ {
+  "fecha": "2026-10-11",
+  "area": "Clientes",
+  "nodo": "Agency",
+  "hito": "Shakti: ajustes v7 del sitio y portada FB",
+  "evidencia": "ChatGPT/SYE/docs",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-13",
+  "area": "Marca",
+  "nodo": "Studio",
+  "hito": "LATTICCE Food: identidad y propuestas Due Fratelli",
+  "evidencia": "ChatGPT/STUDIO",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-15",
+  "area": "Comercial",
+  "nodo": "Studio",
+  "hito": "CRM Food: 50 cafés en estado Nuevo",
+  "evidencia": "ChatGPT/STUDIO · crm-latticce-food",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-16",
+  "area": "Sitio",
+  "nodo": "Design",
+  "hito": "Rediseño de la experiencia Design (último commit)",
+  "evidencia": "git UROBOROS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-20",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Equipo actualizado: Max entra, Rafa sale",
+  "evidencia": "KOBOS · CRH",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-21",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "KOBOS consolidado (126 notas) y Vendedor Lattente",
+  "evidencia": "Codex/KOBOS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-21",
+  "area": "Comercial",
+  "nodo": "Design",
+  "hito": "Misión 001 Querétaro: 8 contactos ligeros",
+  "evidencia": "candidatos.csv",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-21",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Video Logo Match Cut v1 y v2",
+  "evidencia": "produccion/logo-match-cut",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-23",
+  "area": "Marca",
+  "nodo": "Design",
+  "hito": "Brochure Design (31 láminas)",
+  "evidencia": "Proyecto LATTICCE OS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-25",
+  "area": "Marca",
+  "nodo": "Agency",
+  "hito": "Brochure UI–UX (23 láminas) y ficha Agency",
+  "evidencia": "Proyecto LATTICCE OS",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-25",
+  "area": "Marca",
+  "nodo": "Design",
+  "hito": "Casos de branding (20 láminas)",
+  "evidencia": "produccion/casos-branding-design",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-25",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Sistema cromático por nodo; manual esencial",
+  "evidencia": "produccion/manual-marca-esencial",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-27",
+  "area": "Redes",
+  "nodo": "Design",
+  "hito": "Metricool conectado; 3 posts Design preparados",
+  "evidencia": "Documents/MARKETING MACHINE",
+  "estado": "acreditado"
+ },
+ {
+  "fecha": "2026-10-28",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Plan cierre 2026 / apertura 2027",
+  "evidencia": "ChatGPT/LATTICCE OS",
+  "estado": "acreditado"
+ }
+]

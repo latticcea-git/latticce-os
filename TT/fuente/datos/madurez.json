@@ -1,0 +1,54 @@
+[
+ {
+  "dimension": "Visión / dirección",
+  "pct": 100
+ },
+ {
+  "dimension": "Identidad",
+  "pct": 90
+ },
+ {
+  "dimension": "Servicios / productos",
+  "pct": 90
+ },
+ {
+  "dimension": "Capacidad técnica + red",
+  "pct": 85
+ },
+ {
+  "dimension": "Infraestructura operativa",
+  "pct": 80
+ },
+ {
+  "dimension": "Documentación / OS / KOBOS",
+  "pct": 80
+ },
+ {
+  "dimension": "Experiencia real / portafolio",
+  "pct": 75
+ },
+ {
+  "dimension": "Web / presencia",
+  "pct": 70
+ },
+ {
+  "dimension": "Equipo autónomo",
+  "pct": 60
+ },
+ {
+  "dimension": "Contenido sistemático",
+  "pct": 55
+ },
+ {
+  "dimension": "Prospección sistemática",
+  "pct": 40
+ },
+ {
+  "dimension": "Ventas predecibles",
+  "pct": 20
+ },
+ {
+  "dimension": "Recurrencia medible",
+  "pct": 10
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "area": "Producción audiovisual",
+  "relacion": "Studio, Hernán y equipo por proyecto",
+  "estado": "Operativa; asignar por disponibilidad",
+  "ficha": "Parcial"
+ },
+ {
+  "area": "360",
+  "relacion": "Equipo propio + cámara adicional de Dani",
+  "estado": "Disponible por confirmar en cada cobertura",
+  "ficha": "Parcial"
+ },
+ {
+  "area": "Sound",
+  "relacion": "Alejandro, Home Studio, TASCAM + Sennheiser de campo",
+  "estado": "Infraestructura funcional; disponibilidad limitada",
+  "ficha": "Sí"
+ },
+ {
+  "area": "Producción musical",
+  "relacion": "Rex, contacto con experiencia externa",
+  "estado": "Colaboración potencial",
+  "ficha": "Sí"
+ },
+ {
+  "area": "Postproducción especializada",
+  "relacion": "Especialista de Floripondios",
+  "estado": "Colaborador puntual",
+  "ficha": "No"
+ },
+ {
+  "area": "Software / QA",
+  "relacion": "Daniel y Agency",
+  "estado": "Por proyecto y disponibilidad",
+  "ficha": "Parcial"
+ },
+ {
+  "area": "Diseño",
+  "relacion": "Capacidad interna; incorporaciones en evaluación",
+  "estado": "Autonomía por consolidar",
+  "ficha": "Parcial"
+ },
+ {
+  "area": "Producción física",
+  "relacion": "Ángel / ADN, impresión y textil",
+  "estado": "Proveedor externo; cotizar por proyecto",
+  "ficha": "Sí"
+ },
+ {
+  "area": "Ventas / prospección",
+  "relacion": "Participantes autorizados; KOBOS como soporte",
+  "estado": "Contacto y decisión humanos",
+  "ficha": "Parcial"
+ },
+ {
+  "area": "Cotización",
+  "relacion": "Calculadora interna para estimar con criterio común",
+  "estado": "Herramienta interna; no sustituye aprobación humana",
+  "ficha": "Sí"
+ }
+]

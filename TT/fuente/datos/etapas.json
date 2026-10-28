@@ -1,0 +1,79 @@
+[
+ {
+  "id": "2025",
+  "orden": 1,
+  "periodo": "2025",
+  "inicio": "2025-01-01",
+  "fin": "2025-12-31",
+  "nombre": "Descubrimiento",
+  "pregunta": "¿Qué es LATTICCE?",
+  "cadena": "Capacidades → identidad → visión",
+  "estado": "Cerrada"
+ },
+ {
+  "id": "q1",
+  "orden": 2,
+  "periodo": "Q1 2026",
+  "inicio": "2026-01-01",
+  "fin": "2026-03-31",
+  "nombre": "Arquitectura",
+  "pregunta": "¿Cómo se organiza?",
+  "cadena": "Nodos → personas → servicios → contratos",
+  "estado": "Cerrada"
+ },
+ {
+  "id": "q2",
+  "orden": 3,
+  "periodo": "Q2 2026",
+  "inicio": "2026-04-01",
+  "fin": "2026-06-30",
+  "nombre": "Experimentación",
+  "pregunta": "¿Podemos hacerlo?",
+  "cadena": "Floripondios → bodas → clientes → Frutisa → web → audio → producción → Jira",
+  "estado": "Cerrada"
+ },
+ {
+  "id": "q3",
+  "orden": 4,
+  "periodo": "Q3 2026",
+  "inicio": "2026-07-01",
+  "fin": "2026-09-30",
+  "nombre": "Productización",
+  "pregunta": "¿Podemos venderlo claramente?",
+  "cadena": "Paquetes → precios → Time → Studio → Agency → CRM → contenido → Traductor de Mercados",
+  "estado": "Cerrada"
+ },
+ {
+  "id": "oct",
+  "orden": 5,
+  "periodo": "Octubre 2026",
+  "inicio": "2026-10-01",
+  "fin": "2026-10-27",
+  "nombre": "Sistematización",
+  "pregunta": "¿Puede funcionar sin depender de una sola persona?",
+  "cadena": "LATTICCE OS → UROBOROS → Codex → Claude → COBOS → CLOUDEX → equipo → agentes → documentación",
+  "estado": "Cerrada"
+ },
+ {
+  "id": "val",
+  "orden": 6,
+  "periodo": "Nov–dic 2026",
+  "inicio": "2026-10-28",
+  "fin": "2026-12-10",
+  "nombre": "Validación",
+  "pregunta": "¿Podemos provocar el resultado?",
+  "cadena": "Mercado elegido → prospecto verificable → contacto humano → conversación → diagnóstico → propuesta → cierre/anticipo → producción → cobro → caso/testimonio → venta cruzada → aprendizaje",
+  "estado": "En curso"
+ },
+ {
+  "id": "2027",
+  "orden": 7,
+  "periodo": "2027",
+  "inicio": "2026-12-11",
+  "fin": "2027-12-31",
+  "nombre": "Escala informada",
+  "pregunta": "¿El ciclo se repite con evidencia?",
+  "cadena": "Repetir lo que funcionó → venta cruzada → recurrencia → escalar lo probado",
+  "estado": "Siguiente"
+ }
+]

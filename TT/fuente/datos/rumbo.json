@@ -1,0 +1,44 @@
+[
+ {
+  "nodo": "LATTICCE",
+  "rol": "Núcleo",
+  "foco": "Corte ejecutivo del 10 de diciembre y kit de ventas mínimo.",
+  "proximo": "Kit de ventas mínimo (3–9 nov); CRM con estados; Corte semanal de una página; Corte ejecutivo (10 dic)"
+ },
+ {
+  "nodo": "Studio",
+  "rol": "Puerta comercial",
+  "foco": "Imagen y video para artistas y marcas.",
+  "proximo": "Bloques de videoclip y Retrato Express en el sitio; Prospectos de videoclip en tandas de 3; Ficha de producto Studio Music; Expediente de Aby y Ali 360"
+ },
+ {
+  "nodo": "Sound",
+  "rol": "Puerta comercial",
+  "foco": "Producción, grabación y sonido para proyectos musicales.",
+  "proximo": "Ficha del Home Studio; Ficha de Floripondios con créditos; Primeras conversaciones de producción musical"
+ },
+ {
+  "nodo": "Design",
+  "rol": "Puerta comercial",
+  "foco": "Identidad visual para negocios que quieren profesionalizarse.",
+  "proximo": "Seguimiento de Misión 001 (Querétaro); Manual de marca de SOMA; Caso Frutisa completo"
+ },
+ {
+  "nodo": "Agency",
+  "rol": "Puerta comercial",
+  "foco": "Experiencias digitales: UI/UX, tecnología y producto.",
+  "proximo": "Terminar el desarrollo de Shakti; Caso piloto de CHACHA (Frutisa); Fichas de Somekicks, GPS y MOL3"
+ },
+ {
+  "nodo": "Time",
+  "rol": "Posicionamiento",
+  "foco": "Memorias de bodas y XV años.",
+  "proximo": "Book y PDF para parejas y recomendadores; Expediente por evento"
+ },
+ {
+  "nodo": "Films",
+  "rol": "Posicionamiento",
+  "foco": "Narrativa cinematográfica, en desarrollo.",
+  "proximo": "Decidir si Floripondios es pieza de Films; Página de cinema con piezas propias"
+ }
+]
