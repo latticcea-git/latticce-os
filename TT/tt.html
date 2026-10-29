@@ -158,17 +158,19 @@
   /* Trayectoria (etapas) */
   .tt-track { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
   .tt-track::before { content: ""; position: absolute; left: 4%; right: 4%; top: 17px; height: 2px; background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.5) 78%, rgba(255,255,255,.12)); }
-  .tt-stage { position: relative; display: grid; justify-items: center; gap: 6px; text-align: center; padding: 0 2px 8px; border: 0; background: none; border-radius: 12px; }
+  .tt-stage { position: relative; display: grid; justify-items: center; gap: 6px; text-align: center; padding: 0 2px 8px; border: 0; background: none; border-radius: 12px; min-width: 0; }
+  .tt-stage > span:not(.dot) { max-width: 100%; overflow-wrap: break-word; hyphens: auto; }
   .tt-stage .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); border: 1px solid var(--line2); font-size: 11px; color: var(--mut); position: relative; z-index: 1; }
   .tt-stage.done .dot { background: #1B1E25; color: var(--fg); }
   .tt-stage.now .dot { background: #F2F1EC; color: #07080B; border-color: #F2F1EC; box-shadow: 0 0 0 6px rgba(242,241,236,.12), 0 0 24px rgba(242,241,236,.35); font-weight: 600; }
   .tt-stage.next .dot { border-style: dashed; }
   .tt-stage .p { font-size: 11px; color: var(--dim); }
-  .tt-stage .n { font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+  .tt-stage .n { font-size: clamp(11px, .85vw, 12.5px); font-weight: 600; letter-spacing: .01em; }
   .tt-stage .q { font-size: 11.5px; color: var(--mut); line-height: 1.3; }
   .tt-stage.on { background: rgba(255,255,255,.06); }
   .tt-stage:hover { background: rgba(255,255,255,.04); }
   @media (max-width: 720px) { .tt-track { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 14px; } .tt-track::before { display: none; } }
+  @media (max-width: 520px) { .tt-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   /* KPI tiles */
   .tt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.6rem), 1fr)); gap: 10px; }
@@ -183,8 +185,10 @@
   .tt-ln { display: grid; gap: 6px; }
   .tt-ln-hd, .tt-lane { display: grid; grid-template-columns: minmax(10.5rem, 1.25fr) repeat(var(--cols), minmax(0, 1fr)); gap: 4px; align-items: stretch; }
   .tt-ln-hd .c { font-size: 11px; color: var(--dim); align-self: end; padding: 0 4px 4px; }
-  .tt-ln-hd .st { display: grid; gap: 1px; text-align: center; padding: 6px 4px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
+  .tt-ln-hd .st { display: grid; gap: 1px; text-align: center; padding: 6px 4px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.03); min-width: 0; }
+  .tt-ln-hd .st span { overflow-wrap: break-word; hyphens: auto; min-width: 0; }
   .tt-ln-hd .st .p { font-size: 10px; color: var(--dim); }
+  .tt-ln-hd .st .k { display: none; font-size: 12px; font-weight: 700; }
   .tt-ln-hd .st .n { font-size: 11.5px; font-weight: 600; line-height: 1.2; }
   .tt-ln-hd .st.now { border-color: rgba(242,241,236,.6); box-shadow: inset 0 2px 0 #F2F1EC; }
   .tt-ln-hd .st.next { border-style: dashed; }
@@ -194,14 +198,18 @@
   .tt-lane .who { display: flex; align-items: center; gap: 9px; text-align: left; padding: 6px 8px; border-radius: 12px; background: rgba(8,9,12,.35); }
   .tt-lane .who .tx { display: grid; gap: 1px; }
   .tt-lane .who strong { font-size: 13px; color: var(--acc); }
+  .tt-lane .who .nuc { font-style: normal; }
   .tt-lane .who .tx span { font-size: 11px; color: var(--mut); }
   .tt-lane .who:hover { background: rgba(8,9,12,.6); }
   .tt-lane .stn { position: relative; z-index: 1; display: grid; place-items: center; min-height: 52px; border-radius: 12px; }
   .tt-lane .stn:hover { background: rgba(255,255,255,.07); }
-  .tt-lane .stn i { display: grid; place-items: center; border-radius: 50%; font-style: normal; font-size: 11px; font-weight: 700; color: #0B0C10; background: color-mix(in srgb, var(--acc) 70%, #0B0C10); border: 1.5px solid var(--acc); }
+  .tt-lane .stn { min-width: 0; }
+  .tt-lane .stn i { width: var(--sz, 14px); height: var(--sz, 14px); min-width: 8px; display: grid; place-items: center; border-radius: 50%; font-style: normal; font-size: 11px; line-height: 1; overflow: hidden; min-height: 0; font-weight: 700; color: #0B0C10; background: color-mix(in srgb, var(--acc) 70%, #0B0C10); border: 1.5px solid var(--acc); box-sizing: border-box; }
   .tt-lane .stn.done i { background: var(--acc); }
   .tt-lane .stn.empty i { background: #0B0C10; border-color: color-mix(in srgb, var(--acc) 40%, transparent); }
   .tt-lane .stn.fut i { background: #0B0C10; color: var(--acc); border-style: dashed; }
+  @media (max-width: 860px) { .tt-lane .stn i { width: min(var(--sz, 14px), 28px); height: min(var(--sz, 14px), 28px); } .tt-lane::before { left: calc(max(7.5rem, (100% - 8px) * 1.4 / (1.4 + var(--cols))) + 8px); } }
+  @media (max-width: 560px) { .tt-ln .tt-ln-hd, .tt-ln .tt-lane { grid-template-columns: 5.8rem repeat(var(--cols), minmax(0, 1fr)); gap: 2px; } .tt-ln .tt-lane::before { left: calc(5.8rem + 6px); right: 12px; } .tt-lane .who img, .tt-lane .who svg { width: 26px; height: 26px; } .tt-ln-hd .st .p { display: none; } .tt-ln-hd .st .k { display: block; } .tt-ln-hd .c { font-size: 10px; } .tt-ln .tt-lane .stn i { width: min(var(--sz, 14px), 22px); height: min(var(--sz, 14px), 22px); font-size: 9.5px; border-width: 1px; } .tt-lane .stn { min-height: 44px; } .tt-lane .who { padding: 6px; gap: 6px; } .tt-lane .who strong { font-size: 11.5px; overflow-wrap: anywhere; } .tt-lane .who .tx { min-width: 0; } .tt-lane .who .nuc { display: none; } .tt-lane .who { min-width: 0; } }
   @media (max-width: 860px) { .tt-ln-hd .st .n { display: none; } .tt-ln-hd, .tt-lane { grid-template-columns: minmax(7.5rem, 1.4fr) repeat(var(--cols), minmax(0, 1fr)); } .tt-lane .who .tx span { display: none; } }
   .tt-nd { display: grid; gap: 12px; }
   .tt-nd-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -375,7 +383,9 @@
   .tt-fk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.6rem), 1fr)); gap: 8px; }
   .tt-fk div { padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--line); display: grid; gap: 4px; }
   .tt-fk span { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--mut); }
-  .tt-fk strong { font-weight: 300; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+  .tt-fk div { min-width: 0; }
+  .tt-fk strong { font-weight: 300; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.2; font-variant-numeric: tabular-nums; overflow-wrap: break-word; hyphens: auto; min-width: 0; }
+  .tt-fk strong.txt { font-size: clamp(.95rem, 1.2vw, 1.05rem); font-weight: 400; }
   .tt-fcols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 16px 20px; }
   .tt-fcols section { display: grid; gap: 7px; align-content: start; }
   .tt-fcols h4 { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .09em; color: var(--mut); font-weight: 600; display: flex; align-items: center; gap: 6px; }
@@ -1219,20 +1229,20 @@
       /* overview: one coloured lane per node, one station per stage */
       const g = T.el('div', 'tt-ln'); g.style.setProperty('--cols', E.length);
       const hd = T.el('div', 'tt-ln-hd'); hd.appendChild(T.el('span', 'c', 'Elige un nodo para ver su recorrido'));
-      E.forEach((e) => { const b = T.el('button', 'st' + (e.estado === 'En curso' ? ' now' : '') + (e.estado === 'Siguiente' ? ' next' : '')); b.type = 'button'; b.title = e.pregunta; b.append(T.el('span', 'p', e.periodo), T.el('span', 'n', e.nombre)); b.addEventListener('click', () => T.open('e:' + e.id)); hd.appendChild(b); });
+      E.forEach((e, ix) => { const b = T.el('button', 'st' + (e.estado === 'En curso' ? ' now' : '') + (e.estado === 'Siguiente' ? ' next' : '')); b.type = 'button'; b.title = e.periodo + ' · ' + e.nombre + ' · ' + e.pregunta; b.append(T.el('span', 'k', String(ix + 1)), T.el('span', 'p', e.periodo), T.el('span', 'n', e.nombre)); b.addEventListener('click', () => T.open('e:' + e.id)); hd.appendChild(b); });
       g.appendChild(hd);
       const max = Math.max(1, ...T.NODOS.flatMap((n) => E.map((e) => e.estado === 'Siguiente' ? futuros(n).length : frDe(n, e).length)));
       T.NODOS.forEach((n) => {
         const lane = T.el('div', 'tt-lane'); lane.style.setProperty('--acc', T.NCOL[n]);
         const h = T.el('button', 'who'); h.type = 'button'; h.title = 'Ver el recorrido de ' + n;
         const nf = fr.filter((f) => T.de(f, n)).length, nh = hi.filter((x) => x.nodo === n).length;
-        const tx = T.el('span', 'tx'); tx.append(T.el('strong', null, lab(n)), T.el('span', null, `${nf} frentes · ${nh} hitos`));
+        const tx = T.el('span', 'tx'); const st = T.el('strong', null, n); if (n === 'LATTICCE') st.appendChild(T.el('em', 'nuc', ' · núcleo')); tx.append(st, T.el('span', null, `${nf} frentes · ${nh} hitos`));
         h.append(T.emblem(n), tx); h.addEventListener('click', () => dash.setParams({mn: n})); lane.appendChild(h);
         E.forEach((e) => {
           const fut = e.estado === 'Siguiente'; const items = fut ? futuros(n) : frDe(n, e);
           const done = !fut && items.some((f) => T.grupo(f.estado) === 'done');
           const b = T.el('button', 'stn' + (fut ? ' fut' : '') + (items.length ? '' : ' empty') + (done ? ' done' : '')); b.type = 'button';
-          const d = T.el('i'); const sz = items.length ? 14 + 22 * Math.sqrt(items.length / max) : 8; d.style.width = d.style.height = sz + 'px';
+          const d = T.el('i'); const sz = items.length ? 14 + 22 * Math.sqrt(items.length / max) : 8; d.style.setProperty('--sz', sz + 'px');
           if (items.length) d.textContent = items.length;
           b.appendChild(d);
           b.title = items.length ? `${n} · ${e.nombre}: ${fut ? items.join(' · ') : items.map((f) => f.nombre).join(' · ')}` : `${n} · ${e.nombre}: sin frentes`;
@@ -1567,10 +1577,11 @@
           g.select('rect').attr('x', xa).attr('y', 4).attr('width', Math.max(0, xb - xa)).attr('height', H - M.b - 4)
             .attr('fill', Number(e.orden) % 2 ? 'rgba(255,255,255,.022)' : 'rgba(255,255,255,.045)')
             .attr('stroke', e.estado === 'Siguiente' ? 'rgba(255,255,255,.25)' : 'none').attr('stroke-dasharray', '3 4');
-          const wide = xb - xa > 74;
-          const cx = Math.max(xa, M.l) + 6;
-          g.select('text.a').attr('x', cx).attr('y', 15).style('fill', '#8C9099').style('font-size', '11px').text(wide ? e.periodo : '');
-          g.select('text.b').attr('x', cx).attr('y', 27).style('fill', '#ECEDEF').style('font-size', '11px').style('font-weight', 600).text(wide && xb - xa > 110 ? e.nombre : '');
+          const vxa = Math.max(xa, M.l), vxb = Math.min(xb, W - M.r), room = vxb - vxa - 10;
+          const cx = vxa + 6;
+          const fit = (t, txt) => { t.text(txt); const n = t.node(); if (txt && n.getComputedTextLength && n.getComputedTextLength() > room) t.text(''); };
+          fit(g.select('text.a').attr('x', cx).attr('y', 15).style('fill', '#8C9099').style('font-size', '11px'), room > 30 ? e.periodo : '');
+          fit(g.select('text.b').attr('x', cx).attr('y', 27).style('fill', '#ECEDEF').style('font-size', '11px').style('font-weight', 600), room > 30 ? e.nombre : '');
         });
       const span = (zx.domain()[1] - zx.domain()[0]) / 864e5;
       const every = span > 500 ? d3.utcMonth.every(3) : span > 200 ? d3.utcMonth.every(1) : d3.utcWeek.every(2);
@@ -1634,7 +1645,7 @@
     const sec = (cols, icon, title, nodes) => { const s = T.el('section'); const h = T.el('h4'); h.append(T.icon(icon, 'sm'), title); s.appendChild(h); nodes.forEach((n) => s.appendChild(n)); cols.appendChild(s); return s; };
     const list = (items, empty, plain) => { const a = Array.isArray(items) ? items : []; if (!a.length) { const q = T.el('p'); q.appendChild(T.falta()); if (empty) q.append(' · ' + empty); return q; } const u = T.el('ul', plain ? 'plain' : null); a.forEach((t) => { if (t instanceof Node) u.appendChild(t); else u.appendChild(T.el('li', null, String(t))); }); return u; };
     const linkLi = (l) => { const li = T.el('li'); const a = T.el('a', 'tt-lnk'); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; a.append(T.icon('i-out', 'sm'), l.label); li.append(a, ' ', T.el('span', 'tt-pill ' + (l.publico ? 'ok' : ''), l.publico ? 'pública' : 'interna')); return li; };
-    const kpi = (box, icon, label, v) => { const d = T.el('div'); const s0 = T.el('span'); s0.append(T.icon(icon, 'sm'), label); d.appendChild(s0); const s = T.el('strong'); if (v == null || v === '') s.appendChild(T.falta()); else if (v instanceof Node) s.appendChild(v); else s.textContent = v; d.appendChild(s); box.appendChild(d); };
+    const kpi = (box, icon, label, v) => { const d = T.el('div'); const s0 = T.el('span'); s0.append(T.icon(icon, 'sm'), label); d.appendChild(s0); const s = T.el('strong'); if (v == null || v === '') s.appendChild(T.falta()); else if (v instanceof Node) s.appendChild(v); else { s.textContent = v; if (/[a-záéíóúñ]{6,}/i.test(String(v))) s.classList.add('txt'); } d.appendChild(s); box.appendChild(d); };
     const btn = (label, fn, icon) => { const li = T.el('li'); const b = T.el('button', 'tt-lb'); b.type = 'button'; if (icon) b.appendChild(T.icon(icon, 'sm')); b.append(label); b.addEventListener('click', fn); li.appendChild(b); return li; };
     const hitoBtn = (h) => btn(T.fecha(h.fecha, h.fecha_q) + ' · ' + h.hito, () => T.open('h:' + h.i, el.dataset.slot), 'i-flag');
     const frenteBtn = (r) => { const li = btn(r.nombre, () => T.open('p:' + r.id, el.dataset.slot), 'i-layers'); li.firstChild.appendChild(T.pillEstado(r.estado)); return li; };
