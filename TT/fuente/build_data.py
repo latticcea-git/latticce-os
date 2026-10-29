@@ -671,6 +671,25 @@ for p in proyectos:
     if p["id"] in ("shakti", "sinttergia") and "KOBOS 29 oct" not in p["fuente"]:
         p["fuente"] += " · KOBOS 29 oct"
 
+# Contenido derivado publicado, revisado contra latticce.com (Book, blog y páginas de Agency en el código de UROBOROS, 29 oct):
+# cuenta si LATTICCE publicó al menos una pieza propia sobre el frente.
+WEB = "latticce.com (Book, blog y Agency), 29 oct"
+CONT = {"frutisa": True, "shakti": True, "okame": True, "jeremy": True, "cvp": False, "floripondios": False, "abyali": False}
+for p in proyectos:
+    if p["id"] in CONT:
+        p["c_contenido"] = CONT[p["id"]]
+        if WEB not in p["fuente"]:
+            p["fuente"] += " · " + WEB
+    if p["id"] in ("shakti", "jeremy"):
+        p["c_comercial"] = True
+    if p["id"] == "shakti" and not any("book/shakti" in l["url"] for l in p["links"]):
+        p["links"] = [{"label": "Caso en el Book", "url": "https://latticce.com/book/shakti-yoga-estudio/", "publico": True}] + p["links"]
+        p["presencia"] = "Caso en el Book de latticce.com y mención en las páginas de servicios de Agency"
+    if p["id"] == "jeremy":
+        p["presencia"] = "Caso en el Book de latticce.com y mención en las páginas de servicios de Agency"
+    if p["id"] == "abyali":
+        p["falta_doc"] = "Caso propio en el Book (las bodas publicadas no lo identifican como Aby y Ali)"
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:
