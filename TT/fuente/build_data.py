@@ -726,6 +726,15 @@ for p in proyectos:
         if "KOBOS 29 oct" not in p["fuente"]:
             p["fuente"] += " · KOBOS 29 oct (Tabulador LATTICCE)"
 
+# Piezas del proyecto (artifacts) ligadas al sistema de marca
+ART = [("Brochure madre LATTICCE", "2GGzi3r6s8ReeBPWj75opr"), ("Brochure Design", "SEgaJFV5LKjqNV2ZoZfr3C"), ("Brochure Sound", "NFVdephqMGXfsnwWKzvy1o"),
+       ("Agency · Ecosistemas digitales", "PEqNUnW24raUMy3cs6wVDN"), ("Design · Casos de branding", "STNuJd1WJQbp1DrKRCJDJ7"), ("Portadas que se escuchan", "QFRe8mch6oxPEZe8QLAkxW"),
+       ("Línea gráfica Studio", "DXg5iHbDUXubtT41tFCwHD"), ("Línea gráfica Sound", "R9zboqQBcRLcLhYegkdcAo"), ("Línea gráfica Agency", "9Zc6kcbdQ3ADGZYagqs7j7")]
+for p in proyectos:
+    if p["id"] == "marca":
+        have = {l["url"] for l in p["links"]}
+        p["links"] += [{"label": t, "url": "https://claude.ai/artifact/" + i, "publico": False} for t, i in ART if "https://claude.ai/artifact/" + i not in have]
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:
@@ -744,9 +753,19 @@ hitos += [
   H("2026-08-16", "exacta", "Sistema", "LATTICCE", "Tabulador v1.1.0: Paquetes y temas por nodo", "Se suman los paquetes Esencial, Classic, Deluxe y Cinematic por servicio.", "latticcea-git/tabulador · cf82c46", proyecto="calculadora"),
   H("2026-08-23", "exacta", "Sistema", "LATTICCE", "Tabulador v1.3.0: presupuesto, paquetes y renta de espacio", "Amplía presupuesto, paquetes y renta, incluida la renta de espacio. Versión estable vigente.", "latticcea-git/tabulador · 595b854", proyecto="calculadora"),
   H("2026-10-29", "exacta", "Sistema", "LATTICCE", "Tabulador verificado y skill Cotizador Latente", "Compila y pasa 4/4 pruebas de render; la skill Cotizador Latente precotiza en lenguaje natural. Ficha completa en KOBOS.", "KOBOS · 02 Operacion/Tabulador LATTICCE", proyecto="calculadora"),
+  H("2026-10-22", "exacta", "Marca", "Design", "Deck «Portadas que se escuchan» (16 láminas)", "Deck de venta de portadas para músicos de Design, con su hoja de solicitud de imágenes.", "Artifact en el proyecto", proyecto="marca", url="https://claude.ai/artifact/QFRe8mch6oxPEZe8QLAkxW"),
+  H("2026-10-22", "exacta", "Marca", "Sound", "Brochure Sound (33 láminas)", "Brochure comercial de Sound con narrativa propia en 5 movimientos.", "Artifact en el proyecto", proyecto="marca", url="https://claude.ai/artifact/NFVdephqMGXfsnwWKzvy1o"),
+  H("2026-10-25", "exacta", "Marca", "LATTICCE", "Brochure madre LATTICCE (27 láminas)", "Pieza madre comercial de LATTICCE, a partir del marco de 20 puntos de Dirección y su documento de recolección.", "Artifact en el proyecto", proyecto="marca", url="https://claude.ai/artifact/2GGzi3r6s8ReeBPWj75opr"),
+  H("2026-10-26", "exacta", "Marca", "LATTICCE", "Líneas gráficas de Studio, Sound y Agency", "Una línea gráfica por nodo para unificar la representación de la marca.", "Artifacts en el proyecto", proyecto="marca", url="https://claude.ai/artifact/DXg5iHbDUXubtT41tFCwHD"),
+  H("2026-10-26", "exacta", "Sistema", "LATTICCE", "Análisis de diseño: 12 piezas y propuesta de skills", "Análisis de 12 piezas de diseño (33 rondas de feedback) como paso previo a convertirlas en skills.", "Claude Doc en el proyecto", proyecto="marca", url="https://claude.ai/artifact/QUAVKDkBXxbuRS5MXAjDdf"),
   H("2026-10-28", "exacta", "Sistema", "LATTICCE", "Expedientes completados en KOBOS", "La matriz de cobertura pasa a 23 de 23 frentes con ficha: Floripondios, Aby y Ali 360, MOL3, GPS, Tennis, Somekicks, Home Studio, Tabulador, Rex y Ángel/ADN, entre otros. OKAME queda con respaldo de proyecto.", "KOBOS · 90 Fuentes/Registro histórico (17:16)", proyecto="kobos"),
 ]
 hitos.sort(key=lambda h: h["fecha"])
+LINKH = {"Brochure Design (31 láminas)": "https://claude.ai/artifact/SEgaJFV5LKjqNV2ZoZfr3C", "Brochure UI–UX (23 láminas) y ficha Agency": "https://claude.ai/artifact/PEqNUnW24raUMy3cs6wVDN",
+         "Casos de branding (20 láminas)": "https://claude.ai/artifact/STNuJd1WJQbp1DrKRCJDJ7"}
+for h in hitos:
+    if h["hito"] in LINKH and not h["url"]:
+        h["url"] = LINKH[h["hito"]]
 
 redes = [
   dict(nodo="Studio", cuenta="LATTICCE Studio", ig="@___latticce___", url_ig="https://www.instagram.com/___latticce___/", fb="LATTICCE Studio", url_fb="https://www.facebook.com/profile.php?id=61594764417597",

@@ -552,6 +552,30 @@
   "url": ""
  },
  {
+  "fecha": "2026-10-22",
+  "fecha_q": "exacta",
+  "area": "Marca",
+  "nodo": "Design",
+  "hito": "Deck «Portadas que se escuchan» (16 láminas)",
+  "detalle": "Deck de venta de portadas para músicos de Design, con su hoja de solicitud de imágenes.",
+  "evidencia": "Artifact en el proyecto",
+  "estado": "acreditado",
+  "proyecto": "marca",
+  "url": "https://claude.ai/artifact/QFRe8mch6oxPEZe8QLAkxW"
+ },
+ {
+  "fecha": "2026-10-22",
+  "fecha_q": "exacta",
+  "area": "Marca",
+  "nodo": "Sound",
+  "hito": "Brochure Sound (33 láminas)",
+  "detalle": "Brochure comercial de Sound con narrativa propia en 5 movimientos.",
+  "evidencia": "Artifact en el proyecto",
+  "estado": "acreditado",
+  "proyecto": "marca",
+  "url": "https://claude.ai/artifact/NFVdephqMGXfsnwWKzvy1o"
+ },
+ {
   "fecha": "2026-10-23",
   "fecha_q": "exacta",
   "area": "Marca",
@@ -561,7 +585,7 @@
   "evidencia": "Proyecto LATTICCE OS",
   "estado": "acreditado",
   "proyecto": "marca",
-  "url": ""
+  "url": "https://claude.ai/artifact/SEgaJFV5LKjqNV2ZoZfr3C"
  },
  {
   "fecha": "2026-10-24",
@@ -585,7 +609,7 @@
   "evidencia": "Proyecto LATTICCE OS",
   "estado": "acreditado",
   "proyecto": "marca",
-  "url": ""
+  "url": "https://claude.ai/artifact/PEqNUnW24raUMy3cs6wVDN"
  },
  {
   "fecha": "2026-10-25",
@@ -597,7 +621,7 @@
   "evidencia": "produccion/casos-branding-design",
   "estado": "acreditado",
   "proyecto": "marca",
-  "url": ""
+  "url": "https://claude.ai/artifact/STNuJd1WJQbp1DrKRCJDJ7"
  },
  {
   "fecha": "2026-10-25",
@@ -610,6 +634,42 @@
   "estado": "acreditado",
   "proyecto": "marca",
   "url": ""
+ },
+ {
+  "fecha": "2026-10-25",
+  "fecha_q": "exacta",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Brochure madre LATTICCE (27 láminas)",
+  "detalle": "Pieza madre comercial de LATTICCE, a partir del marco de 20 puntos de Dirección y su documento de recolección.",
+  "evidencia": "Artifact en el proyecto",
+  "estado": "acreditado",
+  "proyecto": "marca",
+  "url": "https://claude.ai/artifact/2GGzi3r6s8ReeBPWj75opr"
+ },
+ {
+  "fecha": "2026-10-26",
+  "fecha_q": "exacta",
+  "area": "Marca",
+  "nodo": "LATTICCE",
+  "hito": "Líneas gráficas de Studio, Sound y Agency",
+  "detalle": "Una línea gráfica por nodo para unificar la representación de la marca.",
+  "evidencia": "Artifacts en el proyecto",
+  "estado": "acreditado",
+  "proyecto": "marca",
+  "url": "https://claude.ai/artifact/DXg5iHbDUXubtT41tFCwHD"
+ },
+ {
+  "fecha": "2026-10-26",
+  "fecha_q": "exacta",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Análisis de diseño: 12 piezas y propuesta de skills",
+  "detalle": "Análisis de 12 piezas de diseño (33 rondas de feedback) como paso previo a convertirlas en skills.",
+  "evidencia": "Claude Doc en el proyecto",
+  "estado": "acreditado",
+  "proyecto": "marca",
+  "url": "https://claude.ai/artifact/QUAVKDkBXxbuRS5MXAjDdf"
  },
  {
   "fecha": "2026-10-27",
