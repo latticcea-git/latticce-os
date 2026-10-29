@@ -754,5 +754,17 @@
   "estado": "acreditado",
   "proyecto": "calculadora",
   "url": ""
+ },
+ {
+  "fecha": "2026-10-29",
+  "fecha_q": "exacta",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "20 skills LATTICCE respaldadas y núcleo operativo",
+  "detalle": "Inventario y respaldo verificado de 20 skills (operación comercial, diseño, 7 líneas gráficas por nodo y producción) con huella SHA-256; protocolo de prospecto a cliente en 5 etapas.",
+  "evidencia": "KOBOS · 13 Skills LATTICCE",
+  "estado": "acreditado",
+  "proyecto": "kobos",
+  "url": ""
  }
 ]

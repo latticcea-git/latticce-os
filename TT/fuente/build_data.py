@@ -762,6 +762,24 @@ for p in proyectos:
         p["falta_doc"] = "Testimonio aprobado por Jacqueline"
         p["siguiente"] = "Enviar a Jacqueline el testimonio propuesto para su aprobación."
 
+# KOBOS 29 oct (20:05): CVP y SINTTERGIA actualizados; inventario de 20 skills y núcleo operativo.
+K29 = "KOBOS 29 oct (20:05)"
+CRUCE["cvp"] = [("Agency", "Cuando CVP demuestre confianza editorial y resultados medidos, ofrecer cobertura, foto, video o difusión a los negocios que pidan aparecer."),
+                ("Design", "Identidad esencial para negocios recomendados que lo necesiten, como servicio posterior.")]
+for p in proyectos:
+    if p["id"] == "cvp":
+        p.update(ficha="Sí", estado="En desarrollo",
+          clasif="Medio hiperlocal de descubrimiento de Coacalco (lugares, negocios, productos e historias) y laboratorio de contenido, RRSS y Ads para Agency. Viene desde 2023 (aprox.) y se retomó hace unos 3 meses; KOBOS lo marca en activación. Primero construye autoridad editorial y comunidad; la monetización (coberturas, foto, video, reels, patrocinios) llega después de demostrar confianza y resultados. Identidad: Editorial Prismática.",
+          limite="No presentarlo como cartera de clientes ni prometer resultados de campañas; una recomendación no es una publicación pagada.",
+          falta_doc="Contexto de la identidad Editorial Prismática y sus familias editoriales; inventario de piezas, canales autorizados, responsable de publicación y tablero de resultados",
+          siguiente="Incorporar el contexto de Editorial Prismática y consolidar inventario, canales, responsable y tablero; luego tres cadencias (mínima, recomendada, intensiva) y una semana piloto.")
+    if p["id"] == "sinttergia":
+        p["falta_doc"] = "Núcleo de 3–5 personas (5 semanas de participación documentada), agenda de sesiones publicada y registro semanal por grupo: los tres pendientes de iniciar"
+        p["siguiente"] = "Nombrar a quien convoca y registra; publicar una agenda piloto de 4 sesiones; abrir el registro semanal de las 10 células."
+    if p["id"] in ("cvp", "sinttergia") and K29 not in p["fuente"]:
+        p["fuente"] += " · " + K29
+    p["cruce_sug"] = [{"nodo": n, "idea": t} for n, t in CRUCE.get(p["id"], [])]
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:
@@ -785,6 +803,7 @@ hitos += [
   H("2026-10-25", "exacta", "Marca", "LATTICCE", "Brochure madre LATTICCE (27 láminas)", "Pieza madre comercial de LATTICCE, a partir del marco de 20 puntos de Dirección y su documento de recolección.", "Artifact en el proyecto", proyecto="marca", url="https://claude.ai/artifact/2GGzi3r6s8ReeBPWj75opr"),
   H("2026-10-26", "exacta", "Marca", "LATTICCE", "Líneas gráficas de Studio, Sound y Agency", "Una línea gráfica por nodo para unificar la representación de la marca.", "Artifacts en el proyecto", proyecto="marca", url="https://claude.ai/artifact/DXg5iHbDUXubtT41tFCwHD"),
   H("2026-10-26", "exacta", "Sistema", "LATTICCE", "Análisis de diseño: 12 piezas y propuesta de skills", "Análisis de 12 piezas de diseño (33 rondas de feedback) como paso previo a convertirlas en skills.", "Claude Doc en el proyecto", proyecto="marca", url="https://claude.ai/artifact/QUAVKDkBXxbuRS5MXAjDdf"),
+  H("2026-10-29", "exacta", "Sistema", "LATTICCE", "20 skills LATTICCE respaldadas y núcleo operativo", "Inventario y respaldo verificado de 20 skills (operación comercial, diseño, 7 líneas gráficas por nodo y producción) con huella SHA-256; protocolo de prospecto a cliente en 5 etapas.", "KOBOS · 13 Skills LATTICCE", proyecto="kobos"),
   H("2026-10-28", "exacta", "Sistema", "LATTICCE", "Expedientes completados en KOBOS", "La matriz de cobertura pasa a 23 de 23 frentes con ficha: Floripondios, Aby y Ali 360, MOL3, GPS, Tennis, Somekicks, Home Studio, Tabulador, Rex y Ángel/ADN, entre otros. OKAME queda con respaldo de proyecto.", "KOBOS · 90 Fuentes/Registro histórico (17:16)", proyecto="kobos"),
 ]
 hitos.sort(key=lambda h: h["fecha"])

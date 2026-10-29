@@ -342,13 +342,13 @@
   "c_permiso": true,
   "c_comercial": null,
   "c_cruce": true,
-  "limite": "Confirmar estado y permiso antes de uso público.",
-  "siguiente": "Abrir expediente con estado, piezas y permiso.",
-  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · latticce.com (Book, blog y Agency), 29 oct",
+  "limite": "No presentarlo como cartera de clientes ni prometer resultados de campañas; una recomendación no es una publicación pagada.",
+  "siguiente": "Incorporar el contexto de Editorial Prismática y consolidar inventario, canales, responsable y tablero; luego tres cadencias (mínima, recomendada, intensiva) y una semana piloto.",
+  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · latticce.com (Book, blog y Agency), 29 oct · KOBOS 29 oct (20:05)",
   "ficha": "Sí",
   "accion_doc": "Inventario de piezas, canales autorizados y resultados verificables.",
-  "falta_doc": "Inventario de piezas, canales autorizados, responsable, calendario y tablero de resultados",
-  "clasif": "Proyecto propio que viene desde 2023 (aprox.) y se retomó hace unos 3 meses: imágenes y videos de servicios locales para mantenernos activos. Funciona como frente comercial y laboratorio de contenido, RRSS y Ads para Agency.",
+  "falta_doc": "Contexto de la identidad Editorial Prismática y sus familias editoriales; inventario de piezas, canales autorizados, responsable de publicación y tablero de resultados",
+  "clasif": "Medio hiperlocal de descubrimiento de Coacalco (lugares, negocios, productos e historias) y laboratorio de contenido, RRSS y Ads para Agency. Viene desde 2023 (aprox.) y se retomó hace unos 3 meses; KOBOS lo marca en activación. Primero construye autoridad editorial y comunidad; la monetización (coberturas, foto, video, reels, patrocinios) llega después de demostrar confianza y resultados. Identidad: Editorial Prismática.",
   "pregunta": "",
   "avance_est": 0.35,
   "testimonio": "",
@@ -360,11 +360,11 @@
   "cruce_sug": [
    {
     "nodo": "Agency",
-    "idea": "Ofrecer redes y Ads a los negocios locales que ya se retrataron."
+    "idea": "Cuando CVP demuestre confianza editorial y resultados medidos, ofrecer cobertura, foto, video o difusión a los negocios que pidan aparecer."
    },
    {
     "nodo": "Design",
-    "idea": "Identidad esencial para los negocios que lo necesiten."
+    "idea": "Identidad esencial para negocios recomendados que lo necesiten, como servicio posterior."
    }
   ]
  },
@@ -1396,11 +1396,11 @@
   "c_comercial": false,
   "c_cruce": true,
   "limite": "Mantenerla separada de las comunicaciones comerciales de LATTICCE; 94 miembros no equivalen a participación sostenida.",
-  "siguiente": "Durante 4 semanas registrar por grupo publicaciones, participantes, respuestas y asistencia a una sesión fija.",
-  "fuente": "KOBOS · 05 Sinttergia Lattentte · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · KOBOS 29 oct",
+  "siguiente": "Nombrar a quien convoca y registra; publicar una agenda piloto de 4 sesiones; abrir el registro semanal de las 10 células.",
+  "fuente": "KOBOS · 05 Sinttergia Lattentte · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · KOBOS 29 oct · KOBOS 29 oct (20:05)",
   "ficha": "Sí",
   "accion_doc": "Mantener separación de LATTICCE comercial.",
-  "falta_doc": "Núcleo de 3–5 personas constantes comprobado, agenda de sesiones y registro por grupo",
+  "falta_doc": "Núcleo de 3–5 personas (5 semanas de participación documentada), agenda de sesiones publicada y registro semanal por grupo: los tres pendientes de iniciar",
   "clasif": "Comunidad de práctica creativa multidisciplinaria, «Formación en acción»; no es nodo comercial de LATTICCE. Inicio aprox. enero 2026 (Dirección); comunidad de WhatsApp creada el 10 abr 2026 con 94 miembros y 12 grupos (KOBOS, 29 oct). Instagram con 14 publicaciones y 38 seguidores; Facebook con 16. Meta 1–28 oct: 5 visualizaciones y 0 interacciones (línea base).",
   "pregunta": "",
   "avance_est": null,
