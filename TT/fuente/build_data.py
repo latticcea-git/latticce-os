@@ -690,6 +690,27 @@ for p in proyectos:
     if p["id"] == "abyali":
         p["falta_doc"] = "Caso propio en el Book (las bodas publicadas no lo identifican como Aby y Ali)"
 
+# Oportunidad de contenido (Dirección, 29 oct): frentes sin contenido derivado publicado → qué se puede hacer con lo que ya existe.
+SUG = {
+ "cvp": ["Serie semanal en Instagram: un negocio local por semana (foto + reel de 15 s con su historia)",
+         "Carrusel «detrás de la toma» con el proceso de una sesión de CVP",
+         "Caso en el Book como laboratorio de Agency: qué se probó y qué se aprendió"],
+ "floripondios": ["Teaser de 15 s con un fragmento del diseño sonoro",
+                  "Carrusel del proceso de mezcla y diseño sonoro (le da a Sound el caso que le falta)",
+                  "Caso en el Book de Sound/Films al cerrar el sonido y los créditos"],
+ "deshii": ["Caso en el Book de Design: sistema de etiquetas, de la propuesta a la impresión",
+            "Reel del producto con su etiqueta en la tienda",
+            "Carrusel educativo: «Cómo diseñar una etiqueta que se imprime bien»"],
+ "soma": ["Caso en el Book de Design: moodboard → variantes del logotipo → aplicaciones",
+          "Carrusel del proceso de identidad para Instagram de Design",
+          "Lámina en el brochure de Design"],
+ "abyali": ["Caso «Bodas en 360» en el Book de Time con el video 360 de la boda",
+            "Reel corto de la experiencia 360 de los invitados",
+            "Artículo en el blog: «Qué aporta una cámara 360 a una boda»"],
+}
+for p in proyectos:
+    p["sug_contenido"] = SUG.get(p["id"], [])
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:

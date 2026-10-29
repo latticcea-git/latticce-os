@@ -925,6 +925,7 @@
   T.hist = [];
   T.backState = () => document.querySelectorAll('[data-mback]').forEach((b) => { b.disabled = !T.hist.length; });
   T.toNode = (n) => { const b = T.el('button', 'tt-seal'); b.type = 'button'; b.title = 'Ir al informe de ' + n; b.setAttribute('aria-label', 'Ir al informe de ' + n); b.appendChild(T.emblem(n)); b.addEventListener('click', () => T.open('n:' + n)); return b; };
+  const arrS = (v) => Array.isArray(v) ? v.map(String) : (typeof v === 'string' && v.trim().startsWith('[') ? JSON.parse(v).map(String) : []);
   T.cur = null;
   T.show = (sel) => { T.cur = sel; T.scrollTo = 'modal'; T.modal(true); dash.setParams({sel, fs: 'modal'}); requestAnimationFrame(() => { dash.draw('ficha'); T.place(); }); T.backState(); };
   T.open = (sel) => {
@@ -1574,8 +1575,10 @@
       sec(cols, 'i-globe', 'Presencia pública y vistas reales', [pres, list(r.links.map(linkLi), 'sin ligas disponibles', true)]);
       const CH = [['c_publico', 'Caso o página pública'], ['c_contenido', 'Contenido derivado publicado'], ['c_permiso', 'Permiso o testimonio confirmado'], ['c_comercial', 'Usado en material comercial'], ['c_cruce', 'Venta cruzada o siguiente oportunidad']];
       const ul = T.el('ul', 'tt-check plain');
-      CH.forEach(([kk, label]) => { const li = T.el('li'); const v = r[kk]; const m = T.el('b', null, v === true ? '✓' : v === false ? '–' : '?'); m.style.color = v === true ? '#7EE0A1' : v === false ? '#6D717A' : '#FF7A6B'; li.append(m, label + ' '); if (v == null) li.appendChild(T.falta()); else if (v === false) li.append('(no)'); ul.appendChild(li); });
+      const sug = arrS(r.sug_contenido);
+      CH.forEach(([kk, label]) => { const li = T.el('li'); const v = r[kk]; const m = T.el('b', null, v === true ? '✓' : v === false ? '–' : '?'); m.style.color = v === true ? '#7EE0A1' : v === false ? '#6D717A' : '#FF7A6B'; const opp = kk === 'c_contenido' && v === false && sug.length; if (opp) { m.textContent = '◆'; m.style.color = '#E6B85C'; } li.append(m, label + ' '); if (v == null) li.appendChild(T.falta()); else if (opp) { const o = T.el('b', null, '(oportunidad de contenido)'); o.style.color = '#E6B85C'; li.appendChild(o); } else if (v === false) li.append('(no)'); ul.appendChild(li); });
       sec(cols, 'i-target', 'Qué tanto lo aprovechamos', [ul]);
+      if (sug.length) sec(cols, 'i-compass', 'Oportunidad de contenido · qué se puede hacer', [list(sug)]);
       if (r.testimonio) { const tq = T.el('blockquote', 'tt-quote', '«' + r.testimonio + '»'); const tn = T.el('p', 'tt-note', 'Borrador redactado por LATTICCE. Pedir al cliente que lo apruebe o ajuste antes de publicarlo.'); sec(cols, 'i-help', 'Testimonio propuesto · por aprobar', [tq, tn]); }
       if (r.definido) sec(cols, 'i-check', 'Definido', [list(r.definido.split('; '))]);
       if (r.pendiente) sec(cols, 'i-alert', 'Pendiente', [list(r.pendiente.split('; '))]);

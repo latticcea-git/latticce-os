@@ -40,7 +40,8 @@
   "clasif": "Cerrado salvo nuevas solicitudes.",
   "pregunta": "",
   "avance_est": null,
-  "testimonio": "LATTICCE le dio a Frutisa un personaje y una imagen que por fin se sienten nuestros. Entendieron la marca antes de diseñarla."
+  "testimonio": "LATTICCE le dio a Frutisa un personaje y una imagen que por fin se sienten nuestros. Entendieron la marca antes de diseñarla.",
+  "sug_contenido": []
  },
  {
   "id": "shakti",
@@ -90,7 +91,8 @@
   "clasif": "Cliente activo con paquete mensual de redes. Sitio one-page implementado (hero, galería, 8 prácticas, horarios, ubicación, CTAs de WhatsApp; QA en escritorio y móvil), publicado el 11 oct en GitHub Pages; falta validación final del cliente. Perfil y portada de Facebook preparados, no publicados. Primer gran caso de CHACHA APP. En 2027: replantear el paquete y terminar el sitio.",
   "pregunta": "",
   "avance_est": null,
-  "testimonio": "LATTICCE acompaña a Shakti mes con mes: nuestras redes tienen ritmo y la marca se ve como se siente el estudio."
+  "testimonio": "LATTICCE acompaña a Shakti mes con mes: nuestras redes tienen ritmo y la marca se ve como se siente el estudio.",
+  "sug_contenido": []
  },
  {
   "id": "deshii",
@@ -126,7 +128,12 @@
   "clasif": "Cliente cerrado y colaborador cercano: deja vender en su tienda. Se hizo el contenido de sus etiquetas, ya entregado y usado solo para impresión. Sirve como caso de éxito y para experimentar.",
   "pregunta": "",
   "avance_est": 0.8,
-  "testimonio": "Las etiquetas que hizo LATTICCE hacen que nuestros productos se vean tan cuidados como los hacemos."
+  "testimonio": "Las etiquetas que hizo LATTICCE hacen que nuestros productos se vean tan cuidados como los hacemos.",
+  "sug_contenido": [
+   "Caso en el Book de Design: sistema de etiquetas, de la propuesta a la impresión",
+   "Reel del producto con su etiqueta en la tienda",
+   "Carrusel educativo: «Cómo diseñar una etiqueta que se imprime bien»"
+  ]
  },
  {
   "id": "soma",
@@ -161,7 +168,12 @@
   "clasif": "Cerrado: logotipo e imagen de marca hechos por Emanuel. Sin contenido derivado ni testimonio del cliente. OPORTUNIDAD SIN EXPLOTAR: el material no se ha usado comercialmente.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": "LATTICCE tradujo la idea de SOMA en un logotipo y una imagen claros, listos para usarse."
+  "testimonio": "LATTICCE tradujo la idea de SOMA en un logotipo y una imagen claros, listos para usarse.",
+  "sug_contenido": [
+   "Caso en el Book de Design: moodboard → variantes del logotipo → aplicaciones",
+   "Carrusel del proceso de identidad para Instagram de Design",
+   "Lámina en el brochure de Design"
+  ]
  },
  {
   "id": "okame",
@@ -203,7 +215,8 @@
   "clasif": "Identidad para Nails + Beauty Studio. Cliente: Jacqueline. Responsable: Emanuel; diseño: Rafael. De nov 2025 a may 2026 (aprox.), con revisiones extendidas por falta de seguimiento del cliente.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": "Con LATTICCE, OKAME pasó de tener un nombre a tener una marca: cada aplicación se ve profesional y coherente."
+  "testimonio": "Con LATTICCE, OKAME pasó de tener un nombre a tener una marca: cada aplicación se ve profesional y coherente.",
+  "sug_contenido": []
  },
  {
   "id": "jeremy",
@@ -244,7 +257,8 @@
   "clasif": "Sitio educativo para Jeremy (Coacalco, Edo. Méx.; atiende en remoto). Entidad: LATTICCE Agency. Responsable: Emanuel, trato directo por videollamada. Iniciado may–jun 2026 y entregado completo a inicios de agosto (aprox.). Cerrado sin continuidad.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": "LATTICCE convirtió mis clases en un sitio claro y fácil de usar; mis alumnos encuentran todo en un solo lugar."
+  "testimonio": "LATTICCE convirtió mis clases en un sitio claro y fácil de usar; mis alumnos encuentran todo en un solo lugar.",
+  "sug_contenido": []
  },
  {
   "id": "cvp",
@@ -277,7 +291,12 @@
   "clasif": "Proyecto propio que viene desde 2023 (aprox.) y se retomó hace unos 3 meses: imágenes y videos de servicios locales para mantenernos activos. Funciona como frente comercial y laboratorio de contenido, RRSS y Ads para Agency.",
   "pregunta": "",
   "avance_est": 0.35,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": [
+   "Serie semanal en Instagram: un negocio local por semana (foto + reel de 15 s con su historia)",
+   "Carrusel «detrás de la toma» con el proceso de una sesión de CVP",
+   "Caso en el Book como laboratorio de Agency: qué se probó y qué se aprendió"
+  ]
  },
  {
   "id": "floripondios",
@@ -314,7 +333,12 @@
   "clasif": "Proyecto autoral multinodo. Emanuel aprueba créditos, master y diseño sonoro final. Sin fecha de revisión.",
   "pregunta": "",
   "avance_est": 0.6,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": [
+   "Teaser de 15 s con un fragmento del diseño sonoro",
+   "Carrusel del proceso de mezcla y diseño sonoro (le da a Sound el caso que le falta)",
+   "Caso en el Book de Sound/Films al cerrar el sonido y los créditos"
+  ]
  },
  {
   "id": "conciertos",
@@ -377,7 +401,8 @@
   "clasif": "Avanza de forma constante; lo maneja Hernán. Busca actividad en redes, acreditar la fotografía y acercar contactos.",
   "pregunta": "",
   "avance_est": 0.6,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "videoclips",
@@ -434,7 +459,8 @@
   "clasif": "Producto priorizado en validación.",
   "pregunta": "",
   "avance_est": 0.75,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "retrato",
@@ -485,7 +511,8 @@
   "clasif": "Servicio probado que Hernán trabaja en Instagram y con piezas en el sitio. Falta describirlo, cerrarlo y crear su material de ventas.",
   "pregunta": "",
   "avance_est": 0.55,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "bodas",
@@ -539,7 +566,8 @@
   "clasif": "Experiencia y producto Time; expediente parcial.",
   "pregunta": "",
   "avance_est": 0.6,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "abyali",
@@ -576,7 +604,12 @@
   "clasif": "Cerrado: caso de cliente satisfecho y base del servicio especializado Bodas en 360.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": "El 360 de LATTICCE les dio a nuestros invitados un recuerdo distinto de la boda, y nosotros no tuvimos que preocuparnos por nada."
+  "testimonio": "El 360 de LATTICCE les dio a nuestros invitados un recuerdo distinto de la boda, y nosotros no tuvimos que preocuparnos por nada.",
+  "sug_contenido": [
+   "Caso «Bodas en 360» en el Book de Time con el video 360 de la boda",
+   "Reel corto de la experiencia 360 de los invitados",
+   "Artículo en el blog: «Qué aporta una cámara 360 a una boda»"
+  ]
  },
  {
   "id": "food",
@@ -625,7 +658,8 @@
   "clasif": "Due Fratelli hecho y micrometa avanzada: ya se puede vender a restaurantes con lo que se hace hoy.",
   "pregunta": "",
   "avance_est": 0.75,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "rodadas",
@@ -658,7 +692,8 @@
   "clasif": "Prospecto perdido (inicio aprox. agosto 2026): 4 carteles con precios para fotografía y video de una rodada en Coacalco. Se enviaron al prospecto y ahí terminó.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "seferan",
@@ -693,7 +728,8 @@
   "clasif": "Perdido. Sirvió para trabajar con un vendedor externo a porcentaje del proyecto.",
   "pregunta": "",
   "avance_est": 1.0,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "somekicks",
@@ -728,7 +764,8 @@
   "clasif": "Prospecto de sneakers y streetwear (absorbe el frente Tennis: es la misma necesidad). Contacto: Hernán, a través de su compañero interesado. Emanuel atiende o pasa la información a Daniel.",
   "pregunta": "",
   "avance_est": 0.2,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "gps",
@@ -761,7 +798,8 @@
   "clasif": "Prospecto parado: sin respuesta.",
   "pregunta": "",
   "avance_est": 0.15,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "prospeccion",
@@ -804,7 +842,8 @@
   "clasif": "Continúa; la maneja Emanuel y se delegará poco a poco.",
   "pregunta": "",
   "avance_est": 0.4,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "uroboros",
@@ -862,7 +901,8 @@
   "clasif": "Sitio cerrado; solo se actualizan partes. A Sound le falta diseño y casos. Meta: reemplazar imágenes de IA y casos internos por casos reales comprobables.",
   "pregunta": "",
   "avance_est": 0.85,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "chacha",
@@ -898,7 +938,8 @@
   "clasif": "Protocolo para automatizar sitios esenciales y sencillos; los complejos se hacen con Codex o Claude.",
   "pregunta": "",
   "avance_est": 0.4,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "kobos",
@@ -934,7 +975,8 @@
   "clasif": "Lo maneja Emanuel por completo; avance constante conforme se genera información.",
   "pregunta": "",
   "avance_est": 0.8,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "cloudex",
@@ -969,7 +1011,8 @@
   "clasif": "Lo maneja Emanuel; avance constante.",
   "pregunta": "",
   "avance_est": 0.6,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "calculadora",
@@ -1010,7 +1053,8 @@
   "clasif": "Tabulador en GitHub (latticcea-git/tabulador; último commit local 23 ago 2026). Emanuel hace y aprueba los cambios; Daniel revisa que no falte nada.",
   "pregunta": "",
   "avance_est": 0.7,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "mol3",
@@ -1045,7 +1089,8 @@
   "clasif": "Piloto interno de Agency sobre Eleventa; Daniel desarrolla y maneja permisos. Iniciado hace un mes (aprox.).",
   "pregunta": "",
   "avance_est": 0.25,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "marca",
@@ -1088,7 +1133,8 @@
   "clasif": "Sistema de marca activo.",
   "pregunta": "",
   "avance_est": null,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "sinttergia",
@@ -1134,7 +1180,8 @@
   "clasif": "Comunidad de práctica creativa multidisciplinaria, «Formación en acción»; no es nodo comercial de LATTICCE. Inicio aprox. enero 2026 (Dirección); comunidad de WhatsApp creada el 10 abr 2026 con 94 miembros y 12 grupos (KOBOS, 29 oct). Instagram con 14 publicaciones y 38 seguidores; Facebook con 16. Meta 1–28 oct: 5 visualizaciones y 0 interacciones (línea base).",
   "pregunta": "",
   "avance_est": null,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  },
  {
   "id": "oraculo",
@@ -1167,6 +1214,7 @@
   "clasif": "Grupo de WhatsApp de la comunidad SINTTERGIA con unas 61 personas. Emanuel envía a diario contenido derivado de SINTTERGIA (arquetipos y textos). No se vende: mantiene activa a la comunidad y la hace crecer como punta de lanza; la meta a futuro son cursos. Según KOBOS (29 oct) es el grupo con más actividad reciente y respuesta.",
   "pregunta": "",
   "avance_est": 0.5,
-  "testimonio": ""
+  "testimonio": "",
+  "sug_contenido": []
  }
 ]
