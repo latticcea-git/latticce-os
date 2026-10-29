@@ -616,6 +616,61 @@ proyectos = [p for p in proyectos if p["id"] != "tennis"]
 for p in proyectos:
     p.setdefault("avance_est", None)
 
+# Respuestas de Dirección (EMM, dictado 29 oct) + KOBOS 29 oct (Shakti, SINTTERGIA). Permiso: Dirección confirma permiso de uso y muestra
+# de todo lo hecho hasta hoy; si algo no es utilizable, Dirección lo marcará. Testimonios: borradores redactados por LATTICCE, por aprobar con cada cliente.
+D2 = "Dirección (EMM), 29 oct"
+TESTIMONIO = {
+ "frutisa": "LATTICCE le dio a Frutisa un personaje y una imagen que por fin se sienten nuestros. Entendieron la marca antes de diseñarla.",
+ "shakti": "LATTICCE acompaña a Shakti mes con mes: nuestras redes tienen ritmo y la marca se ve como se siente el estudio.",
+ "deshii": "Las etiquetas que hizo LATTICCE hacen que nuestros productos se vean tan cuidados como los hacemos.",
+ "soma": "LATTICCE tradujo la idea de SOMA en un logotipo y una imagen claros, listos para usarse.",
+ "okame": "Con LATTICCE, OKAME pasó de tener un nombre a tener una marca: cada aplicación se ve profesional y coherente.",
+ "jeremy": "LATTICCE convirtió mis clases en un sitio claro y fácil de usar; mis alumnos encuentran todo en un solo lugar.",
+ "abyali": "El 360 de LATTICCE les dio a nuestros invitados un recuerdo distinto de la boda, y nosotros no tuvimos que preocuparnos por nada.",
+}
+EMM2 = {
+ "oraculo": dict(ficha="Sí", c_publico=False, c_contenido=True, c_comercial=False, c_cruce=True,
+   clasif="Grupo de WhatsApp de la comunidad SINTTERGIA con unas 61 personas. Emanuel envía a diario contenido derivado de SINTTERGIA (arquetipos y textos). No se vende: mantiene activa a la comunidad y la hace crecer como punta de lanza; la meta a futuro son cursos. Según KOBOS (29 oct) es el grupo con más actividad reciente y respuesta.",
+   presencia="Grupo privado de WhatsApp (no es página pública)", falta_doc="Fecha de inicio del grupo e índice de piezas enviadas (fecha, lectura, imagen y envío)",
+   siguiente="Crear el índice de piezas antes de automatizar y medir respuesta por envío.", pregunta=""),
+ "sinttergia": dict(inicio="2026-01-01", inicio_q="aprox", c_publico=True, c_contenido=True, c_comercial=False, c_cruce=True,
+   clasif="Comunidad de práctica creativa multidisciplinaria, «Formación en acción»; no es nodo comercial de LATTICCE. Inicio aprox. enero 2026 (Dirección); comunidad de WhatsApp creada el 10 abr 2026 con 94 miembros y 12 grupos (KOBOS, 29 oct). Instagram con 14 publicaciones y 38 seguidores; Facebook con 16. Meta 1–28 oct: 5 visualizaciones y 0 interacciones (línea base).",
+   presencia="Sección Comunidad en latticce.com, Instagram y Facebook de SINTTERGIA",
+   links=[{"label": "Instagram @sinttergia____lattentte", "url": "https://www.instagram.com/sinttergia____lattentte/", "publico": True},
+          {"label": "Facebook Sinttergia Lattentte", "url": "https://www.facebook.com/profile.php?id=61589840495010", "publico": True}],
+   falta_doc="Núcleo de 3–5 personas constantes comprobado, agenda de sesiones y registro por grupo",
+   limite="Mantenerla separada de las comunicaciones comerciales de LATTICCE; 94 miembros no equivalen a participación sostenida.",
+   siguiente="Durante 4 semanas registrar por grupo publicaciones, participantes, respuestas y asistencia a una sesión fija.", pregunta=""),
+ "rodadas": dict(inicio="2026-08-01", inicio_q="aprox", c_publico=False, c_contenido=False, c_comercial=False, c_cruce=False,
+   clasif="Prospecto perdido (inicio aprox. agosto 2026): 4 carteles con precios para fotografía y video de una rodada en Coacalco. Se enviaron al prospecto y ahí terminó.",
+   siguiente="Ninguna: prospecto cerrado."),
+ "cvp": dict(c_cruce=True, clasif="Proyecto propio que viene desde 2023 (aprox.) y se retomó hace unos 3 meses: imágenes y videos de servicios locales para mantenernos activos. Funciona como frente comercial y laboratorio de contenido, RRSS y Ads para Agency."),
+ "retrato": dict(c_comercial=True, presencia="Material usado en latticce.com e Instagram", falta_doc="Expediente en KOBOS (Dirección lo solicitará), descripción del servicio y material de ventas"),
+ "deshii": dict(c_contenido=False, c_comercial=False,
+   clasif="Cliente cerrado y colaborador cercano: deja vender en su tienda. Se hizo el contenido de sus etiquetas, ya entregado y usado solo para impresión. Sirve como caso de éxito y para experimentar."),
+ "soma": dict(c_contenido=False, c_comercial=False,
+   clasif="Cerrado: logotipo e imagen de marca hechos por Emanuel. Sin contenido derivado ni testimonio del cliente. OPORTUNIDAD SIN EXPLOTAR: el material no se ha usado comercialmente.",
+   siguiente="Destacado: convertir el logo e imagen de SOMA en caso del Book y del brochure de Design.", limite="Cerrado: mostrar el logotipo y la imagen entregados; manual, redes y sitio quedaron fuera del cierre."),
+ "jeremy": dict(clasif="Sitio educativo para Jeremy (Coacalco, Edo. Méx.; atiende en remoto). Entidad: LATTICCE Agency. Responsable: Emanuel, trato directo por videollamada. Iniciado may–jun 2026 y entregado completo a inicios de agosto (aprox.). Cerrado sin continuidad.",
+   falta_doc="", siguiente="Publicar el caso en el Book."),
+ "shakti": dict(ficha="Sí",
+   clasif="Cliente activo con paquete mensual de redes. Sitio one-page implementado (hero, galería, 8 prácticas, horarios, ubicación, CTAs de WhatsApp; QA en escritorio y móvil), publicado el 11 oct en GitHub Pages; falta validación final del cliente. Perfil y portada de Facebook preparados, no publicados. Primer gran caso de CHACHA APP. En 2027: replantear el paquete y terminar el sitio.",
+   links=[{"label": "Sitio (publicación del 11 oct, por revalidar)", "url": "https://latticcea-git.github.io/shakti-yoga-estudio/", "publico": True}],
+   falta_doc="Validación con el cliente: datos del negocio, fotos y video reales, autorización de redes",
+   limite="Las imágenes de IA del sitio son conceptuales: no presentarlas como el estudio, sus clases o su alumnado.",
+   siguiente="Sesión de validación con Shakti; después revalidar el sitio en vivo y sustituir imágenes conceptuales por material real."),
+}
+for p in proyectos:
+    upd = EMM2.get(p["id"])
+    if upd:
+        p.update(upd)
+    p["c_permiso"] = True
+    p["testimonio"] = TESTIMONIO.get(p["id"], "")
+    if (upd or p["id"] in TESTIMONIO) and D2 not in p["fuente"]:
+        p["fuente"] += " · " + D2
+    if p["id"] in ("shakti", "sinttergia") and "KOBOS 29 oct" not in p["fuente"]:
+        p["fuente"] += " · KOBOS 29 oct"
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:

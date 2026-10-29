@@ -265,6 +265,7 @@
   .tt-ficha[data-empty] { display: none; }
   .tt.tt-host { display: contents; }
   .tt-modal { position: absolute; left: 0; right: 0; top: 0; height: 100vh; z-index: 1000; display: flex; align-items: flex-start; justify-content: center; padding: 16px; box-sizing: border-box; }
+  .tt-quote { margin: 0 0 6px; padding: 8px 12px; border-left: 2px solid var(--acc, #ECEDEF); font-family: var(--font-anthropic-serif); font-style: italic; color: #DADCE0; line-height: 1.45; }
   .tt-modal:not(.open) { visibility: hidden; pointer-events: none; }
   .tt-modal:not(.open) .tt-mbg { display: none; }
   .tt-modal.open .tt-ficha[data-empty] { display: grid; min-height: 160px; }
@@ -1575,6 +1576,7 @@
       const ul = T.el('ul', 'tt-check plain');
       CH.forEach(([kk, label]) => { const li = T.el('li'); const v = r[kk]; const m = T.el('b', null, v === true ? '✓' : v === false ? '–' : '?'); m.style.color = v === true ? '#7EE0A1' : v === false ? '#6D717A' : '#FF7A6B'; li.append(m, label + ' '); if (v == null) li.appendChild(T.falta()); else if (v === false) li.append('(no)'); ul.appendChild(li); });
       sec(cols, 'i-target', 'Qué tanto lo aprovechamos', [ul]);
+      if (r.testimonio) { const tq = T.el('blockquote', 'tt-quote', '«' + r.testimonio + '»'); const tn = T.el('p', 'tt-note', 'Borrador redactado por LATTICCE. Pedir al cliente que lo apruebe o ajuste antes de publicarlo.'); sec(cols, 'i-help', 'Testimonio propuesto · por aprobar', [tq, tn]); }
       if (r.definido) sec(cols, 'i-check', 'Definido', [list(r.definido.split('; '))]);
       if (r.pendiente) sec(cols, 'i-alert', 'Pendiente', [list(r.pendiente.split('; '))]);
       if (r.limite) sec(cols, 'i-help', 'Límite de comunicación', [T.el('p', null, r.limite)]);

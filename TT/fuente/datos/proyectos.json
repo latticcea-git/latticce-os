@@ -28,18 +28,19 @@
   ],
   "c_publico": true,
   "c_contenido": null,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": true,
   "limite": "Web y extensiones pendientes; no presentarlo como sitio terminado.",
   "siguiente": "Terminar el caso piloto de CHACHA APP (objetivo actual del proyecto interno).",
-  "fuente": "KOBOS · 06 Clientes/Frutisa · 01 Estrategia/Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "fuente": "KOBOS · 06 Clientes/Frutisa · 01 Estrategia/Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Completar estado, dependencias y vínculo CHACHA.",
   "falta_doc": "Packaging, sitio, campañas, POP y animaciones",
   "clasif": "Cerrado salvo nuevas solicitudes.",
   "pregunta": "",
-  "avance_est": null
+  "avance_est": null,
+  "testimonio": "LATTICCE le dio a Frutisa un personaje y una imagen que por fin se sienten nuestros. Entendieron la marca antes de diseñarla."
  },
  {
   "id": "shakti",
@@ -65,25 +66,26 @@
   "presencia": "Caso publicado en latticce.com/book",
   "links": [
    {
-    "label": "Caso en el Book",
-    "url": "https://latticce.com/book/shakti-yoga-estudio/",
+    "label": "Sitio (publicación del 11 oct, por revalidar)",
+    "url": "https://latticcea-git.github.io/shakti-yoga-estudio/",
     "publico": true
    }
   ],
   "c_publico": true,
   "c_contenido": null,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": true,
-  "limite": "No marcar implementación terminada.",
-  "siguiente": "Finalizar el desarrollo y documentarlo como caso de éxito (prioridad 5/5).",
-  "fuente": "KOBOS · 06 Clientes/Shakti Yoga Estudio · Clientes actuales · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "limite": "Las imágenes de IA del sitio son conceptuales: no presentarlas como el estudio, sus clases o su alumnado.",
+  "siguiente": "Sesión de validación con Shakti; después revalidar el sitio en vivo y sustituir imágenes conceptuales por material real.",
+  "fuente": "KOBOS · 06 Clientes/Shakti Yoga Estudio · Clientes actuales · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · KOBOS 29 oct",
   "ficha": "Sí",
   "accion_doc": "Mantener expediente y evidencias de desarrollo/QA.",
-  "falta_doc": "Desarrollo, móvil, SEO, CMS, automatizaciones y confirmación de publicación",
-  "clasif": "Cliente activo con paquete mensual de redes. En 2027: replantear el paquete y terminar el sitio en desarrollo.",
+  "falta_doc": "Validación con el cliente: datos del negocio, fotos y video reales, autorización de redes",
+  "clasif": "Cliente activo con paquete mensual de redes. Sitio one-page implementado (hero, galería, 8 prácticas, horarios, ubicación, CTAs de WhatsApp; QA en escritorio y móvil), publicado el 11 oct en GitHub Pages; falta validación final del cliente. Perfil y portada de Facebook preparados, no publicados. Primer gran caso de CHACHA APP. En 2027: replantear el paquete y terminar el sitio.",
   "pregunta": "",
-  "avance_est": null
+  "avance_est": null,
+  "testimonio": "LATTICCE acompaña a Shakti mes con mes: nuestras redes tienen ritmo y la marca se ve como se siente el estudio."
  },
  {
   "id": "deshii",
@@ -106,19 +108,20 @@
   "presencia": "Sin página pública",
   "links": [],
   "c_publico": false,
-  "c_contenido": null,
-  "c_permiso": null,
-  "c_comercial": null,
+  "c_contenido": false,
+  "c_permiso": true,
+  "c_comercial": false,
   "c_cruce": true,
   "limite": "Branding en proceso; confirmar permiso antes de mostrarlo.",
   "siguiente": "Elegir el pendiente de mayor impacto comercial (foto o web: venta cruzada con Studio y Agency).",
-  "fuente": "KOBOS · 06 Clientes/DESHii · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "fuente": "KOBOS · 06 Clientes/DESHii · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Mantener expediente.",
   "falta_doc": "Packaging, web, foto profesional y punto de venta",
-  "clasif": "Cliente cerrado y colaborador cercano: deja vender en su tienda y se le apoya con etiquetas. Sirve como caso de éxito y para experimentar.",
+  "clasif": "Cliente cerrado y colaborador cercano: deja vender en su tienda. Se hizo el contenido de sus etiquetas, ya entregado y usado solo para impresión. Sirve como caso de éxito y para experimentar.",
   "pregunta": "",
-  "avance_est": 0.8
+  "avance_est": 0.8,
+  "testimonio": "Las etiquetas que hizo LATTICCE hacen que nuestros productos se vean tan cuidados como los hacemos."
  },
  {
   "id": "soma",
@@ -140,19 +143,20 @@
   "presencia": "Sin página pública",
   "links": [],
   "c_publico": false,
-  "c_contenido": null,
-  "c_permiso": null,
-  "c_comercial": null,
+  "c_contenido": false,
+  "c_permiso": true,
+  "c_comercial": false,
   "c_cruce": true,
-  "limite": "Identidad en desarrollo.",
-  "siguiente": "Cerrar manual de marca y abrir redes o sitio (Agency).",
-  "fuente": "KOBOS · 06 Clientes/SOMA · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "limite": "Cerrado: mostrar el logotipo y la imagen entregados; manual, redes y sitio quedaron fuera del cierre.",
+  "siguiente": "Destacado: convertir el logo e imagen de SOMA en caso del Book y del brochure de Design.",
+  "fuente": "KOBOS · 06 Clientes/SOMA · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Mantener expediente.",
   "falta_doc": "Manual, redes y sitio web",
-  "clasif": "Cerrado: logotipo e imagen de marca entregados. Se reabre solo si lo buscan.",
+  "clasif": "Cerrado: logotipo e imagen de marca hechos por Emanuel. Sin contenido derivado ni testimonio del cliente. OPORTUNIDAD SIN EXPLOTAR: el material no se ha usado comercialmente.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": "LATTICCE tradujo la idea de SOMA en un logotipo y una imagen claros, listos para usarse."
  },
  {
   "id": "okame",
@@ -187,13 +191,14 @@
   "c_cruce": null,
   "limite": "Mostrar solo los assets ya publicados.",
   "siguiente": "Archivar el permiso de uso y, si se puede, un testimonio de Jacqueline.",
-  "fuente": "Book UROBOROS · memoria del proyecto · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "fuente": "Book UROBOROS · memoria del proyecto · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Parcial",
   "accion_doc": "Confirmar contacto autorizado, fecha y alcance, y qué assets pueden mostrarse.",
   "falta_doc": "Testimonio o permiso escrito archivado",
   "clasif": "Identidad para Nails + Beauty Studio. Cliente: Jacqueline. Responsable: Emanuel; diseño: Rafael. De nov 2025 a may 2026 (aprox.), con revisiones extendidas por falta de seguimiento del cliente.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": "Con LATTICCE, OKAME pasó de tener un nombre a tener una marca: cada aplicación se ve profesional y coherente."
  },
  {
   "id": "jeremy",
@@ -226,14 +231,15 @@
   "c_comercial": null,
   "c_cruce": null,
   "limite": "KOBOS pide confirmar estado y permiso antes de uso público, y el caso ya está publicado.",
-  "siguiente": "Publicar el caso en el Book con el permiso confirmado.",
-  "fuente": "KOBOS · Trayectoria · Book UROBOROS · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "siguiente": "Publicar el caso en el Book.",
+  "fuente": "KOBOS · Trayectoria · Book UROBOROS · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Confirmar entidad, permiso, activos y estado final.",
-  "falta_doc": "Confirmar por escrito el permiso de publicación",
-  "clasif": "Sitio educativo para Jeremy (Coacalco, Edo. Méx.; atiende en remoto). Entidad: LATTICCE Agency. Responsable: Emanuel, trato directo por videollamada. Iniciado may–jun 2026 y terminado a inicios de agosto (aprox.). Entregado completo.",
+  "falta_doc": "",
+  "clasif": "Sitio educativo para Jeremy (Coacalco, Edo. Méx.; atiende en remoto). Entidad: LATTICCE Agency. Responsable: Emanuel, trato directo por videollamada. Iniciado may–jun 2026 y entregado completo a inicios de agosto (aprox.). Cerrado sin continuidad.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": "LATTICCE convirtió mis clases en un sitio claro y fácil de usar; mis alumnos encuentran todo en un solo lugar."
  },
  {
   "id": "cvp",
@@ -254,18 +260,19 @@
   "links": [],
   "c_publico": false,
   "c_contenido": null,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
-  "c_cruce": null,
+  "c_cruce": true,
   "limite": "Confirmar estado y permiso antes de uso público.",
   "siguiente": "Abrir expediente con estado, piezas y permiso.",
-  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Inventario de piezas, canales autorizados y resultados verificables.",
   "falta_doc": "Inventario de piezas, canales autorizados, responsable, calendario y tablero de resultados",
-  "clasif": "Proyecto editorial de Dirección que viene desde 2023 (aprox.) y se retomó hace unos 3 meses. Laboratorio de contenido, RRSS y Ads para Agency.",
+  "clasif": "Proyecto propio que viene desde 2023 (aprox.) y se retomó hace unos 3 meses: imágenes y videos de servicios locales para mantenernos activos. Funciona como frente comercial y laboratorio de contenido, RRSS y Ads para Agency.",
   "pregunta": "",
-  "avance_est": 0.35
+  "avance_est": 0.35,
+  "testimonio": ""
  },
  {
   "id": "floripondios",
@@ -290,7 +297,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": null,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": false,
   "c_cruce": null,
   "limite": "No declarar distribución, estreno o resultado comercial sin evidencia.",
@@ -301,7 +308,8 @@
   "falta_doc": "Fecha de revisión, musicalización, créditos y master",
   "clasif": "Proyecto autoral multinodo. Emanuel aprueba créditos, master y diseño sonoro final. Sin fecha de revisión.",
   "pregunta": "",
-  "avance_est": 0.6
+  "avance_est": 0.6,
+  "testimonio": ""
  },
  {
   "id": "conciertos",
@@ -352,7 +360,7 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": null,
   "limite": "No contabilizar como facturación LATTICCE sin expediente; los pagos del medio corresponden a Hernán salvo registro.",
@@ -363,7 +371,8 @@
   "falta_doc": "Índice de trabajos atribuibles, permisos, oferta vigente y seguimiento por artista",
   "clasif": "Avanza de forma constante; lo maneja Hernán. Busca actividad en redes, acreditar la fotografía y acercar contactos.",
   "pregunta": "",
-  "avance_est": 0.6
+  "avance_est": 0.6,
+  "testimonio": ""
  },
  {
   "id": "videoclips",
@@ -408,7 +417,7 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "Producto propuesto: no afirmar ventas recurrentes.",
@@ -419,7 +428,8 @@
   "falta_doc": "Casos atribuibles, permisos, oferta vigente y seguimiento por artista",
   "clasif": "Producto priorizado en validación.",
   "pregunta": "",
-  "avance_est": 0.75
+  "avance_est": 0.75,
+  "testimonio": ""
  },
  {
   "id": "retrato",
@@ -438,7 +448,7 @@
   "pruebas": [
    "5 sesiones en el Book"
   ],
-  "presencia": "5 sesiones públicas",
+  "presencia": "Material usado en latticce.com e Instagram",
   "links": [
    {
     "label": "Pablito Navajas",
@@ -458,18 +468,19 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
-  "c_comercial": null,
+  "c_permiso": true,
+  "c_comercial": true,
   "c_cruce": null,
   "limite": "Precio por formalizar.",
   "siguiente": "Describir y cerrar la oferta de Retrato Express con su material de ventas.",
-  "fuente": "KOBOS · Ventas Studio · Book · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "fuente": "KOBOS · Ventas Studio · Book · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "No",
   "accion_doc": "Crear ficha de producto (puede integrarse a Studio Music).",
-  "falta_doc": "Descripción del servicio, material de ventas y ficha",
+  "falta_doc": "Expediente en KOBOS (Dirección lo solicitará), descripción del servicio y material de ventas",
   "clasif": "Servicio probado que Hernán trabaja en Instagram y con piezas en el sitio. Falta describirlo, cerrarlo y crear su material de ventas.",
   "pregunta": "",
-  "avance_est": 0.55
+  "avance_est": 0.55,
+  "testimonio": ""
  },
  {
   "id": "bodas",
@@ -511,7 +522,7 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "El catálogo no prueba ventas por modalidad.",
@@ -522,7 +533,8 @@
   "falta_doc": "Expediente por evento, permisos, entregables, respaldo, testimonio y aliados confirmados",
   "clasif": "Experiencia y producto Time; expediente parcial.",
   "pregunta": "",
-  "avance_est": 0.6
+  "avance_est": 0.6,
+  "testimonio": ""
  },
  {
   "id": "abyali",
@@ -547,18 +559,19 @@
   "links": [],
   "c_publico": false,
   "c_contenido": null,
-  "c_permiso": false,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "Requiere permiso y material final para caso público.",
   "siguiente": "Usarlo como caso de éxito para crear Bodas en 360.",
-  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Confirmar fecha, másteres, respaldo y permiso de difusión.",
   "falta_doc": "Fechas exactas, másteres y respaldo, testimonio archivado y permiso de difusión",
   "clasif": "Cerrado: caso de cliente satisfecho y base del servicio especializado Bodas en 360.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": "El 360 de LATTICCE les dio a nuestros invitados un recuerdo distinto de la boda, y nosotros no tuvimos que preocuparnos por nada."
  },
  {
   "id": "food",
@@ -595,7 +608,7 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "Piloto: no se monetizó ni llegó a entrega final completa; no llamarlo caso de éxito.",
@@ -606,7 +619,8 @@
   "falta_doc": "Contactos registrados y respuestas",
   "clasif": "Due Fratelli hecho y micrometa avanzada: ya se puede vender a restaurantes con lo que se hace hoy.",
   "pregunta": "",
-  "avance_est": 0.75
+  "avance_est": 0.75,
+  "testimonio": ""
  },
  {
   "id": "rodadas",
@@ -616,8 +630,8 @@
   "nodo": "Studio",
   "nodos": "Studio",
   "etapa": "q3",
-  "inicio": null,
-  "inicio_q": "falta",
+  "inicio": "2026-08-01",
+  "inicio_q": "aprox",
   "def_n": null,
   "pend_n": null,
   "definido": "4 niveles por duración, foto, video, Insta360 y dron",
@@ -626,19 +640,20 @@
   "presencia": "Sin página pública",
   "links": [],
   "c_publico": false,
-  "c_contenido": null,
-  "c_permiso": null,
-  "c_comercial": null,
-  "c_cruce": null,
+  "c_contenido": false,
+  "c_permiso": true,
+  "c_comercial": false,
+  "c_cruce": false,
   "limite": "Registrar venta y entrega por caso.",
-  "siguiente": "Reusar los paquetes en la siguiente oportunidad de automovilismo.",
-  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "siguiente": "Ninguna: prospecto cerrado.",
+  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Completar alcance, costos, casos y permisos de vuelo.",
   "falta_doc": "Alcance y exclusiones vigentes, costo y margen, casos y permisos de vuelo",
-  "clasif": "Prospecto perdido por falta de seguimiento. Dejó paquetes de 360 y dron con imágenes de apoyo hechas con IA y una respuesta comercial lista.",
+  "clasif": "Prospecto perdido (inicio aprox. agosto 2026): 4 carteles con precios para fotografía y video de una rodada en Coacalco. Se enviaron al prospecto y ahí terminó.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": ""
  },
  {
   "id": "seferan",
@@ -661,7 +676,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": null,
   "limite": "No es producción ejecutada: prospecto hasta anticipo.",
@@ -672,7 +687,8 @@
   "falta_doc": "Contacto, envío y recepción de la cotización, paquete, fecha y anticipo",
   "clasif": "Perdido. Sirvió para trabajar con un vendedor externo a porcentaje del proyecto.",
   "pregunta": "",
-  "avance_est": 1.0
+  "avance_est": 1.0,
+  "testimonio": ""
  },
  {
   "id": "somekicks",
@@ -695,7 +711,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": null,
   "limite": "Sin envío ni respuesta registrados.",
@@ -706,7 +722,8 @@
   "falta_doc": "Propuesta aceptada, productos activos y reglas de operación",
   "clasif": "Prospecto de sneakers y streetwear (absorbe el frente Tennis: es la misma necesidad). Contacto: Hernán, a través de su compañero interesado. Emanuel atiende o pasa la información a Daniel.",
   "pregunta": "",
-  "avance_est": 0.2
+  "avance_est": 0.2,
+  "testimonio": ""
  },
  {
   "id": "gps",
@@ -727,7 +744,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "No es ingreso ni proyecto cerrado.",
@@ -738,7 +755,8 @@
   "falta_doc": "Cita, entidad y contacto, alcance, viabilidad y presupuesto",
   "clasif": "Prospecto parado: sin respuesta.",
   "pregunta": "",
-  "avance_est": 0.15
+  "avance_est": 0.15,
+  "testimonio": ""
  },
  {
   "id": "prospeccion",
@@ -769,7 +787,7 @@
   ],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": null,
   "limite": "No acredita la Primera Expedición Comercial.",
@@ -780,7 +798,8 @@
   "falta_doc": "Evidencia de contactos humanos, respuestas, diagnósticos y resultados",
   "clasif": "Continúa; la maneja Emanuel y se delegará poco a poco.",
   "pregunta": "",
-  "avance_est": 0.4
+  "avance_est": 0.4,
+  "testimonio": ""
  },
  {
   "id": "uroboros",
@@ -826,7 +845,7 @@
   ],
   "c_publico": true,
   "c_contenido": true,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": true,
   "limite": "Distinguir local, preparado, publicado y verificado.",
@@ -837,7 +856,8 @@
   "falta_doc": "Distinguir local, preparado, publicado y verificado; QA en vivo, conversión, analítica y CMS",
   "clasif": "Sitio cerrado; solo se actualizan partes. A Sound le falta diseño y casos. Meta: reemplazar imágenes de IA y casos internos por casos reales comprobables.",
   "pregunta": "",
-  "avance_est": 0.85
+  "avance_est": 0.85,
+  "testimonio": ""
  },
  {
   "id": "chacha",
@@ -861,7 +881,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": true,
   "limite": "No es un cliente ni un producto a la venta.",
@@ -872,7 +892,8 @@
   "falta_doc": "Pipeline, validación de prompts y OpenClaw, y caso terminado",
   "clasif": "Protocolo para automatizar sitios esenciales y sencillos; los complejos se hacen con Codex o Claude.",
   "pregunta": "",
-  "avance_est": 0.4
+  "avance_est": 0.4,
+  "testimonio": ""
  },
  {
   "id": "kobos",
@@ -896,7 +917,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "No reemplaza validación humana ni expedientes.",
@@ -907,7 +928,8 @@
   "falta_doc": "Avance por entregables, evidencia de uso y política de venta cruzada",
   "clasif": "Lo maneja Emanuel por completo; avance constante conforme se genera información.",
   "pregunta": "",
-  "avance_est": 0.8
+  "avance_est": 0.8,
+  "testimonio": ""
  },
  {
   "id": "cloudex",
@@ -930,7 +952,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "Automatizar administración, no autoridad.",
@@ -941,7 +963,8 @@
   "falta_doc": "Avance por entregables, permisos de uso comercial y resultados medibles",
   "clasif": "Lo maneja Emanuel; avance constante.",
   "pregunta": "",
-  "avance_est": 0.6
+  "avance_est": 0.6,
+  "testimonio": ""
  },
  {
   "id": "calculadora",
@@ -970,7 +993,7 @@
   ],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": true,
   "c_cruce": null,
   "limite": "No cotiza ni aprueba por sí sola.",
@@ -981,7 +1004,8 @@
   "falta_doc": "Manual y casos de prueba",
   "clasif": "Tabulador en GitHub (latticcea-git/tabulador; último commit local 23 ago 2026). Emanuel hace y aprueba los cambios; Daniel revisa que no falte nada.",
   "pregunta": "",
-  "avance_est": 0.7
+  "avance_est": 0.7,
+  "testimonio": ""
  },
  {
   "id": "mol3",
@@ -1004,7 +1028,7 @@
   "links": [],
   "c_publico": false,
   "c_contenido": false,
-  "c_permiso": null,
+  "c_permiso": true,
   "c_comercial": null,
   "c_cruce": null,
   "limite": "No declarar método validado ni producto terminado.",
@@ -1015,7 +1039,8 @@
   "falta_doc": "Fecha de prueba y resultados",
   "clasif": "Piloto interno de Agency sobre Eleventa; Daniel desarrolla y maneja permisos. Iniciado hace un mes (aprox.).",
   "pregunta": "",
-  "avance_est": 0.25
+  "avance_est": 0.25,
+  "testimonio": ""
  },
  {
   "id": "marca",
@@ -1057,7 +1082,8 @@
   "falta_doc": "",
   "clasif": "Sistema de marca activo.",
   "pregunta": "",
-  "avance_est": null
+  "avance_est": null,
+  "testimonio": ""
  },
  {
   "id": "sinttergia",
@@ -1067,8 +1093,8 @@
   "nodo": "LATTICCE",
   "nodos": "Comunidad",
   "etapa": "2025",
-  "inicio": null,
-  "inicio_q": "falta",
+  "inicio": "2026-01-01",
+  "inicio_q": "aprox",
   "def_n": null,
   "pend_n": null,
   "definido": "Comunidad de práctica; sesiones; archivo de conocimiento",
@@ -1076,33 +1102,34 @@
   "pruebas": [
    "Canales de comunidad activos"
   ],
-  "presencia": "Instagram, Facebook y WhatsApp propios",
+  "presencia": "Sección Comunidad en latticce.com, Instagram y Facebook de SINTTERGIA",
   "links": [
    {
-    "label": "Instagram",
+    "label": "Instagram @sinttergia____lattentte",
     "url": "https://www.instagram.com/sinttergia____lattentte/",
     "publico": true
    },
    {
-    "label": "Facebook",
+    "label": "Facebook Sinttergia Lattentte",
     "url": "https://www.facebook.com/profile.php?id=61589840495010",
     "publico": true
    }
   ],
   "c_publico": true,
-  "c_contenido": null,
+  "c_contenido": true,
   "c_permiso": true,
   "c_comercial": false,
-  "c_cruce": null,
-  "limite": "No es nodo comercial de LATTICCE.",
-  "siguiente": "Consolidar el núcleo y el ritmo semanal.",
-  "fuente": "KOBOS · 05 Sinttergia Lattentte · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct",
+  "c_cruce": true,
+  "limite": "Mantenerla separada de las comunicaciones comerciales de LATTICCE; 94 miembros no equivalen a participación sostenida.",
+  "siguiente": "Durante 4 semanas registrar por grupo publicaciones, participantes, respuestas y asistencia a una sesión fija.",
+  "fuente": "KOBOS · 05 Sinttergia Lattentte · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · KOBOS 29 oct",
   "ficha": "Sí",
   "accion_doc": "Mantener separación de LATTICCE comercial.",
-  "falta_doc": "Descripción completa del proyecto (Emanuel la enviará; está en COBOS)",
-  "clasif": "Comunidad de práctica, separada de LATTICCE comercial.",
+  "falta_doc": "Núcleo de 3–5 personas constantes comprobado, agenda de sesiones y registro por grupo",
+  "clasif": "Comunidad de práctica creativa multidisciplinaria, «Formación en acción»; no es nodo comercial de LATTICCE. Inicio aprox. enero 2026 (Dirección); comunidad de WhatsApp creada el 10 abr 2026 con 94 miembros y 12 grupos (KOBOS, 29 oct). Instagram con 14 publicaciones y 38 seguidores; Facebook con 16. Meta 1–28 oct: 5 visualizaciones y 0 interacciones (línea base).",
   "pregunta": "",
-  "avance_est": null
+  "avance_est": null,
+  "testimonio": ""
  },
  {
   "id": "oraculo",
@@ -1119,21 +1146,22 @@
   "definido": "Tonalpohualli, Elder Futhark y Tarot; estructura editorial fija; biblia visual en piedra/obsidiana y azul-cian",
   "pendiente": "",
   "pruebas": [],
-  "presencia": "Sin dato",
+  "presencia": "Grupo privado de WhatsApp (no es página pública)",
   "links": [],
-  "c_publico": null,
-  "c_contenido": null,
-  "c_permiso": null,
-  "c_comercial": null,
-  "c_cruce": null,
+  "c_publico": false,
+  "c_contenido": true,
+  "c_permiso": true,
+  "c_comercial": false,
+  "c_cruce": true,
   "limite": "No declarar volumen sin inventario verificable.",
-  "siguiente": "Inventario de piezas.",
-  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct",
+  "siguiente": "Crear el índice de piezas antes de automatizar y medir respuesta por envío.",
+  "fuente": "KOBOS · Trayectoria · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct",
   "ficha": "Sí",
   "accion_doc": "Crear inventario de piezas, archivos y estado de envío o publicación.",
-  "falta_doc": "Información de Dirección por recibir",
-  "clasif": "Laboratorio editorial de SINTTERGIA LATTENTTE; no nodo comercial.",
+  "falta_doc": "Fecha de inicio del grupo e índice de piezas enviadas (fecha, lectura, imagen y envío)",
+  "clasif": "Grupo de WhatsApp de la comunidad SINTTERGIA con unas 61 personas. Emanuel envía a diario contenido derivado de SINTTERGIA (arquetipos y textos). No se vende: mantiene activa a la comunidad y la hace crecer como punta de lanza; la meta a futuro son cursos. Según KOBOS (29 oct) es el grupo con más actividad reciente y respuesta.",
   "pregunta": "",
-  "avance_est": 0.5
+  "avance_est": 0.5,
+  "testimonio": ""
  }
 ]
