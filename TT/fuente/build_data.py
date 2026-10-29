@@ -711,6 +711,21 @@ SUG = {
 for p in proyectos:
     p["sug_contenido"] = SUG.get(p["id"], [])
 
+# Tabulador LATTICCE (KOBOS 02 Operacion/Tabulador LATTICCE.md, 29 oct 19:16)
+for p in proyectos:
+    if p["id"] == "calculadora":
+        p.update(nombre="Tabulador LATTICCE · Cotizador Latente", nodo="LATTICCE", nodos="Studio, Sound, Design, Agency, Time",
+          clasif="Herramienta interna que convierte horas, costos, presupuestos, paquetes y rentas en precotizaciones revisables (MXN, IVA 16 % separado). Cuatro módulos: Horas, Cotizador multinodo (Studio, Sound, Design, Agency y Time), Paquetes (Esencial, Classic, Deluxe, Cinematic) y Renta de equipo o espacio. Versión estable v1.3.0 (23 ago); commit verificado 31dde0c; compila y pasa 4/4 pruebas de render (29 oct). La skill Cotizador Latente permite pedir una precotización en lenguaje natural. Emanuel cambia y aprueba; Daniel revisa.",
+          definido="Horas: precio por hora, total y plan desde presupuesto; Cotizador multinodo con honorarios, comisión y reserva protegidos; Paquetes Esencial, Classic, Deluxe y Cinematic por servicio; Renta de equipo o espacio con depósito y logística; Exportación a PDF, Markdown y CSV; Skill Cotizador Latente; Compilación y 4/4 pruebas de render",
+          pendiente="Confirmar URL y estado de despliegue; Validar precios y cambiar ceros técnicos por «por confirmar»; Probar Cotizador Latente con casos reales de cada nodo y renta; Nombrar responsables y frecuencia de actualización de catálogos; Definir modelo de datos y flujo de prospecto para la versión pública",
+          def_n=7, pend_n=5, avance_est=None, c_cruce=True,
+          pruebas=["Repositorio latticcea-git/tabulador · v1.3.0 · commit 31dde0c", "Ramas develop, preview y main alineadas (29 oct)", "4/4 pruebas de render aprobadas (29 oct)", "Skill cotizador-latente instalada y verificada"],
+          limite="Precotización interna: no es cotización final, contrato ni política comercial. Honorarios 20 %, comisión 5 % y reserva 5 % son supuestos operativos. No exponer márgenes ni costos.",
+          siguiente="Gobernanza interna: validar precios y catálogos, cambiar ceros por «por confirmar» y probar Cotizador Latente con un caso real por nodo. Después, prototipo privado del cotizador público por nodo (/cotizar/studio, /sound, /design, /agency, /time, /renta).",
+          falta_doc="URL de despliegue confirmada", accion_doc="Ficha completa al 29 oct (módulos, reglas, historial, skill y crecimiento propuesto).")
+        if "KOBOS 29 oct" not in p["fuente"]:
+            p["fuente"] += " · KOBOS 29 oct (Tabulador LATTICCE)"
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:
@@ -726,6 +741,9 @@ for e in etapas:
 hitos += [
   H("2026-04-01", "aprox", "Marca", "Time", "Gorras y etiquetas LATTICCE en la primera boda", "Primera identidad física de campo: gorras y aplicaciones con serigrafía y corte. No es línea textil validada.", "KOBOS · Registro histórico 2025–2026", proyecto="bodas"),
   H("2026-10-28", "exacta", "Sistema", "LATTICCE", "Registro histórico 2025–2026 y matriz de cobertura", "23 frentes revisados: 7 con ficha propia, 3 parciales y 13 sin ficha; prioridad Aby y Ali, Floripondios, MOL3, Tennis, GPS, Home Studio, calculadora y red.", "KOBOS · 90 Fuentes/Registro histórico", proyecto="kobos"),
+  H("2026-08-16", "exacta", "Sistema", "LATTICCE", "Tabulador v1.1.0: Paquetes y temas por nodo", "Se suman los paquetes Esencial, Classic, Deluxe y Cinematic por servicio.", "latticcea-git/tabulador · cf82c46", proyecto="calculadora"),
+  H("2026-08-23", "exacta", "Sistema", "LATTICCE", "Tabulador v1.3.0: presupuesto, paquetes y renta de espacio", "Amplía presupuesto, paquetes y renta, incluida la renta de espacio. Versión estable vigente.", "latticcea-git/tabulador · 595b854", proyecto="calculadora"),
+  H("2026-10-29", "exacta", "Sistema", "LATTICCE", "Tabulador verificado y skill Cotizador Latente", "Compila y pasa 4/4 pruebas de render; la skill Cotizador Latente precotiza en lenguaje natural. Ficha completa en KOBOS.", "KOBOS · 02 Operacion/Tabulador LATTICCE", proyecto="calculadora"),
   H("2026-10-28", "exacta", "Sistema", "LATTICCE", "Expedientes completados en KOBOS", "La matriz de cobertura pasa a 23 de 23 frentes con ficha: Floripondios, Aby y Ali 360, MOL3, GPS, Tennis, Somekicks, Home Studio, Tabulador, Rex y Ángel/ADN, entre otros. OKAME queda con respaldo de proyecto.", "KOBOS · 90 Fuentes/Registro histórico (17:16)", proyecto="kobos"),
 ]
 hitos.sort(key=lambda h: h["fecha"])

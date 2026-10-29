@@ -276,6 +276,18 @@
   "url": ""
  },
  {
+  "fecha": "2026-08-16",
+  "fecha_q": "exacta",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Tabulador v1.1.0: Paquetes y temas por nodo",
+  "detalle": "Se suman los paquetes Esencial, Classic, Deluxe y Cinematic por servicio.",
+  "evidencia": "latticcea-git/tabulador · cf82c46",
+  "estado": "acreditado",
+  "proyecto": "calculadora",
+  "url": ""
+ },
+ {
   "fecha": "2026-08-17",
   "fecha_q": "exacta",
   "area": "Sitio",
@@ -286,6 +298,18 @@
   "estado": "acreditado",
   "proyecto": "uroboros",
   "url": "https://latticce.com/"
+ },
+ {
+  "fecha": "2026-08-23",
+  "fecha_q": "exacta",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Tabulador v1.3.0: presupuesto, paquetes y renta de espacio",
+  "detalle": "Amplía presupuesto, paquetes y renta, incluida la renta de espacio. Versión estable vigente.",
+  "evidencia": "latticcea-git/tabulador · 595b854",
+  "estado": "acreditado",
+  "proyecto": "calculadora",
+  "url": ""
  },
  {
   "fecha": "2026-08-29",
@@ -657,6 +681,18 @@
   "evidencia": "KOBOS · 90 Fuentes/Registro histórico (17:16)",
   "estado": "acreditado",
   "proyecto": "kobos",
+  "url": ""
+ },
+ {
+  "fecha": "2026-10-29",
+  "fecha_q": "exacta",
+  "area": "Sistema",
+  "nodo": "LATTICCE",
+  "hito": "Tabulador verificado y skill Cotizador Latente",
+  "detalle": "Compila y pasa 4/4 pruebas de render; la skill Cotizador Latente precotiza en lenguaje natural. Ficha completa en KOBOS.",
+  "evidencia": "KOBOS · 02 Operacion/Tabulador LATTICCE",
+  "estado": "acreditado",
+  "proyecto": "calculadora",
   "url": ""
  }
 ]
