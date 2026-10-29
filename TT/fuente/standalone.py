@@ -91,7 +91,7 @@ html = f"""<!doctype html>
 <script>{logos}</script>
 {shim}
 </head><body>
-<p class="tt-standalone">Versión independiente · corte del 28 de octubre de 2026 · uso interno de LATTICCE, no compartir públicamente</p>
+<p class="tt-standalone">Versión independiente · datos al 29 de octubre de 2026 (Instagram: corte del 28) · uso interno de LATTICCE, no compartir públicamente</p>
 <div id="dash-root">
 {page}
 </div>
