@@ -735,6 +735,33 @@ for p in proyectos:
         have = {l["url"] for l in p["links"]}
         p["links"] += [{"label": t, "url": "https://claude.ai/artifact/" + i, "publico": False} for t, i in ART if "https://claude.ai/artifact/" + i not in have]
 
+# Venta cruzada sugerida (Claude, 29 oct, a partir de estado, entregables, pendientes y casos de cada frente). La primera es la principal.
+CRUCE = {
+ "frutisa": [("Studio", "Foto y video de producto con el personaje 3D para redes y punto de venta."), ("Agency", "Paquete mensual de redes y Ads para activar el sitio y la marca.")],
+ "shakti": [("Studio", "Sesión de foto y video real del estudio, clases e instructores para sustituir las imágenes de IA del sitio."), ("Sound", "Ambiente sonoro propio para clases y para el ritual de bienvenida.")],
+ "deshii": [("Studio", "Foto de producto con las etiquetas nuevas para tienda y redes."), ("Agency", "Catálogo o tienda en línea esencial con CHACHA APP.")],
+ "soma": [("Agency", "Sitio esencial con CHACHA APP y arranque de redes: los pendientes que quedaron fuera del cierre."), ("Studio", "Sesión de marca y producto para estrenar la identidad.")],
+ "okame": [("Studio", "Retrato Express y fotos del servicio de uñas y belleza para redes."), ("Agency", "Paquete mensual de redes y Ads con la identidad nueva.")],
+ "jeremy": [("Studio", "Video de presentación y clase muestra para el sitio."), ("Design", "Material didáctico con la identidad de la marca.")],
+ "cvp": [("Agency", "Ofrecer redes y Ads a los negocios locales que ya se retrataron."), ("Design", "Identidad esencial para los negocios que lo necesiten.")],
+ "floripondios": [("Design", "Póster, portada y créditos del proyecto con la línea de Portadas que se escuchan."), ("Films", "Usar el corte final como pieza de demostración de Films.")],
+ "conciertos": [("Design", "Portadas que se escuchan para los artistas que ya fotografiamos."), ("Sound", "Grabación, mezcla o master para esos mismos artistas.")],
+ "videoclips": [("Design", "Portada del sencillo con la línea de Portadas que se escuchan."), ("Sound", "Mezcla y master del tema del videoclip.")],
+ "retrato": [("Design", "Marca personal (logo o firma visual) para quien se hace el retrato."), ("Agency", "Perfil y redes listas con las fotos nuevas.")],
+ "bodas": [("Design", "Invitaciones y papelería del evento."), ("Studio", "Sesión previa de pareja y Retrato Express para la familia.")],
+ "abyali": [("Time", "Referidos para Bodas en 360: invitar a sus conocidos con su caso como muestra."), ("Design", "Álbum o fotolibro diseñado de la boda.")],
+ "food": [("Design", "Menú, carta y señalética para los restaurantes del CRM Food."), ("Agency", "Redes y Ads mensuales para restaurantes que ya tengan fotos.")],
+ "somekicks": [("Studio", "Foto y video de producto de sneakers y streetwear."), ("Design", "Identidad y etiquetas para la línea de productos.")],
+ "chacha": [("Design", "Combo identidad + sitio esencial para clientes de Design como SOMA y DESHii.")],
+ "mol3": [("Design", "Identidad y etiquetas de precio para la tienda piloto (Abarrotes Paulita).")],
+ "calculadora": [("LATTICCE", "Usar el Cotizador multinodo para armar combos entre nodos en cada propuesta.")],
+}
+for p in proyectos:
+    p["cruce_sug"] = [{"nodo": n, "idea": t} for n, t in CRUCE.get(p["id"], [])]
+    if p["id"] == "okame":
+        p["falta_doc"] = "Testimonio aprobado por Jacqueline"
+        p["siguiente"] = "Enviar a Jacqueline el testimonio propuesto para su aprobación."
+
 CAPF = {"Producción audiovisual": "Parcial", "360": "Parcial", "Sound": "Sí", "Producción musical": "Sí", "Postproducción especializada": "No",
         "Software / QA": "Parcial", "Diseño": "Parcial", "Producción física": "Sí", "Ventas / prospección": "Parcial"}
 for c in capacidad:

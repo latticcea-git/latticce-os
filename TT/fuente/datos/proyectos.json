@@ -41,7 +41,17 @@
   "pregunta": "",
   "avance_est": null,
   "testimonio": "LATTICCE le dio a Frutisa un personaje y una imagen que por fin se sienten nuestros. Entendieron la marca antes de diseñarla.",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Foto y video de producto con el personaje 3D para redes y punto de venta."
+   },
+   {
+    "nodo": "Agency",
+    "idea": "Paquete mensual de redes y Ads para activar el sitio y la marca."
+   }
+  ]
  },
  {
   "id": "shakti",
@@ -92,7 +102,17 @@
   "pregunta": "",
   "avance_est": null,
   "testimonio": "LATTICCE acompaña a Shakti mes con mes: nuestras redes tienen ritmo y la marca se ve como se siente el estudio.",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Sesión de foto y video real del estudio, clases e instructores para sustituir las imágenes de IA del sitio."
+   },
+   {
+    "nodo": "Sound",
+    "idea": "Ambiente sonoro propio para clases y para el ritual de bienvenida."
+   }
+  ]
  },
  {
   "id": "deshii",
@@ -133,6 +153,16 @@
    "Caso en el Book de Design: sistema de etiquetas, de la propuesta a la impresión",
    "Reel del producto con su etiqueta en la tienda",
    "Carrusel educativo: «Cómo diseñar una etiqueta que se imprime bien»"
+  ],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Foto de producto con las etiquetas nuevas para tienda y redes."
+   },
+   {
+    "nodo": "Agency",
+    "idea": "Catálogo o tienda en línea esencial con CHACHA APP."
+   }
   ]
  },
  {
@@ -173,6 +203,16 @@
    "Caso en el Book de Design: moodboard → variantes del logotipo → aplicaciones",
    "Carrusel del proceso de identidad para Instagram de Design",
    "Lámina en el brochure de Design"
+  ],
+  "cruce_sug": [
+   {
+    "nodo": "Agency",
+    "idea": "Sitio esencial con CHACHA APP y arranque de redes: los pendientes que quedaron fuera del cierre."
+   },
+   {
+    "nodo": "Studio",
+    "idea": "Sesión de marca y producto para estrenar la identidad."
+   }
   ]
  },
  {
@@ -207,16 +247,26 @@
   "c_comercial": true,
   "c_cruce": null,
   "limite": "Mostrar solo los assets ya publicados.",
-  "siguiente": "Archivar el permiso de uso y, si se puede, un testimonio de Jacqueline.",
+  "siguiente": "Enviar a Jacqueline el testimonio propuesto para su aprobación.",
   "fuente": "Book UROBOROS · memoria del proyecto · Registro histórico 2025–2026 · Investigación de cobertura (28 oct) · KOBOS 28 oct (17:16) · Dirección (EMM), 28 oct · Dirección (EMM), 29 oct · latticce.com (Book, blog y Agency), 29 oct",
   "ficha": "Parcial",
   "accion_doc": "Confirmar contacto autorizado, fecha y alcance, y qué assets pueden mostrarse.",
-  "falta_doc": "Testimonio o permiso escrito archivado",
+  "falta_doc": "Testimonio aprobado por Jacqueline",
   "clasif": "Identidad para Nails + Beauty Studio. Cliente: Jacqueline. Responsable: Emanuel; diseño: Rafael. De nov 2025 a may 2026 (aprox.), con revisiones extendidas por falta de seguimiento del cliente.",
   "pregunta": "",
   "avance_est": 1.0,
   "testimonio": "Con LATTICCE, OKAME pasó de tener un nombre a tener una marca: cada aplicación se ve profesional y coherente.",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Retrato Express y fotos del servicio de uñas y belleza para redes."
+   },
+   {
+    "nodo": "Agency",
+    "idea": "Paquete mensual de redes y Ads con la identidad nueva."
+   }
+  ]
  },
  {
   "id": "jeremy",
@@ -258,7 +308,17 @@
   "pregunta": "",
   "avance_est": 1.0,
   "testimonio": "LATTICCE convirtió mis clases en un sitio claro y fácil de usar; mis alumnos encuentran todo en un solo lugar.",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Video de presentación y clase muestra para el sitio."
+   },
+   {
+    "nodo": "Design",
+    "idea": "Material didáctico con la identidad de la marca."
+   }
+  ]
  },
  {
   "id": "cvp",
@@ -296,6 +356,16 @@
    "Serie semanal en Instagram: un negocio local por semana (foto + reel de 15 s con su historia)",
    "Carrusel «detrás de la toma» con el proceso de una sesión de CVP",
    "Caso en el Book como laboratorio de Agency: qué se probó y qué se aprendió"
+  ],
+  "cruce_sug": [
+   {
+    "nodo": "Agency",
+    "idea": "Ofrecer redes y Ads a los negocios locales que ya se retrataron."
+   },
+   {
+    "nodo": "Design",
+    "idea": "Identidad esencial para los negocios que lo necesiten."
+   }
   ]
  },
  {
@@ -338,6 +408,16 @@
    "Teaser de 15 s con un fragmento del diseño sonoro",
    "Carrusel del proceso de mezcla y diseño sonoro (le da a Sound el caso que le falta)",
    "Caso en el Book de Sound/Films al cerrar el sonido y los créditos"
+  ],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Póster, portada y créditos del proyecto con la línea de Portadas que se escuchan."
+   },
+   {
+    "nodo": "Films",
+    "idea": "Usar el corte final como pieza de demostración de Films."
+   }
   ]
  },
  {
@@ -402,7 +482,17 @@
   "pregunta": "",
   "avance_est": 0.6,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Portadas que se escuchan para los artistas que ya fotografiamos."
+   },
+   {
+    "nodo": "Sound",
+    "idea": "Grabación, mezcla o master para esos mismos artistas."
+   }
+  ]
  },
  {
   "id": "videoclips",
@@ -460,7 +550,17 @@
   "pregunta": "",
   "avance_est": 0.75,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Portada del sencillo con la línea de Portadas que se escuchan."
+   },
+   {
+    "nodo": "Sound",
+    "idea": "Mezcla y master del tema del videoclip."
+   }
+  ]
  },
  {
   "id": "retrato",
@@ -512,7 +612,17 @@
   "pregunta": "",
   "avance_est": 0.55,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Marca personal (logo o firma visual) para quien se hace el retrato."
+   },
+   {
+    "nodo": "Agency",
+    "idea": "Perfil y redes listas con las fotos nuevas."
+   }
+  ]
  },
  {
   "id": "bodas",
@@ -567,7 +677,17 @@
   "pregunta": "",
   "avance_est": 0.6,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Invitaciones y papelería del evento."
+   },
+   {
+    "nodo": "Studio",
+    "idea": "Sesión previa de pareja y Retrato Express para la familia."
+   }
+  ]
  },
  {
   "id": "abyali",
@@ -609,6 +729,16 @@
    "Caso «Bodas en 360» en el Book de Time con el video 360 de la boda",
    "Reel corto de la experiencia 360 de los invitados",
    "Artículo en el blog: «Qué aporta una cámara 360 a una boda»"
+  ],
+  "cruce_sug": [
+   {
+    "nodo": "Time",
+    "idea": "Referidos para Bodas en 360: invitar a sus conocidos con su caso como muestra."
+   },
+   {
+    "nodo": "Design",
+    "idea": "Álbum o fotolibro diseñado de la boda."
+   }
   ]
  },
  {
@@ -659,7 +789,17 @@
   "pregunta": "",
   "avance_est": 0.75,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Menú, carta y señalética para los restaurantes del CRM Food."
+   },
+   {
+    "nodo": "Agency",
+    "idea": "Redes y Ads mensuales para restaurantes que ya tengan fotos."
+   }
+  ]
  },
  {
   "id": "rodadas",
@@ -693,7 +833,8 @@
   "pregunta": "",
   "avance_est": 1.0,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "seferan",
@@ -729,7 +870,8 @@
   "pregunta": "",
   "avance_est": 1.0,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "somekicks",
@@ -765,7 +907,17 @@
   "pregunta": "",
   "avance_est": 0.2,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Studio",
+    "idea": "Foto y video de producto de sneakers y streetwear."
+   },
+   {
+    "nodo": "Design",
+    "idea": "Identidad y etiquetas para la línea de productos."
+   }
+  ]
  },
  {
   "id": "gps",
@@ -799,7 +951,8 @@
   "pregunta": "",
   "avance_est": 0.15,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "prospeccion",
@@ -843,7 +996,8 @@
   "pregunta": "",
   "avance_est": 0.4,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "uroboros",
@@ -902,7 +1056,8 @@
   "pregunta": "",
   "avance_est": 0.85,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "chacha",
@@ -939,7 +1094,13 @@
   "pregunta": "",
   "avance_est": 0.4,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Combo identidad + sitio esencial para clientes de Design como SOMA y DESHii."
+   }
+  ]
  },
  {
   "id": "kobos",
@@ -976,7 +1137,8 @@
   "pregunta": "",
   "avance_est": 0.8,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "cloudex",
@@ -1012,7 +1174,8 @@
   "pregunta": "",
   "avance_est": 0.6,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "calculadora",
@@ -1057,7 +1220,13 @@
   "pregunta": "",
   "avance_est": null,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "LATTICCE",
+    "idea": "Usar el Cotizador multinodo para armar combos entre nodos en cada propuesta."
+   }
+  ]
  },
  {
   "id": "mol3",
@@ -1093,7 +1262,13 @@
   "pregunta": "",
   "avance_est": 0.25,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": [
+   {
+    "nodo": "Design",
+    "idea": "Identidad y etiquetas de precio para la tienda piloto (Abarrotes Paulita)."
+   }
+  ]
  },
  {
   "id": "marca",
@@ -1182,7 +1357,8 @@
   "pregunta": "",
   "avance_est": null,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "sinttergia",
@@ -1229,7 +1405,8 @@
   "pregunta": "",
   "avance_est": null,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  },
  {
   "id": "oraculo",
@@ -1263,6 +1440,7 @@
   "pregunta": "",
   "avance_est": 0.5,
   "testimonio": "",
-  "sug_contenido": []
+  "sug_contenido": [],
+  "cruce_sug": []
  }
 ]
